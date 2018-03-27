@@ -1,6 +1,5 @@
 package org.sky.sys.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class SysOrgan {
@@ -13,18 +12,6 @@ public class SysOrgan {
     private String parCode;
 
     private String type;
-
-    private String dPrice;
-
-    private String attr;
-
-    private BigDecimal area;
-
-    private String phone;
-
-    private String addr;
-
-    private String fax;
 
     private Short seq;
 
@@ -80,54 +67,6 @@ public class SysOrgan {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getdPrice() {
-        return dPrice;
-    }
-
-    public void setdPrice(String dPrice) {
-        this.dPrice = dPrice;
-    }
-
-    public String getAttr() {
-        return attr;
-    }
-
-    public void setAttr(String attr) {
-        this.attr = attr;
-    }
-
-    public BigDecimal getArea() {
-        return area;
-    }
-
-    public void setArea(BigDecimal area) {
-        this.area = area;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddr() {
-        return addr;
-    }
-
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
-
-    public String getFax() {
-        return fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
     }
 
     public Short getSeq() {
@@ -193,4 +132,5 @@ public class SysOrgan {
 	public void setChildCount(int childCount) {
 		this.childCount = childCount;
 	}
+    
 }
