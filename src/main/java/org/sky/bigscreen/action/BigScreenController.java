@@ -22,7 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller  
 public class BigScreenController {
-
+	@RequestMapping(value = "/bigscreen/demo", method = { RequestMethod.GET })
+	public ModelAndView demo(Map<String, Object> map,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();	 
+		mv.setViewName("jsp/bigscreen/demo");
+		return mv;
+	}
 	
 	@RequestMapping(value = "/bigscreen/index", method = { RequestMethod.GET })
 	public ModelAndView index(Map<String, Object> map,

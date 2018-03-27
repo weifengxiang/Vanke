@@ -17,11 +17,11 @@ var basepath = '${basepath}';
 
 <script type="text/javascript" src="${basepath}skin/plugins/bootstrapjs/bootstrap-3.3.4.js"></script>
 <script type="text/javascript" src="${basepath}skin/plugins/bootstrapjs/common/Common.js"></script>
-<script type="text/javascript" src="${basepath}skin/plugins/js/map.js"></script>
-<script type="text/javascript" src='${basepath}skin/plugins/js/utils.js'></script>
+<script type="text/javascript" src="${basepath}skin/js/map.js"></script>
+<script type="text/javascript" src='${basepath}skin/js/utils.js'></script>
 <script src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
 <script src="${basepath}skin/plugins/echarts/walden.js"></script>
-<script type="text/javascript" src="${basepath}jsp/bigscreen/index.js"></script>
+<script type="text/javascript" src="${basepath}jsp/bigscreen/demo.js"></script>
 <script type="text/javascript">
 $(function() {
 	   $("#prev_btn").click(function () { window.location.href = 'index8' });
@@ -47,8 +47,6 @@ $(function() {
 <title>泰安工商系统数据分析平台大屏</title>
 </head>
 <body >
-
-
     <style>
         html {
             height: 100%;
@@ -210,11 +208,11 @@ $(function() {
 <body>
     <div style="position:absolute;top:335px;right:0px;margin-right:0px; cursor:pointer;z-index:1000">
         <img style="width:25px;height:25px;" src="${basepath}skin/images/larscreen/055.png" id="prev_btn" /></br>
-        <img style="width:25px;height:25px;" src="${basepath}skin/images/larscreen/056.png"  id="next_btn" />
+        <img style="width:25px;height:25px;" src="${basepath}skin/images/larscreen/056.png" id="next_btn" />
     </div> 
   <div style="height:100%;width:100%">
  <div class="row" style="width:100%;height:98%; padding:10px 0px 10px 20px; margin-right:-20px">
-    <div class="row" style="height: 80px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">泰安市工商局数据分析平台</div>
+    <div class="row" style="height: 80px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">重庆万科地产数据分析平台</div>
     <div class="row" style="margin-left:10px;margin-right:-15px">
         <div class="col-md-3 box" style="height:520px;width:23%; margin-right:9px;"  id="chart2">
         </div>

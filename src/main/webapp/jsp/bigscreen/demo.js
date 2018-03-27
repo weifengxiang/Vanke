@@ -90,13 +90,34 @@ function Chart1() {
 
 }
 function Chart2() {
-
+	var salerRank=[
+		{"name":"A","value":0.203},
+		{"name":"B","value":0.198},
+		{"name":"C","value":0.190},
+		{"name":"D","value":0.172},
+		{"name":"E","value":0.169},
+		{"name":"F","value":0.165},
+		{"name":"G","value":0.161},
+		{"name":"H","value":0.154},
+		{"name":"I","value":0.154},
+		{"name":"J","value":0.152},
+		{"name":"K","value":0.151},
+		{"name":"L","value":0.148},
+		{"name":"M","value":0.143},
+		{"name":"N","value":0.140},
+		{"name":"O","value":0.101},
+		{"name":"P","value":0.097},
+		{"name":"Q","value":0.095},
+		{"name":"R","value":0.092},
+		{"name":"S","value":0.089},
+		{"name":"T","value":0.088}
+	];
     option = {
         title: {
-            text: '各地区新增市场主体排名'
+            text: '金域华府项目置业顾问成交率总排名'
             ,
             textStyle: {
-                fontSize: '20'
+                fontSize: '16'
             },
             left:'center',
             top: 20
@@ -106,8 +127,7 @@ function Chart2() {
             show: true,
             //   formatter: ' {b}被诉百分比{c}%,数量{c}',
             formatter: function (params, ticket, callback) {
-
-                return params.name + '新增市场主体' + params.value + '户';
+                return params.name + '成交率' + params.value*100 + '%';
             },
             //position: function (pos, params, dom, rect, size) {
             //    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
@@ -120,7 +140,7 @@ function Chart2() {
         yAxis: [
             {
                 type: 'category',
-                data: ['景区', '高新区', '东平县', '宁阳县', '岱岳区', '肥城市', '泰山区', '新泰市'],                
+                data: $.getJsonElementArray(salerRank,'name'),                
                 splitLine: { show: false },
                 axisLabel: {
                     show: true,
@@ -148,14 +168,17 @@ function Chart2() {
             {
                 name: '数量',
                 type: 'bar',             
-                data: [82,1011,2580,2751,3821,4549,5767,6194],
+                data: $.getJsonElementArray(salerRank,'value'),
                 barWidth: 30,
                
                 label: {
                     normal: {
                         show: true,
                         position: 'right',
-                        formatter: ' {c}'
+                        formatter:function(params, ticket, callback) {
+                            return  (params.value*100).toFixed(2) + '%';
+                        },
+                        color:'#FFF'
                     }
                 }, itemStyle: {
                     normal: {
@@ -408,193 +431,7 @@ function Chart5() {
 
     myChart.setOption(option);
 }
-/*
-function Chart6() {
 
-
-
-
-
-    //option = {
-    //    title: {
-    //        text: '被诉热点行为',
-    //        //textAlign: 'center'
-    //        left: '20%'
-    //        ,
-    //        top: 20,
-    //        textStyle: {
-    //            fontSize: '14px'
-    //        }
-    //    },
-    //    tooltip: {
-    //        trigger: 'axis'
-    //    },
-    //    //legend: {
-    //    //    data: ["总数", "投诉", "举报"],
-    //    //    bottom: 5,
-    //    //    right: 0,
-    //    //    left:0
-    //    //    //orient: 'vertical'
-    //    //},
-
-    //    xAxis: {
-    //        type: 'category',
-    //        boundaryGap: false,
-    //        splitLine: { show: false },
-    //        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-    //        axisLabel: {
-    //            show: true,
-
-    //        }
-    //    },
-    //    yAxis: {
-    //        type: 'value',
-    //        splitLine: { show: true },
-    //        axisLabel: {
-    //            show: false
-    //        }
-    //    }, grid: {
-
-    //        left: 10
-    //    }, backgroundColor: 'rgba(41,64,94,0.4)'
-    //    ,
-    //    series: [
-    //        {
-    //            name: '总数',
-    //            type: 'line',
-    //            label: {
-    //                normal: {
-    //                    show: true,
-    //                    position: 'top',
-
-    //                }
-    //            },
-    //            data: [40, 51, 53, 64, 65, 70, 78, 80, 82, 85, 90, 95]
-    //        }, {
-    //            name: '投诉',
-    //            type: 'line',
-    //            label: {
-    //                normal: {
-    //                    show: true,
-    //                    position: 'top',
-
-    //                }
-    //            },
-    //            data: [30, 21, 43, 44, 55, 40, 48, 50, 50, 45, 60, 75]
-    //        }, {
-    //            name: '举报',
-    //            type: 'line',
-    //            label: {
-    //                normal: {
-    //                    show: true,
-    //                    position: 'top',
-
-    //                }
-    //            },
-    //            data: [10, 30, 10, 20, 10, 30, 30, 30, 32, 40, 30, 15]
-    //        }
-    //    ]
-    //};
-    option = {
-        title: {
-            text: '被诉热点商品(top6) %',
-            //textAlign: 'center'
-            left: '5%',
-            top: 20,
-            textStyle: {
-                fontSize: '14px'
-            }
-
-        },
-        tooltip: {
-            show: true
-            , formatter: function (params, ticket, callback) {
-
-                return params.name + '百分比' + params.value + '%，数量' + params.value * 100;
-            }
-        }, grid: {
-
-            left: 10
-        },
-        xAxis: {
-            type: 'category',
-
-            splitLine: { show: false },
-            data: ['米面制品', '空调产品', '移动电话', '装修建材', '婴幼儿食品', '保健品'],
-            axisLabel: {
-                show: true,
-                rotate: 50,
-                interval: 0
-            }
-        },
-        backgroundColor: 'rgba(41,64,94,0.4)'
-     ,
-        yAxis: {
-            type: 'value',
-            splitLine: { show: true },
-            axisLabel: {
-                show: false
-            }
-        },
-        series: [
-            {
-                name: '数量',
-                type: 'bar',
-                barWidth: 10,//固定柱子宽度
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'top',
-
-                    }
-                },
-                data: [5, 6, 8, 19, 25, 30]
-                , itemStyle: {
-                    normal: {
-                        color: function (params) {
-                            if (params.value >= 30) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(153,0,0,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba( 250,59,24,0.4)'
-                                }]);
-                            } else if (params.value >= 20 && params.value < 30) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(216,78,43,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba(244,226,133,0.4)'
-                                }]);
-                            } else if (params.value >= 10 && params.value < 20) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(255,245,175,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba(255,245,175,0.4)'
-                                }]);
-                            } else {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(6,248,255,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba( 88,255,255,0.4)'
-                                }])
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    };
-    var myChart = echarts.init(document.getElementById('chart6'), 'walden');
-
-    myChart.setOption(option);
-}*/
 function Chart7() {
     option = {
         title: {
@@ -694,82 +531,7 @@ function Chart7() {
 }
 
 function chart9() {
-	/*
-    var base = +new Date(2016, 12, 0);
-    var oneDay = 24 * 3600 * 1000;
-    var date = [];
-
-    var data = [Math.random() * 1000];
-
-    for (var i = 1; i < 366; i++) {
-        var now = new Date(base += oneDay);
-        date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-        data.push(parseInt( Math.abs(Math.round((Math.random() - 0.5) * 20) + data[i - 1])));
-    }
-
-    option = {
-        title: {
-            text: '消费投诉举报实时监控',
-            //textAlign: 'center'
-            x:'center',
-            top: 5,
-            textStyle: {
-                fontSize: '14'
-            }
-
-        }, tooltip: {
-            trigger: 'axis',
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            splitLine: { show: false },
-            data: date
-        },
-        yAxis: {
-            type: 'value',
-            splitLine: { show: false },
-            axisLabel: {
-                show: false
-            },
-            boundaryGap: [0, '100%']
-        },
-        grid: {
-
-            left: 25,
-            right: 10
-        },
-
-        series: [
-            {
-                name: '被诉主体',
-                type: 'line',
-                smooth: true,
-                symbol: 'none',
-                sampling: 'average',
-                itemStyle: {
-                    normal: {
-                        color: 'rgb(8,146,220)'
-                    }
-                },
-                areaStyle: {
-                    normal: {
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: 'rgb(1,241,209)'
-                        }, {
-                            offset: 1,
-                            color: 'rgb(8,146,220)'
-                        }])
-                    }
-                },
-                data: data
-            }
-        ]
-    };
-    var myChart = echarts.init(document.getElementById('chart9'), 'walden');
-
-    myChart.setOption(option);*/
+	
 var option = {
 		  title: {
 	            text: '消费投诉举报实时监控',
