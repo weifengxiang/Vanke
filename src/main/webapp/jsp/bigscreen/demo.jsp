@@ -31,7 +31,8 @@ $(function() {
        
  
        Chart1();
-       Chart2();
+       initSalerRankingChart();
+       initSaleTeamRankingChart();
        Chart3();
        Chart4();
        //Chart5();
@@ -206,15 +207,15 @@ $(function() {
     </script>
 </head>
 <body>
-    <div style="position:absolute;top:335px;right:0px;margin-right:0px; cursor:pointer;z-index:1000">
-        <img style="width:25px;height:25px;" src="${basepath}skin/images/larscreen/055.png" id="prev_btn" /></br>
-        <img style="width:25px;height:25px;" src="${basepath}skin/images/larscreen/056.png" id="next_btn" />
-    </div> 
-  <div style="height:100%;width:100%">
+<div style="height:100%;width:100%">
  <div class="row" style="width:100%;height:98%; padding:10px 0px 10px 20px; margin-right:-20px">
-    <div class="row" style="height: 80px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">重庆万科地产数据分析平台</div>
+    <div class="row" style="height: 60px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">重庆万科地产数据分析平台</div>
     <div class="row" style="margin-left:10px;margin-right:-15px">
-        <div class="col-md-3 box" style="height:520px;width:23%; margin-right:9px;"  id="chart2">
+        <div class="col-md-3 box" style="height:90%;width:23%; margin-right:9px;"  >
+        	<div id="salerRanking" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
+        	</div>
+        	<div id="saleTeamRanking" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
+        	</div>
         </div>
         <div class="col-md-9">
             <div class="row">
@@ -302,113 +303,8 @@ $(function() {
             </div>
         </div>
     </div>
-    <div class="row" style="margin-left:10px; margin-right:-10px;margin-top:10px">    
-        <div class="col-md-3" style="height: 200px; width:23%;margin-right:9px;border-top: 3px solid #0A3267;color:#fff;font-size:14px; padding:0px " id="chart10">
-            
-        </div>
-        <div class="col-md-9 " style="height:200px">
-            <div class="row" >             
-                <div class="col-md-7  " style="height:170px;width:57%;margin-right:9px;border-top:3px solid #0A3267;margin-left:1px" id="chart9">
-                </div>
-                <div class="col-md-5  " style="height:150px;border-top:3px solid #0A3267;" >
-                    <div class="row">
-                    <div class="col-md-12  title " style="line-height:30px;text-align:center;padding:0px"  >
-                   数据动态
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4  " style="height:90px;margin-top:15px; border-right:2px solid #0A3267">
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                                                                         新设立
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    389户                                </div>
-                            </div>
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                                                                      变更备案
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    897户                                </div>
-                            </div>
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                                                                     注销
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    74户                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4  " style="height:90px;margin-top:15px; border-right:2px solid #0A3267">
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    企业年报
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    358户
-                                </div>
-                            </div>
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    个体年报
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    127户
-                                </div>
-                            </div>
-                             <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    农合年报
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    233户
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4  " style="height:90px;margin-top:15px; border-right:2px solid #0A3267">
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                   立案数
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    3件
-                                </div>
-                            </div>
-                            <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    结案数
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    8件
-                                </div>
-                            </div>
-                             <div class="row" style="height:30px;">
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    罚没款
-                                </div>
-                                <div class="col-md-6  box" style="line-height:30px;text-align:center;padding:0px">
-                                    3.78万元
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ </div>
 </div>
-
-    </div>
-    <div id="dian" style="position:absolute;bottom:12px;left:45%;z-index:1000">
-        <img src="skin/images/larscreen/dian01_d.png" bz="0" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="1" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="2" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="3" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="4" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="5" />
-        <img src="${basepath}skin/images/larscreen/dian01.png" bz="6" />
-    </div>
 </body>
 </html>
 	

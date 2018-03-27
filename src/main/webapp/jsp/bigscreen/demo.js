@@ -89,7 +89,10 @@ function Chart1() {
     })
 
 }
-function Chart2() {
+/**
+ * 销售排行榜
+ * */
+function initSalerRankingChart() {
 	var salerRank=[
 		{"name":"A","value":0.203},
 		{"name":"B","value":0.198},
@@ -191,18 +194,108 @@ function Chart2() {
                         }])
                     }
                 }
+            }
+            
+        ]
+    };
+    var myChart = echarts.init(document.getElementById('salerRanking'), 'walden');
+    myChart.setOption(option);
+}
+/**
+ * 销售团队排行榜
+ * */
+function initSaleTeamRankingChart() {
+	var saleTeamRank=[
+		{"name":"飞鹰","value":0.25},
+		{"name":"狼牙","value":0.22},
+		{"name":"跃虎","value":0.19}
+	];
+    option = {
+        title: {
+            text: '金域华府项目销售团队成交率排名'
+            ,
+            textStyle: {
+                fontSize: '16'
+            },
+            left:'center',
+            top: 20
+        },
+
+        tooltip: {
+            show: true,
+            //   formatter: ' {b}被诉百分比{c}%,数量{c}',
+            formatter: function (params, ticket, callback) {
+                return params.name + '成交率' + params.value*100 + '%';
+            },
+            //position: function (pos, params, dom, rect, size) {
+            //    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+            //    var obj = { top: 60 };
+            //    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+            //    return obj;
+            //},
+            position: 'right'
+        },
+        yAxis: [
+            {
+                type: 'category',
+                data: $.getJsonElementArray(saleTeamRank,'name'),                
+                splitLine: { show: false },
+                axisLabel: {
+                    show: true,
+                    interval: 0
+                }
+            }
+        ],
+        xAxis: [
+            {
+                type: 'value',
+                splitLine: { show: false },
+                axisLabel: { show: false }
+            }
+        ], grid: [{
+            //top: 50,
+            //width: '50%',
+            //bottom: '45%',
+            left: 10,
+            right: 37,
+            containLabel: true
+        }],
+        backgroundColor: 'rgba(41,64,94,0.4)'
+        ,
+        series: [
+            {
+                name: '数量',
+                type: 'bar',             
+                data: $.getJsonElementArray(saleTeamRank,'value'),
+                barWidth: 30,
+               
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        formatter:function(params, ticket, callback) {
+                            return  (params.value*100).toFixed(2) + '%';
+                        },
+                        color:'#FFF'
+                    }
+                }, itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 1, 1, 0, [{
+                            offset: 0,
+                            color: 'rgba(3,76,122,0.7)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(6,248,255,1)'
+                        }])
+                    }
+                }
 
 
             }
             
         ]
     };
-
-
-
-
-    var myChart = echarts.init(document.getElementById('chart2'), 'walden');
-
+    var myChart = echarts.init(document.getElementById('saleTeamRanking'), 'walden');
     myChart.setOption(option);
 }
 function Chart3() {
