@@ -30,22 +30,23 @@ $(function() {
        $("#dian img:eq(0)").attr("src", ${basepath}+"skin/images/larscreen/dian01_d.png"); 
        
  
-       Chart1();
        initSalerRankingChart();
        initSaleTeamRankingChart();
-       Chart3();
-       Chart4();
+       initSaleReportMap();
+       initSaleReportBar();
+       //Chart3();
+       //Chart4();
        //Chart5();
-      // Chart6();
-       Chart7();
-       chart9();
-      chart10();
+       //Chart6();
+       //Chart7();
+       //chart9();
+       //chart10();
     
 });	 
 
 </script>
 <security:csrfMetaTags />
-<title>泰安工商系统数据分析平台大屏</title>
+<title>重庆万科地产项目数据分析平台</title>
 </head>
 <body >
     <style>
@@ -209,98 +210,25 @@ $(function() {
 <body>
 <div style="height:100%;width:100%">
  <div class="row" style="width:100%;height:98%; padding:10px 0px 10px 20px; margin-right:-20px">
-    <div class="row" style="height: 60px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">重庆万科地产数据分析平台</div>
+    <div class="row" style="height: 60px;margin-left:10px; margin-right:10px;  background: url('../../skin/images/larscreen/title_bg01.png') no-repeat center top; text-align:center;color:#06f8ff;font-size:22px;font-weight:600;line-height:60px">重庆万科地产项目数据分析平台</div>
     <div class="row" style="margin-left:10px;margin-right:-15px">
-        <div class="col-md-3 box" style="height:90%;width:23%; margin-right:9px;"  >
+        <div class="col-md-3 box" style="height:90%;width:30%; margin-right:9px;"  >
         	<div id="salerRanking" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
         	</div>
         	<div id="saleTeamRanking" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
         	</div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-7 box" style="height:520px;width:57%;margin-right:9px;" id="chart1">
-                </div>
-                <div class="col-md-5" style="height:520px">
-                 
-                    <div class="row" style="height:50%;padding:0px">
-                       <div class="box" style="background-color:rgba(41,64,94,0.6);position:absolute;width:100%;height:46px; margin-top:0%;margin-left:0px;">
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                                            
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                 
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                
-                            </div>
-                            
-                        </div>
-                    <div class="box" style="background-color:rgba(41,64,94,0.6);position:absolute;width:100%;height:50px; margin-top:10%;margin-bottom:5px;margin-left:0px;">
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">年报率</span>                                
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">已报量</span> 
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">应报量</span> 
-                            </div>
-                            
-                        </div>
-                          <div class="box" style="background-color:rgba(41,64,94,0.6);position:absolute;width:100%;height:50px; margin-top:21%;margin-bottom:5px;margin-left:0px;">
-                            <div style="width:100px;height:50px;padding:0px;margin-right:15px;float:right" id="chart4">
-                                                           
-                            </div>
-                           <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">54747</span>                                
-                            </div>
-                            <div style="width:100px;height:45px;padding:5px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">59107</span> 
-                            </div>
-                             <div style="width:100px;height:45px;padding:1px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span class="glyphicon glyphicon-globe" aria-hidden="true" style="font-size:20px;"></span> <span style="color:#06f8ff;font-size:18;font-weight:600;">企业：</span> 
-                            </div>
-                        </div>
-                        <div class="box" style="background-color:rgba(41,64,94,0.6);position:absolute;width:100%;height:50px; margin-top:32%;margin-bottom:5px;margin-left:0px;">
-                             <div style="width:100px;height:50px;padding:0px;margin-right:15px;float:right" id="chart5">
-                                                          
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:5px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">9529</span> 
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:5px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">7594</span> 
-                            </div>
-                          <div style="width:100px;height:45px;padding:1px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span class="glyphicon glyphicon-grain" aria-hidden="true" style="font-size:20px;"></span> <span style="color:#06f8ff;font-size:18;font-weight:600;">农合：</span> 
-                            </div>
-                        </div>
-                        <div class="box" style="background-color:rgba(41,64,94,0.6);position:absolute;width:100%;height:50px; margin-top:43%;margin-bottom:5px;margin-left:0px;">
-                             <div style="width:100px;height:50px;padding:0px;margin-right:15px;float:right" id="chart6">
-                                                          
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:5px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">215905</span> 
-                            </div>
-                            <div style="width:100px;height:40px;padding:5px;text-align:center;margin-right:15px;margin-top:5px;float:right">
-                                <span style="color:#06f8ff;font-size:16;font-weight:600;">217905</span> 
-                            </div>
-                          <div style="width:100px;height:45px;padding:1px;text-align:center;margin-right:15px;margin-top:10px;float:right">
-                                <span class="glyphicon glyphicon-user  text-primary" aria-hidden="true" style="font-size:20px;"></span> <span style="color:#06f8ff;font-size:18;font-weight:600;">个体：</span> 
-                            </div>
-                        </div>
-                        <div class="box" style="height:100%;width:100%" id="chart3">
-                        </div> 
-                       
-                    </div>
-                    <div class="row" style="margin-top:9px;height:48%">
-                        <div class="box" style="height:100%;width:100%" id="chart7">
-                        </div>
-                         
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3 box" style="height:90%;width:40%; margin-right:9px;"  >
+        	<div id="saleReportMap" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
+        	</div>
+        	<div id="saleReportBar" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
+        	</div>
+        </div>
+        <div class="col-md-3 box" style="height:90%;width:30%; margin-right:9px;"  >
+        	<div id="salerRanking" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
+        	</div>
+        	<div id="saleTeamRanking" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
+        	</div>
         </div>
     </div>
  </div>

@@ -1,19 +1,48 @@
-function Chart1() {
-	var years=[ '2014','2015','2016','2017'];
+/**
+ * 销售报表MAP
+ * @returns
+ */
+function initSaleReportMap() {
+	var resdata=[
+		{"name":"万科金域华府","position":[106.252648,29.485480],"value":2000},
+		{"name":"重庆天地","position":[106.252648,29.485480],"value":1800},
+		{"name":"万科观承","position":[106.252648,29.485480],"value":1700},
+		{"name":"万科金域蓝湾","position":[106.344707,29.385633],"value":1500},
+		{"name":"万科江上明月","position":[106.28736,29.363147],"value":1400},
+		{"name":"万科金色悦城","position":[106.262654,29.311847],"value":1400},
+		{"name":"万科御澜道","position":[106.335570,29.355060],"value":1200},
+		{"name":"万科金域学府","position":[106.331240,29.294028],"value":1150},
+		{"name":"万科御澜山","position":[106.31327,29.383661],"value":1000},
+	];
+	var getPosition=function(data){
+		var resp = [];
+		$.each(data,function(i,node){
+			var p = new Object();
+			p.name = node.name;
+			p.coord = node.position;
+			p.value = node.value;
+			//p.symbol = 'image://'+basepath+'skin/images/gs.ico',
+			p.label = {
+				normal:{
+                    offset:[-20,0],
+				}
+			};
+			resp.push(p);
+		});
+		return resp;
+	}
     $.ajax({
         url: basepath+'skin/plugins/echarts/data/52.json',
         type: 'get',
         dataType: 'json',
         success: function (data) {
-            echarts.registerMap('taian', data); 
+            echarts.registerMap('chongqing', data); 
             option = {
                 baseOption: {
-               
                     title: {
-                        text: '各地区主体发展情况'
-                        ,
+                        text: '重庆万科地产项目销售报表',
                         textStyle: {
-                            fontSize: '20'
+                            fontSize: '16'
                         },
                         left:'center',
                         top: 20
@@ -26,7 +55,6 @@ function Chart1() {
                         }
                     },
                     backgroundColor: 'rgba(41,64,94,0.4)',
-                    
                     visualMap: {
                         min: 0,
                         max: 1000,
@@ -39,55 +67,136 @@ function Chart1() {
                         textStyle: {
                             color: '#fff'
                         }
-                    }, series: [
-                                {
-                                    name: '市场主体数量',
-                                    type: 'map',
-                                    map: 'taian',
-                                    data: [
-                                           { name: '新泰市', value: Math.round(Math.random() * 1000) },
-                        { name: '肥城市', value: Math.round(Math.random() * 1000) },
-                        { name: '宁阳县', value: Math.round(Math.random() * 1000) },
-                        { name: '东平县', value: Math.round(Math.random() * 100) },
-                        { name: '泰山区', value: Math.round(Math.random() * 100) },
-                        { name: '岱岳区', value: Math.round(Math.random() * 100) },
-                        
-                                    ],
-                                    label:{
-						        		normal:{
-						        			show:true,
-						        			textStyle:{
-						        				fontWeight:'bold',
-						        				fontSize:12
-						        			}
-						        		}
-						        },
-						       
-                                    itemStyle: {
-                                        emphasis: {
-                                            borderColor: '#fff',
-                                            borderWidth: 1
-                                        }
-                                    },
-                                    zoom:0.8,
-                                    top: 0,
-                                    bottom: 50
-
-                                }
+                    },
+                    series : [
+                    	{
+                    		type: 'map',
+                            map: 'chongqing',
+                            markPoint: {
+				                symbolSize:20,
+				                label:{
+				                    normal:{
+				                        show:true,
+				                        formatter: '{b}',
+				                        textStyle:{
+				                        	color:'#000000',
+				                        	fontWeight:'bold'
+				                        }
+				                    }
+				                },
+				                data: getPosition(resdata)
+				            }
+                    	}
                     ]
-
-                },
-                
+                },  
             }
-            
-            var myChart = echarts.init(document.getElementById('chart1'), 'walden');
+            var myChart = echarts.init(document.getElementById('saleReportMap'), 'walden');
             myChart.setOption(option);
           
-        }, error: function (a, b, c) {
-            alert(c);
         }
     })
 
+}
+/**
+ * 销售报表BAR
+ * @returns
+ */
+function initSaleReportBar() {
+	var resdata=[
+		{"name":"万科金域华府","position":[106.252648,29.485480],"value":2000},
+		{"name":"重庆天地","position":[106.252648,29.485480],"value":1800},
+		{"name":"万科观承","position":[106.252648,29.485480],"value":1700},
+		{"name":"万科金域蓝湾","position":[106.344707,29.385633],"value":1500},
+		{"name":"万科江上明月","position":[106.28736,29.363147],"value":1400},
+		{"name":"万科金色悦城","position":[106.262654,29.311847],"value":1400},
+		{"name":"万科御澜道","position":[106.335570,29.355060],"value":1200},
+		{"name":"万科金域学府","position":[106.331240,29.294028],"value":1150},
+		{"name":"万科御澜山","position":[106.31327,29.383661],"value":1000},
+	];
+    option = {
+        grid: {
+            left: 25
+        },
+        xAxis: {
+            type: 'category',
+            splitLine: { show: false },
+            data:$.getJsonElementArray(resdata,'name'),
+            axisLabel: {
+                show: true,
+                rotate: -40,
+                interval: 0
+            }
+        },
+        backgroundColor: 'rgba(41,64,94,0.4)'
+        ,
+        yAxis: {
+            type: 'value',
+            splitLine: { show: true },
+            axisLabel: {
+                show: false
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                type: 'bar',
+                barWidth: 20,//固定柱子宽度
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top',
+
+                    }
+                },
+                data: $.getJsonElementArray(resdata,'value'),
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            if (params.value >= 70) {
+                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(153,0,0,1)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba( 250,59,24,0.4)'
+                                }]);
+                            } else if (params.value >= 20 && params.value < 70) {
+                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(216,78,43,1)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(244,226,133,0.4)'
+                                }]);
+                            } else if (params.value >= 10 && params.value < 20) {
+                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(255,245,175,1)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(255,245,175,0.4)'
+                                }]);
+                            } else {
+                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(6,248,255,1)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba( 88,255,255,0.4)'
+                                }])
+                            }
+                        }
+
+                    }
+                }
+            }
+        ]
+    };
+
+    var myChart = echarts.init(document.getElementById('saleReportBar'), 'walden');
+
+    myChart.setOption(option);
+     
 }
 /**
  * 销售排行榜
@@ -525,103 +634,7 @@ function Chart5() {
     myChart.setOption(option);
 }
 
-function Chart7() {
-    option = {
-        title: {
-            text: '行政执法情况',
-            //textAlign: 'center'
-            x: 'center',
-            top: 5,
-            textStyle: {
-                fontSize: '20'
-            }
 
-        },
-          grid: {
-            left: 25
-        },
-        xAxis: {
-            type: 'category',
-
-            splitLine: { show: false },
-            data: ['消费者权益','合同监管','广告监管', '不正当竞争', '商标监管', '市场监管', '无照经营', '主体准入'],
-            axisLabel: {
-                show: true,
-                rotate: -40,
-                interval: 0
-            }
-        },
-        backgroundColor: 'rgba(41,64,94,0.4)'
-        ,
-        yAxis: {
-            type: 'value',
-            splitLine: { show: true },
-            axisLabel: {
-                show: false
-            }
-        },
-        series: [
-            {
-                name: '数量',
-                type: 'bar',
-                barWidth: 20,//固定柱子宽度
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'top',
-
-                    }
-                },
-                data: [4,7,12, 21, 27, 64, 82, 121]
-                , itemStyle: {
-                    normal: {
-                        color: function (params) {
-                            if (params.value >= 70) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(153,0,0,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba( 250,59,24,0.4)'
-                                }]);
-                            } else if (params.value >= 20 && params.value < 70) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(216,78,43,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba(244,226,133,0.4)'
-                                }]);
-                            } else if (params.value >= 10 && params.value < 20) {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(255,245,175,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba(255,245,175,0.4)'
-                                }]);
-                            } else {
-                                return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(6,248,255,1)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgba( 88,255,255,0.4)'
-                                }])
-                            }
-                        }
-
-                    }
-                }
-            }
-        ]
-    };
-
-    var myChart = echarts.init(document.getElementById('chart7'), 'walden');
-
-    myChart.setOption(option);
-     
-}
 
 function chart9() {
 	
