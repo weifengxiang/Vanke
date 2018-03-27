@@ -24,23 +24,13 @@ var basepath = '${basepath}';
 <script type="text/javascript" src="${basepath}jsp/bigscreen/demo.js"></script>
 <script type="text/javascript">
 $(function() {
-	   $("#prev_btn").click(function () { window.location.href = 'index8' });
-       $("#next_btn").click(function () { window.location.href = 'index1' });
-       $("#dian img").attr("src", ${basepath}+"skin/images/larscreen/dian01.png");
-       $("#dian img:eq(0)").attr("src", ${basepath}+"skin/images/larscreen/dian01_d.png"); 
        
- 
        initSalerRankingChart();
        initSaleTeamRankingChart();
        initSaleReportMap();
        initSaleReportBar();
-       //Chart3();
-       //Chart4();
-       //Chart5();
-       //Chart6();
-       //Chart7();
-       //chart9();
-       //chart10();
+       initSaleLine();
+       initSalePie();
     
 });	 
 
@@ -218,16 +208,16 @@ $(function() {
         	<div id="saleTeamRanking" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
         	</div>
         </div>
-        <div class="col-md-3 box" style="height:90%;width:40%; margin-right:9px;"  >
+        <div class="col-md-3 box" style="height:90%;width:35%; margin-right:9px;"  >
         	<div id="saleReportMap" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
         	</div>
         	<div id="saleReportBar" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
         	</div>
         </div>
         <div class="col-md-3 box" style="height:90%;width:30%; margin-right:9px;"  >
-        	<div id="salerRanking" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
+        	<div id="saleLine" class='box' style='width:100%;height:60%;margin-bottom: 10px'>
         	</div>
-        	<div id="saleTeamRanking" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
+        	<div id="salePie" class='box' style='width:100%;height:40%;margin-bottom: 10px'>
         	</div>
         </div>
     </div>
