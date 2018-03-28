@@ -4,17 +4,16 @@
  * */
 function initSalerRankingChart() {
 	var salerRank=[
-		{"name":"A","value":0.203},
-		{"name":"B","value":0.198},
-		{"name":"C","value":0.190},
-		{"name":"D","value":0.172},
-		{"name":"E","value":0.169},
-		{"name":"F","value":0.165},
-		{"name":"G","value":0.161},
-		{"name":"H","value":0.154},
-		{"name":"I","value":0.154},
-		{"name":"J","value":0.152},
-		{"name":"K","value":0.151}
+		{"name":"大熊","value":0.203},
+		{"name":"二妮","value":0.198},
+		{"name":"三毛","value":0.190},
+		{"name":"四方","value":0.172},
+		{"name":"五条","value":0.169},
+		{"name":"六六","value":0.165},
+		{"name":"七万","value":0.161},
+		{"name":"八哥","value":0.154},
+		{"name":"九儿","value":0.154},
+		{"name":"幺鸡","value":0.152}
 	];
     option = {
         title: {
@@ -25,7 +24,6 @@ function initSalerRankingChart() {
             left:'center',
             top: 20
         },
-
         tooltip: {
             show: true,
             formatter: function (params, ticket, callback) {
@@ -61,7 +59,6 @@ function initSalerRankingChart() {
                 name: '数量',
                 type: 'bar',             
                 data: $.getJsonElementArray(salerRank,'value'),
-                barWidth: 30,
                 label: {
                     normal: {
                         show: true,
@@ -94,9 +91,9 @@ function initSalerRankingChart() {
  * */
 function initSaleTeamRankingChart() {
 	var saleTeamRank=[
-		{"name":"飞鹰","value":0.25},
-		{"name":"狼牙","value":0.22},
-		{"name":"跃虎","value":0.19}
+		{"name":"清一色","value":0.25},
+		{"name":"同花顺","value":0.22},
+		{"name":"杠上花","value":0.19}
 	];
     option = {
         title: {
@@ -212,7 +209,7 @@ function initSaleReportMap() {
 			//p.symbol = 'image://'+basepath+'skin/images/gs.ico',
 			p.label = {
 				normal:{
-                    offset:[-20,0],
+                    offset:[0,-20],
 				}
 			};
 			resp.push(p);
@@ -275,8 +272,8 @@ function initSaleReportMap() {
 				                        formatter: '{b}',
 				                        textStyle:{
 				                        	color:'red',
-				                        	fontWeight:'bold'
-				                        }
+				                        	fontWeight:'bold',				      
+				                        }				                        
 				                    }
 				                },
 				                data: getPosition(resdata)
@@ -465,7 +462,6 @@ function initSaleLine(){
 	        yAxis: [{
 	            type: 'value',
 	            splitLine: { show: false }, 
-	         
 	            axisLabel: {
 	                formatter: '{value} '
 	            }
@@ -475,7 +471,6 @@ function initSaleLine(){
 	            left: 60,
 	            right: 60
 	        },
-
 	        series: [
 	           {
 	               name: '成交额',
@@ -483,26 +478,7 @@ function initSaleLine(){
 	               yAxisIndex: 0,
 	               lineStyle: {
 	                   normal: {
-	                       width: 0
-	                   }
-	               },
-	               itemStyle: {
-	                   normal: {
-	                       borderWidth: 0,
-	                       opacity: 0
-	                   }, emphasis: {
-	                       opacity: 0
-	                   }
-	               },
-	               areaStyle: {
-	                   normal: {
-	                       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-	                           offset: 0,
-	                           color: 'rgba(151,237,248,0.2)'
-	                       }, {
-	                           offset: 1,
-	                           color: 'rgba(151,237,248,0.7)'
-	                       }])
+	                       width: 2
 	                   }
 	               },
 	               data: $.getJsonElementArray(data,'value')
