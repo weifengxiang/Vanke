@@ -14,21 +14,11 @@ function initSalerRankingChart() {
 		{"name":"H","value":0.154},
 		{"name":"I","value":0.154},
 		{"name":"J","value":0.152},
-		{"name":"K","value":0.151},
-		{"name":"L","value":0.148},
-		{"name":"M","value":0.143},
-		{"name":"N","value":0.140},
-		{"name":"O","value":0.101},
-		{"name":"P","value":0.097},
-		{"name":"Q","value":0.095},
-		{"name":"R","value":0.092},
-		{"name":"S","value":0.089},
-		{"name":"T","value":0.088}
+		{"name":"K","value":0.151}
 	];
     option = {
         title: {
-            text: '金域华府项目置业顾问成交率总排名'
-            ,
+            text: '金域华府项目置业顾问成交率总排名',
             textStyle: {
                 fontSize: '16'
             },
@@ -50,7 +40,7 @@ function initSalerRankingChart() {
                 splitLine: { show: false },
                 axisLabel: {
                     show: true,
-                    interval:2
+                    interval:0
                 }
             }
         ],
@@ -65,15 +55,13 @@ function initSalerRankingChart() {
             right: 37,
             containLabel: true
         }],
-        backgroundColor: 'rgba(41,64,94,0.4)'
-        ,
+        backgroundColor: 'rgba(41,64,94,0.4)',
         series: [
             {
                 name: '数量',
                 type: 'bar',             
                 data: $.getJsonElementArray(salerRank,'value'),
                 barWidth: 30,
-               
                 label: {
                     normal: {
                         show: true,
@@ -257,7 +245,7 @@ function initSaleReportMap() {
                     backgroundColor: 'rgba(41,64,94,0.4)',
                     visualMap: {
                         min: 0,
-                        max: 1000,
+                        max: 100,
                         calculable: true,
                         bottom: 50,
                         type: 'piecewise',
@@ -272,6 +260,13 @@ function initSaleReportMap() {
                     	{
                     		type: 'map',
                             map: 'chongqing',
+                            itemStyle:{  
+                                normal:{  
+                                       label:{show:false},
+                                       areaStyle:{color:'lightskyblue'}
+                                },  
+                                emphasis:{label:{show:true}}  
+                            },  
                             markPoint: {
 				                symbolSize:20,
 				                label:{
