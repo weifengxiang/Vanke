@@ -29,54 +29,11 @@ public class BigScreenController {
 		mv.setViewName("jsp/bigscreen/demo");
 		return mv;
 	}
-	
-	@RequestMapping(value = "/bigscreen/index", method = { RequestMethod.GET })
-	public ModelAndView index(Map<String, Object> map,
+	@RequestMapping(value = "/bigscreen/demo2", method = { RequestMethod.GET })
+	public ModelAndView demo2(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index1", method = { RequestMethod.GET })
-	public ModelAndView index1(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index1");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index2", method = { RequestMethod.GET })
-	public ModelAndView index2(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index2");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index3", method = { RequestMethod.GET })
-	public ModelAndView index3(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index3");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index4", method = { RequestMethod.GET })
-	public ModelAndView index4(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index4");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index5", method = { RequestMethod.GET })
-	public ModelAndView index5(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index5");
-		return mv;
-	}
-	@RequestMapping(value = "/bigscreen/index6", method = { RequestMethod.GET })
-	public ModelAndView index6(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();	 
-		mv.setViewName("jsp/bigscreen/index6");
+		mv.setViewName("jsp/bigscreen/demo2");
 		return mv;
 	}
 }
