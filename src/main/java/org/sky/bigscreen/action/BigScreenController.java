@@ -29,7 +29,6 @@ public class BigScreenController {
 		mv.setViewName("jsp/bigscreen/demo");
 		return mv;
 	}
-	 
 	@RequestMapping(value = "/bigscreen/demo2", method = { RequestMethod.GET })
 	public ModelAndView demo2(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
