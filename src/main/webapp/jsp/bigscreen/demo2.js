@@ -199,6 +199,11 @@ function initSaleReportMap() {
 		{"name":"万科金域学府","position":[109.031240,27.294028],"value":1150},
 		{"name":"万科御澜山","position":[108.31327,26.383661],"value":1000},
 	];
+	var levelColorMap = {
+	        '1': 'rgba(241, 109, 115, .8)',
+	        '2': 'rgba(255, 235, 59, .7)',
+	        '3': 'rgba(147, 235, 248, 1)'
+	    };
 	var getPosition=function(data){
 		var resp = [];
 		$.each(data,function(i,node){
@@ -232,6 +237,37 @@ function initSaleReportMap() {
                         left:'center',
                         top: 20
                     },
+                    geo:{
+                    	itemStyle: {
+                            normal: {
+                                borderColor: 'rgba(147, 235, 248, 1)',
+                                borderWidth: 1,
+                                areaColor: {
+                                    type: 'radial',
+                                    x: 0.5,
+                                    y: 0.5,
+                                    r: 0.8,
+                                    colorStops: [{
+                                        offset: 0, 
+                                        color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
+                                    }, {
+                                        offset: 1, 
+                                        color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
+                                    }],
+                                    globalCoord: false // 缺省为 false
+                                },
+                                shadowColor: 'rgba(128, 217, 248, 1)',
+                                // shadowColor: 'rgba(255, 255, 255, 1)',
+                                shadowOffsetX: -2,
+                                shadowOffsetY: 2,
+                                shadowBlur: 10
+                            },
+                            emphasis: {
+                                areaColor: '#389BB7',
+                                borderWidth: 0
+                            }
+                        }
+                    },
                     tooltip: {
                         trigger: 'item',
                         show: true,
@@ -239,20 +275,7 @@ function initSaleReportMap() {
                             return params.name + ' : ' + params.value;
                         }
                     },
-                    backgroundColor: 'rgba(41,64,94,0.4)',
-                    visualMap: {
-                        min: 0,
-                        max: 100,
-                        calculable: true,
-                        bottom: 50,
-                        type: 'piecewise',
-                        inRange: {
-                        	color: ['lightskyblue', 'yellow', 'orangered']
-                        },
-                        textStyle: {
-                            color: '#fff'
-                        }
-                    },
+                    backgroundColor: '#154e90',
                     series : [
                     	{
                     		type: 'map',
@@ -260,7 +283,9 @@ function initSaleReportMap() {
                             itemStyle:{  
                                 normal:{  
                                        label:{show:false},
-                                       areaStyle:{color:'lightskyblue'}
+                                       areaStyle:{color:'lightskyblue'},
+                                       shadowBlur: 10,
+                                       shadowColor: '#333'
                                 },  
                                 emphasis:{label:{show:true}}  
                             },  
