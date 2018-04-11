@@ -14,9 +14,9 @@ function init(){
 function addBaseVisitor(){
 	var opts={
 				id:'addBaseVisitor',
-				title:'添加01.来访信息',
-				width:600,
-				height:450,
+				title:'来访登记',
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'reception/BaseVisitor/initAddBaseVisitorPage'),
 				onLoad: function(dialog){ 
@@ -83,8 +83,8 @@ function editBaseVisitor(){
 	var opts={
 				id:'editBaseVisitor',
 				title:'修改来访信息',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'reception/BaseVisitor/initEditBaseVisitorPage'),
 				onLoad: function(dialog){ 
@@ -114,8 +114,8 @@ function detailBaseVisitor(){
 	var opts={
 				id:'detailBaseVisitor',
 				title:'来访信息明细',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'reception/BaseVisitor/initDetailBaseVisitorPage'),
 				onLoad: function(dialog){ 
@@ -142,12 +142,13 @@ function searchButton(){
 			var ft = new HashMap();
 			var name =$('#q_name').textbox("getValue");
 			if(name){
-				ft.put("name@=", name);
+				ft.put("name@like", "%"+name+"%");
 			}
 			
 			var visitTime =$('#q_visitTime').textbox("getValue");
 			if(visitTime){
-				ft.put("visitTime@=", visitTime);
+				//ft.put("visitTime@=", visitTime);
+				ft.put("date_format(visitTime,concat(upper('%y'),'-%m-%d'))@<=", visitTime);
 			}
 			
 			return ft.getJSON();

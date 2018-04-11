@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/reception/dj/listbasevisitor.js'></script>
 <script type="text/javascript">
+var SEX = <%=EnumUtils.getEnums("SYS.SEX") %>;
 $(function() {
 	init();
 });
@@ -20,7 +22,7 @@ $(function() {
 		<th><label>姓名:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入姓名'" name="q_name"  id="q_name" ></input></td>				
 		<th><label>来访时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入来访时间'" name="q_visitTime"  id="q_visitTime" ></input></td>				
+		<td><input  class="easyui-datebox" data-options="prompt:'输入来访时间'" name="q_visitTime"  id="q_visitTime" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
@@ -57,11 +59,9 @@ $(function() {
 							required:true
 						}}">姓名</th>
 				<th data-options="field:'sex',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">性别</th>
+				formatter:function(value,row){
+						  	 return SKY.formatterEnum(value,row,SEX);
+						 }">性别</th>
 				<th data-options="field:'age',width:180,
 				editor:{
 						type:'textbox',
