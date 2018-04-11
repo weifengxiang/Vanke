@@ -45,6 +45,7 @@ public class SysOrganService {
 		List<TreeStru> list = new ArrayList();
 		String code = (String)m.get("code");
 		SysOrganExample soe = new SysOrganExample();
+		soe.setOrderByClause(" seq asc ");
 		soe.createCriteria().andParCodeEqualTo(code);
 		List<SysOrgan> solist = sysorganmapper.selectByExample(soe);
 		for(SysOrgan so:solist){
