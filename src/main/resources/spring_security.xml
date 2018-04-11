@@ -21,6 +21,7 @@
     	<security:http disable-url-rewriting="true" pattern="/logout" security="none"></security:http>
     	<security:http disable-url-rewriting="true" pattern="/anonymous/**" security="none"></security:http>
     	<security:http disable-url-rewriting="true" pattern="/error/**" security="none"></security:http>
+    	<security:http disable-url-rewriting="true" pattern="/app/**" security="none"></security:http>
     <!--  -->
     <security:http auto-config="true"  disable-url-rewriting="true"
     		authentication-manager-ref="authenicationmanager" >
@@ -114,6 +115,7 @@
          <property name="execludeUrls">
              <list>
                  <value>/ws/</value>
+                 <value>/app/</value>
              </list>
          </property>
      </bean>
