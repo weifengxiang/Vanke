@@ -1,7 +1,10 @@
-package org.sky.sys.utils;
-
+package org.sky.app.utils;
 
 import java.util.Date;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Base64;
+import org.sky.sys.utils.ResultData;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -10,28 +13,30 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
-import org.sky.app.utils.AppConst;
-
-public class JwtUtil {
+/**
+ * 
+ * @ClassName:  JWTUtils   
+ * @Description:TODO(JSON WEB TOKEN工具类)   
+ * @author: weifx 
+ * @date:   2018年4月12日 上午10:32:59   
+ * @version V1.0    
+ * @Copyright: 2018 XXX. All rights reserved.
+ */
+public class JWTUtils {
 	
 	/**
 	 * token生成配置
 	 */
 	private static final String stringKey = "SKY";
-    public static final int JWT_EXP = 60*60*1000;
-    public static final int JWT_REFRESH_TTL = 30*24*60*60*1000;
-    public static final String TOKEN_TYPE = "tokenType";//token类型名
-	public static final String TOKEN_TYPE_LOGIN = "1";//长效token类型值
-	public static final String TOKEN_TYPE_REQUEST = "2";//请求token类型值
-
+	public static final String JWT_LOGIN_TYPE = "1";//登录状态长效token类型值
+	private static final int JWT_LOGIN_EXP = 30*24*60*60*1000;
+	public static final String JWT_REQUEST_TYPE = "2";//请求token类型值
+	private static final int JWT_REQUEST_EXP = 60*60*1000;    
+    private static final String TOKEN_TYPE = "JWT";//token类型名
+	private static final String ISSUSER="www.sky.org";//JWT的签发主体
+	
 	/**
 	 * 由字符串生成加密key
-	 * 
 	 * @return
 	 */
 	public static SecretKey generalKey() {
@@ -41,26 +46,36 @@ public class JwtUtil {
 	}
 
 	/**
-	 * 创建jwt
-	 * 
-	 * @param subject
-	 * @param tokenType
-	 * @param extTime
+	 * 创建JWT
+	 * @param subject(JWT的主体,即它的所有人登录用户CODE)
+	 * @param audience(JWT的接收对象)
+	 * @param tokenType(登录TOKEN/请求TOKEN)
 	 * @return
 	 * @throws Exception
 	 */
-	public static String createJWT(String subject,String tokenType,int extTime) throws Exception {
+	public static String createJWT(String subject,String audience,
+			String tokenType) throws Exception {
 		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 		long nowMillis = System.currentTimeMillis();
 		Date now = new Date(nowMillis);
 		SecretKey key = generalKey();
 		JwtBuilder builder = Jwts.builder()
+				.setIssuer(ISSUSER)
+				.setSubject(subject)
+				.setAudience(audience)
+				.setNotBefore(now)
 				.setIssuedAt(now)
 				.setSubject(subject)
-				.claim(JwtUtil.TOKEN_TYPE, tokenType)
+				.claim(JWTUtils.TOKEN_TYPE, tokenType)
 				.signWith(signatureAlgorithm, key);
-		if (extTime >= 0) {
-			long expMillis = nowMillis + extTime;
+		int expTime = 0;
+		if(JWTUtils.JWT_LOGIN_TYPE.equals(tokenType)) {
+			expTime = JWTUtils.JWT_LOGIN_EXP;
+		}else if(JWTUtils.JWT_REQUEST_TYPE.equals(tokenType)) {
+			expTime = JWTUtils.JWT_REQUEST_EXP;
+		}
+		if (expTime >= 0) {
+			long expMillis = nowMillis + expTime;
 			Date exp = new Date(expMillis);
 			builder.setExpiration(exp);
 		}
@@ -83,22 +98,30 @@ public class JwtUtil {
 					.parseClaimsJws(jwt)
 					.getBody();
 			String subject = claims.getSubject();
-			if(!tokenType.equals(claims.get(JwtUtil.TOKEN_TYPE, String.class))){
+			if(!tokenType.equals(claims.get(JWTUtils.TOKEN_TYPE, String.class))){
 				rd.setCode(AppConst.TOKEN_ERROR);
 				rd.setName(AppConst.TOKEN_ERROR_NAME);
 			}else{
 				rd.setCode(AppConst.TOKEN_SUCCESS);
-				rd.setName(JsonUtils.obj2json(subject));
+				rd.setName(subject);
 			}
 		} catch(SignatureException | MalformedJwtException e){//jwt解析错误
 			rd.setCode(AppConst.TOKEN_ERROR);
 			rd.setName(AppConst.TOKEN_ERROR_NAME);
 		} catch(ExpiredJwtException e){//jwt过期
 			rd.setCode(AppConst.TOKEN_EXP);
-			rd.setName(AppConst.TOKEN_ERROR_NAME);
+			rd.setName(AppConst.TOKEN_EXP_NAME);
 		}
 		return rd;
 	}
 
-	
+	/**
+	 * 生成subject信息
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public static String generalSubject(String userId) {
+		return userId;
+	}
 }

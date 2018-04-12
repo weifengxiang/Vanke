@@ -1,17 +1,20 @@
 package org.sky.app.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.sky.app.entity.AppUser;
 import org.sky.app.service.AppSysService;
+import org.sky.app.utils.JWTUtils;
 import org.sky.reception.model.BaseVisitor;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.utils.JsonUtils;
-import org.sky.sys.utils.JwtUtil;
 import org.sky.sys.utils.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +48,19 @@ public class AppSysController {
 		if(null!=su) {
 			if(passWord.equals(su.getPassword())) {
 				try {
-					String token = JwtUtil.createJWT(su.getName(), JwtUtil.TOKEN_TYPE, JwtUtil.JWT_EXP);
+					//保持登录状态TOKEN
+					String loginToken = JWTUtils.createJWT(su.getCode(),su.getCode(),JWTUtils.JWT_LOGIN_TYPE);
+					//请求访问TOKEN
+					String requestToken = JWTUtils.createJWT(su.getCode(),su.getCode(),JWTUtils.JWT_REQUEST_TYPE);
 					rd.setCode("1");
 					rd.setName("登录成功");
+					Map token = new HashMap();
+					token.put("loginToken", loginToken);
+					token.put("requestToken", requestToken);
+					AppUser au = new AppUser();
+					au.setCode(su.getCode());
+					au.setName(su.getName());
+					token.put("au", au);
 					rd.setData(token);
 					return rd;
 				} catch (Exception e) {
@@ -56,6 +69,7 @@ public class AppSysController {
 					logger.error(e.getStackTrace());
 					rd.setCode("0");
 					rd.setName("登录失败");
+					rd.setDesc(e.getMessage());
 				}
 			}
 		}

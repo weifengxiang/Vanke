@@ -14,5 +14,5 @@ public class AppConst {
 	public static final String TOKEN_SUCCESS="200";
 	public static final String TOKEN_SUCCESS_NAME="TOKEN验证成功";
 	public static final String TOKEN_EXP="408";
-	public static final String TOKEN_EXP_DESCRIPTION="TOKEN超时";
+	public static final String TOKEN_EXP_NAME="TOKEN超时";
 }
