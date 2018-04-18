@@ -148,7 +148,7 @@ function searchButton(){
 			var visitTime =$('#q_visitTime').textbox("getValue");
 			if(visitTime){
 				//ft.put("visitTime@=", visitTime);
-				ft.put("date_format(visitTime,concat(upper('%y'),'-%m-%d'))@<=", visitTime);
+				ft.put("date_format(visitTime,concat(upper('%y'),'-%m-%d'))@=", visitTime);
 			}
 			
 			return ft.getJSON();

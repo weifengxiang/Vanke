@@ -13,7 +13,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mybatis-spring:scan base-package="org.sky.sys.client,
 									   org.sky.reception.client" 
-						 factory-ref="sqlSessionFactory"/>			
+						 template-ref="sqlSession"/>			
 	<!-- 扫描service层 -->
     <context:component-scan base-package="org.sky.*.service" />
 </beans>
