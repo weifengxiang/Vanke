@@ -17,13 +17,14 @@
 						connectionURL="jdbc:mysql://localhost:3306/vanke"			
 						userId="root" password="root" />
 		<!-- 生成模型的包名和位置-->  
-		<javaModelGenerator targetPackage="org.sky.reception.model" targetProject="src\main\java" />
+		<javaModelGenerator targetPackage="org.sky.base.model" targetProject="src\main\java" />
 		<!-- 生成映射文件的包名和位置--> 
-		<sqlMapGenerator targetPackage="org.sky.reception.sqlmap" targetProject="src\main\java" />
+		<sqlMapGenerator targetPackage="org.sky.base.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
-		<javaClientGenerator targetPackage="org.sky.reception.client"	targetProject="src\main\java" type="XMLMAPPER" />
+		<javaClientGenerator targetPackage="org.sky.base.client"	targetProject="src\main\java" type="XMLMAPPER" />
 		
 
-		<table tableName="BASE_VISITOR"></table>
+		<table tableName="BASE_CUSTOMER"></table>
+		<table tableName="BASE_CHANNEL"></table>
 	</context>
 </generatorConfiguration>

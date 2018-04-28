@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.base.client.BaseCustomerMapper">
+  <resultMap id="BaseResultMap" type="org.sky.base.model.BaseCustomer">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="HOBBY" jdbcType="VARCHAR" property="hobby" />
+    <result column="CAREER_TYPE" jdbcType="VARCHAR" property="careerType" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
+    <result column="POSITION_LEVEL" jdbcType="VARCHAR" property="positionLevel" />
+    <result column="MONTH_INCOME" jdbcType="DECIMAL" property="monthIncome" />
+    <result column="MARRIAGE" jdbcType="CHAR" property="marriage" />
+    <result column="SPOUSE_CAREER" jdbcType="VARCHAR" property="spouseCareer" />
+    <result column="SPOUSE_UNIT" jdbcType="VARCHAR" property="spouseUnit" />
+    <result column="FAMILY_STRUCTURE" jdbcType="VARCHAR" property="familyStructure" />
+    <result column="FAMILY_NUM" jdbcType="INTEGER" property="familyNum" />
+    <result column="CHILD_AGE" jdbcType="INTEGER" property="childAge" />
+    <result column="LIVING_PROVINCE" jdbcType="VARCHAR" property="livingProvince" />
+    <result column="LIVING_CITY" jdbcType="VARCHAR" property="livingCity" />
+    <result column="LIVING_AREA" jdbcType="VARCHAR" property="livingArea" />
+    <result column="FAMILY_ADDRESS" jdbcType="VARCHAR" property="familyAddress" />
+    <result column="WORK_ADDRESS" jdbcType="VARCHAR" property="workAddress" />
+    <result column="KNOW_WAY" jdbcType="VARCHAR" property="knowWay" />
+    <result column="HOUSE_PURPOSE" jdbcType="VARCHAR" property="housePurpose" />
+    <result column="TOTAL_BUDGET" jdbcType="DECIMAL" property="totalBudget" />
+    <result column="CREDIT_CONDITION" jdbcType="VARCHAR" property="creditCondition" />
+    <result column="TARGET_YT" jdbcType="VARCHAR" property="targetYt" />
+    <result column="TARGET_LAYOUT" jdbcType="VARCHAR" property="targetLayout" />
+    <result column="TARGET_AREA" jdbcType="DECIMAL" property="targetArea" />
+    <result column="ACCEPT_P1" jdbcType="VARCHAR" property="acceptP1" />
+    <result column="ACCEPT_P2" jdbcType="VARCHAR" property="acceptP2" />
+    <result column="ACCEPT_P3" jdbcType="VARCHAR" property="acceptP3" />
+    <result column="RESISTANCE" jdbcType="VARCHAR" property="resistance" />
+    <result column="COMPETITOR" jdbcType="VARCHAR" property="competitor" />
+    <result column="VISIT_TIME" jdbcType="DATE" property="visitTime" />
+    <result column="SALE_TEAM" jdbcType="VARCHAR" property="saleTeam" />
+    <result column="PROPERTY_CONSULTANT" jdbcType="VARCHAR" property="propertyConsultant" />
+    <result column="REGISTRANT" jdbcType="VARCHAR" property="registrant" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, NAME, SEX, AGE, TEL, HOBBY, CAREER_TYPE, WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
+    MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, LIVING_PROVINCE, 
+    LIVING_CITY, LIVING_AREA, FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, HOUSE_PURPOSE, 
+    TOTAL_BUDGET, CREDIT_CONDITION, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, ACCEPT_P1, 
+    ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
+    REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_customer
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from base_customer
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.base.model.BaseCustomerExample">
+    delete from base_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.base.model.BaseCustomer">
+    insert into base_customer (ID, NAME, SEX, AGE, 
+      TEL, HOBBY, CAREER_TYPE, 
+      WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
+      MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, 
+      FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, 
+      LIVING_PROVINCE, LIVING_CITY, LIVING_AREA, 
+      FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, 
+      HOUSE_PURPOSE, TOTAL_BUDGET, CREDIT_CONDITION, 
+      TARGET_YT, TARGET_LAYOUT, TARGET_AREA, 
+      ACCEPT_P1, ACCEPT_P2, ACCEPT_P3, 
+      RESISTANCE, COMPETITOR, VISIT_TIME, 
+      SALE_TEAM, PROPERTY_CONSULTANT, REGISTRANT, 
+      STATE, REMARK, CREATER, 
+      CREATE_TIME, UPDATER, UPDATE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
+      #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=DECIMAL}, 
+      #{marriage,jdbcType=CHAR}, #{spouseCareer,jdbcType=VARCHAR}, #{spouseUnit,jdbcType=VARCHAR}, 
+      #{familyStructure,jdbcType=VARCHAR}, #{familyNum,jdbcType=INTEGER}, #{childAge,jdbcType=INTEGER}, 
+      #{livingProvince,jdbcType=VARCHAR}, #{livingCity,jdbcType=VARCHAR}, #{livingArea,jdbcType=VARCHAR}, 
+      #{familyAddress,jdbcType=VARCHAR}, #{workAddress,jdbcType=VARCHAR}, #{knowWay,jdbcType=VARCHAR}, 
+      #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=DECIMAL}, #{creditCondition,jdbcType=VARCHAR}, 
+      #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, #{targetArea,jdbcType=DECIMAL}, 
+      #{acceptP1,jdbcType=VARCHAR}, #{acceptP2,jdbcType=VARCHAR}, #{acceptP3,jdbcType=VARCHAR}, 
+      #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, #{visitTime,jdbcType=DATE}, 
+      #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
+    insert into base_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="hobby != null">
+        HOBBY,
+      </if>
+      <if test="careerType != null">
+        CAREER_TYPE,
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT,
+      </if>
+      <if test="positionLevel != null">
+        POSITION_LEVEL,
+      </if>
+      <if test="monthIncome != null">
+        MONTH_INCOME,
+      </if>
+      <if test="marriage != null">
+        MARRIAGE,
+      </if>
+      <if test="spouseCareer != null">
+        SPOUSE_CAREER,
+      </if>
+      <if test="spouseUnit != null">
+        SPOUSE_UNIT,
+      </if>
+      <if test="familyStructure != null">
+        FAMILY_STRUCTURE,
+      </if>
+      <if test="familyNum != null">
+        FAMILY_NUM,
+      </if>
+      <if test="childAge != null">
+        CHILD_AGE,
+      </if>
+      <if test="livingProvince != null">
+        LIVING_PROVINCE,
+      </if>
+      <if test="livingCity != null">
+        LIVING_CITY,
+      </if>
+      <if test="livingArea != null">
+        LIVING_AREA,
+      </if>
+      <if test="familyAddress != null">
+        FAMILY_ADDRESS,
+      </if>
+      <if test="workAddress != null">
+        WORK_ADDRESS,
+      </if>
+      <if test="knowWay != null">
+        KNOW_WAY,
+      </if>
+      <if test="housePurpose != null">
+        HOUSE_PURPOSE,
+      </if>
+      <if test="totalBudget != null">
+        TOTAL_BUDGET,
+      </if>
+      <if test="creditCondition != null">
+        CREDIT_CONDITION,
+      </if>
+      <if test="targetYt != null">
+        TARGET_YT,
+      </if>
+      <if test="targetLayout != null">
+        TARGET_LAYOUT,
+      </if>
+      <if test="targetArea != null">
+        TARGET_AREA,
+      </if>
+      <if test="acceptP1 != null">
+        ACCEPT_P1,
+      </if>
+      <if test="acceptP2 != null">
+        ACCEPT_P2,
+      </if>
+      <if test="acceptP3 != null">
+        ACCEPT_P3,
+      </if>
+      <if test="resistance != null">
+        RESISTANCE,
+      </if>
+      <if test="competitor != null">
+        COMPETITOR,
+      </if>
+      <if test="visitTime != null">
+        VISIT_TIME,
+      </if>
+      <if test="saleTeam != null">
+        SALE_TEAM,
+      </if>
+      <if test="propertyConsultant != null">
+        PROPERTY_CONSULTANT,
+      </if>
+      <if test="registrant != null">
+        REGISTRANT,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="careerType != null">
+        #{careerType,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="positionLevel != null">
+        #{positionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="monthIncome != null">
+        #{monthIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=CHAR},
+      </if>
+      <if test="spouseCareer != null">
+        #{spouseCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseUnit != null">
+        #{spouseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="familyStructure != null">
+        #{familyStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNum != null">
+        #{familyNum,jdbcType=INTEGER},
+      </if>
+      <if test="childAge != null">
+        #{childAge,jdbcType=INTEGER},
+      </if>
+      <if test="livingProvince != null">
+        #{livingProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="livingCity != null">
+        #{livingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="livingArea != null">
+        #{livingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null">
+        #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workAddress != null">
+        #{workAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="knowWay != null">
+        #{knowWay,jdbcType=VARCHAR},
+      </if>
+      <if test="housePurpose != null">
+        #{housePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBudget != null">
+        #{totalBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="creditCondition != null">
+        #{creditCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="targetYt != null">
+        #{targetYt,jdbcType=VARCHAR},
+      </if>
+      <if test="targetLayout != null">
+        #{targetLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="targetArea != null">
+        #{targetArea,jdbcType=DECIMAL},
+      </if>
+      <if test="acceptP1 != null">
+        #{acceptP1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptP2 != null">
+        #{acceptP2,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptP3 != null">
+        #{acceptP3,jdbcType=VARCHAR},
+      </if>
+      <if test="resistance != null">
+        #{resistance,jdbcType=VARCHAR},
+      </if>
+      <if test="competitor != null">
+        #{competitor,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=DATE},
+      </if>
+      <if test="saleTeam != null">
+        #{saleTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyConsultant != null">
+        #{propertyConsultant,jdbcType=VARCHAR},
+      </if>
+      <if test="registrant != null">
+        #{registrant,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultType="java.lang.Long">
+    select count(*) from base_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update base_customer
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        SEX = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.age != null">
+        AGE = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.tel != null">
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hobby != null">
+        HOBBY = #{record.hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.careerType != null">
+        CAREER_TYPE = #{record.careerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workUnit != null">
+        WORK_UNIT = #{record.workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionLevel != null">
+        POSITION_LEVEL = #{record.positionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monthIncome != null">
+        MONTH_INCOME = #{record.monthIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="record.marriage != null">
+        MARRIAGE = #{record.marriage,jdbcType=CHAR},
+      </if>
+      <if test="record.spouseCareer != null">
+        SPOUSE_CAREER = #{record.spouseCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseUnit != null">
+        SPOUSE_UNIT = #{record.spouseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyStructure != null">
+        FAMILY_STRUCTURE = #{record.familyStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyNum != null">
+        FAMILY_NUM = #{record.familyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.childAge != null">
+        CHILD_AGE = #{record.childAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.livingProvince != null">
+        LIVING_PROVINCE = #{record.livingProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.livingCity != null">
+        LIVING_CITY = #{record.livingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.livingArea != null">
+        LIVING_AREA = #{record.livingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyAddress != null">
+        FAMILY_ADDRESS = #{record.familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workAddress != null">
+        WORK_ADDRESS = #{record.workAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knowWay != null">
+        KNOW_WAY = #{record.knowWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housePurpose != null">
+        HOUSE_PURPOSE = #{record.housePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalBudget != null">
+        TOTAL_BUDGET = #{record.totalBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creditCondition != null">
+        CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetYt != null">
+        TARGET_YT = #{record.targetYt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetLayout != null">
+        TARGET_LAYOUT = #{record.targetLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetArea != null">
+        TARGET_AREA = #{record.targetArea,jdbcType=DECIMAL},
+      </if>
+      <if test="record.acceptP1 != null">
+        ACCEPT_P1 = #{record.acceptP1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptP2 != null">
+        ACCEPT_P2 = #{record.acceptP2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptP3 != null">
+        ACCEPT_P3 = #{record.acceptP3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resistance != null">
+        RESISTANCE = #{record.resistance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.competitor != null">
+        COMPETITOR = #{record.competitor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitTime != null">
+        VISIT_TIME = #{record.visitTime,jdbcType=DATE},
+      </if>
+      <if test="record.saleTeam != null">
+        SALE_TEAM = #{record.saleTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyConsultant != null">
+        PROPERTY_CONSULTANT = #{record.propertyConsultant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registrant != null">
+        REGISTRANT = #{record.registrant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update base_customer
+    set ID = #{record.id,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=CHAR},
+      AGE = #{record.age,jdbcType=INTEGER},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      HOBBY = #{record.hobby,jdbcType=VARCHAR},
+      CAREER_TYPE = #{record.careerType,jdbcType=VARCHAR},
+      WORK_UNIT = #{record.workUnit,jdbcType=VARCHAR},
+      POSITION_LEVEL = #{record.positionLevel,jdbcType=VARCHAR},
+      MONTH_INCOME = #{record.monthIncome,jdbcType=DECIMAL},
+      MARRIAGE = #{record.marriage,jdbcType=CHAR},
+      SPOUSE_CAREER = #{record.spouseCareer,jdbcType=VARCHAR},
+      SPOUSE_UNIT = #{record.spouseUnit,jdbcType=VARCHAR},
+      FAMILY_STRUCTURE = #{record.familyStructure,jdbcType=VARCHAR},
+      FAMILY_NUM = #{record.familyNum,jdbcType=INTEGER},
+      CHILD_AGE = #{record.childAge,jdbcType=INTEGER},
+      LIVING_PROVINCE = #{record.livingProvince,jdbcType=VARCHAR},
+      LIVING_CITY = #{record.livingCity,jdbcType=VARCHAR},
+      LIVING_AREA = #{record.livingArea,jdbcType=VARCHAR},
+      FAMILY_ADDRESS = #{record.familyAddress,jdbcType=VARCHAR},
+      WORK_ADDRESS = #{record.workAddress,jdbcType=VARCHAR},
+      KNOW_WAY = #{record.knowWay,jdbcType=VARCHAR},
+      HOUSE_PURPOSE = #{record.housePurpose,jdbcType=VARCHAR},
+      TOTAL_BUDGET = #{record.totalBudget,jdbcType=DECIMAL},
+      CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
+      TARGET_YT = #{record.targetYt,jdbcType=VARCHAR},
+      TARGET_LAYOUT = #{record.targetLayout,jdbcType=VARCHAR},
+      TARGET_AREA = #{record.targetArea,jdbcType=DECIMAL},
+      ACCEPT_P1 = #{record.acceptP1,jdbcType=VARCHAR},
+      ACCEPT_P2 = #{record.acceptP2,jdbcType=VARCHAR},
+      ACCEPT_P3 = #{record.acceptP3,jdbcType=VARCHAR},
+      RESISTANCE = #{record.resistance,jdbcType=VARCHAR},
+      COMPETITOR = #{record.competitor,jdbcType=VARCHAR},
+      VISIT_TIME = #{record.visitTime,jdbcType=DATE},
+      SALE_TEAM = #{record.saleTeam,jdbcType=VARCHAR},
+      PROPERTY_CONSULTANT = #{record.propertyConsultant,jdbcType=VARCHAR},
+      REGISTRANT = #{record.registrant,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.base.model.BaseCustomer">
+    update base_customer
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        HOBBY = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="careerType != null">
+        CAREER_TYPE = #{careerType,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="positionLevel != null">
+        POSITION_LEVEL = #{positionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="monthIncome != null">
+        MONTH_INCOME = #{monthIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="marriage != null">
+        MARRIAGE = #{marriage,jdbcType=CHAR},
+      </if>
+      <if test="spouseCareer != null">
+        SPOUSE_CAREER = #{spouseCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseUnit != null">
+        SPOUSE_UNIT = #{spouseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="familyStructure != null">
+        FAMILY_STRUCTURE = #{familyStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNum != null">
+        FAMILY_NUM = #{familyNum,jdbcType=INTEGER},
+      </if>
+      <if test="childAge != null">
+        CHILD_AGE = #{childAge,jdbcType=INTEGER},
+      </if>
+      <if test="livingProvince != null">
+        LIVING_PROVINCE = #{livingProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="livingCity != null">
+        LIVING_CITY = #{livingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="livingArea != null">
+        LIVING_AREA = #{livingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null">
+        FAMILY_ADDRESS = #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workAddress != null">
+        WORK_ADDRESS = #{workAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="knowWay != null">
+        KNOW_WAY = #{knowWay,jdbcType=VARCHAR},
+      </if>
+      <if test="housePurpose != null">
+        HOUSE_PURPOSE = #{housePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBudget != null">
+        TOTAL_BUDGET = #{totalBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="creditCondition != null">
+        CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="targetYt != null">
+        TARGET_YT = #{targetYt,jdbcType=VARCHAR},
+      </if>
+      <if test="targetLayout != null">
+        TARGET_LAYOUT = #{targetLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="targetArea != null">
+        TARGET_AREA = #{targetArea,jdbcType=DECIMAL},
+      </if>
+      <if test="acceptP1 != null">
+        ACCEPT_P1 = #{acceptP1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptP2 != null">
+        ACCEPT_P2 = #{acceptP2,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptP3 != null">
+        ACCEPT_P3 = #{acceptP3,jdbcType=VARCHAR},
+      </if>
+      <if test="resistance != null">
+        RESISTANCE = #{resistance,jdbcType=VARCHAR},
+      </if>
+      <if test="competitor != null">
+        COMPETITOR = #{competitor,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTime != null">
+        VISIT_TIME = #{visitTime,jdbcType=DATE},
+      </if>
+      <if test="saleTeam != null">
+        SALE_TEAM = #{saleTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyConsultant != null">
+        PROPERTY_CONSULTANT = #{propertyConsultant,jdbcType=VARCHAR},
+      </if>
+      <if test="registrant != null">
+        REGISTRANT = #{registrant,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.base.model.BaseCustomer">
+    update base_customer
+    set NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=CHAR},
+      AGE = #{age,jdbcType=INTEGER},
+      TEL = #{tel,jdbcType=VARCHAR},
+      HOBBY = #{hobby,jdbcType=VARCHAR},
+      CAREER_TYPE = #{careerType,jdbcType=VARCHAR},
+      WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      POSITION_LEVEL = #{positionLevel,jdbcType=VARCHAR},
+      MONTH_INCOME = #{monthIncome,jdbcType=DECIMAL},
+      MARRIAGE = #{marriage,jdbcType=CHAR},
+      SPOUSE_CAREER = #{spouseCareer,jdbcType=VARCHAR},
+      SPOUSE_UNIT = #{spouseUnit,jdbcType=VARCHAR},
+      FAMILY_STRUCTURE = #{familyStructure,jdbcType=VARCHAR},
+      FAMILY_NUM = #{familyNum,jdbcType=INTEGER},
+      CHILD_AGE = #{childAge,jdbcType=INTEGER},
+      LIVING_PROVINCE = #{livingProvince,jdbcType=VARCHAR},
+      LIVING_CITY = #{livingCity,jdbcType=VARCHAR},
+      LIVING_AREA = #{livingArea,jdbcType=VARCHAR},
+      FAMILY_ADDRESS = #{familyAddress,jdbcType=VARCHAR},
+      WORK_ADDRESS = #{workAddress,jdbcType=VARCHAR},
+      KNOW_WAY = #{knowWay,jdbcType=VARCHAR},
+      HOUSE_PURPOSE = #{housePurpose,jdbcType=VARCHAR},
+      TOTAL_BUDGET = #{totalBudget,jdbcType=DECIMAL},
+      CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
+      TARGET_YT = #{targetYt,jdbcType=VARCHAR},
+      TARGET_LAYOUT = #{targetLayout,jdbcType=VARCHAR},
+      TARGET_AREA = #{targetArea,jdbcType=DECIMAL},
+      ACCEPT_P1 = #{acceptP1,jdbcType=VARCHAR},
+      ACCEPT_P2 = #{acceptP2,jdbcType=VARCHAR},
+      ACCEPT_P3 = #{acceptP3,jdbcType=VARCHAR},
+      RESISTANCE = #{resistance,jdbcType=VARCHAR},
+      COMPETITOR = #{competitor,jdbcType=VARCHAR},
+      VISIT_TIME = #{visitTime,jdbcType=DATE},
+      SALE_TEAM = #{saleTeam,jdbcType=VARCHAR},
+      PROPERTY_CONSULTANT = #{propertyConsultant,jdbcType=VARCHAR},
+      REGISTRANT = #{registrant,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
