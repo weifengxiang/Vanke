@@ -23,38 +23,36 @@ $(function() {
 					<th><label>姓名:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+
 					<th><label>性别:</label></th>
-					<td><input class="easyui-textbox" name="sex"
-						data-options="required:true"></input></td>
+					<td>
+						<input type="radio" name="sex" value='M' checked>男</input>
+						<input type="radio" name="sex" value='F'>女</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>年龄:</label></th>
-					<td><input class="easyui-textbox" name="age"
+					<td><input class="easyui-numberbox" name="age"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>电话:</label></th>
-					<td><input class="easyui-textbox" name="tel"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>邮箱:</label></th>
-					<td><input class="easyui-textbox" name="email"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+					
 					<th><label>身份证号码:</label></th>
 					<td><input class="easyui-textbox" name="idcard"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>电话:</label></th>
+					<td><input class="easyui-textbox" name="tel"
+						data-options="required:true"></input></td>
+						
+					<th><label>邮箱:</label></th>
+					<td><input class="easyui-textbox" name="email"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>最高学历:</label></th>
 					<td><input class="easyui-textbox" name="education"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+
 					<th><label>毕业院校:</label></th>
 					<td><input class="easyui-textbox" name="school"
 						data-options="required:true"></input></td>
@@ -63,21 +61,20 @@ $(function() {
 					<th><label>专业:</label></th>
 					<td><input class="easyui-textbox" name="major"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+
 					<th><label>工作时间:</label></th>
-					<td><input class="easyui-textbox" name="workDate"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-numberbox" name="workDate"
+						data-options="required:true,precision:1"></input>年</td>
 				  </tr>
 				  <tr>
 					<th><label>工作经历:</label></th>
-					<td><input class="easyui-textbox" name="workHis"
-						data-options="required:true"></input></td>
+					<td  colspan='3'><input class="easyui-textbox" name="workHis" style="width:80%;height:60px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="remark"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="remark" style="width:80%;height:60px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

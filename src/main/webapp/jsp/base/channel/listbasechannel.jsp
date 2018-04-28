@@ -25,22 +25,6 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入年龄'" name="q_age"  id="q_age" ></input></td>				
 		<th><label>电话:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入电话'" name="q_tel"  id="q_tel" ></input></td>				
-		<th><label>邮箱:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入邮箱'" name="q_email"  id="q_email" ></input></td>				
-		<th><label>身份证号码:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入身份证号码'" name="q_idcard"  id="q_idcard" ></input></td>				
-		<th><label>最高学历:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入最高学历'" name="q_education"  id="q_education" ></input></td>				
-		<th><label>毕业院校:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入毕业院校'" name="q_school"  id="q_school" ></input></td>				
-		<th><label>专业:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入专业'" name="q_major"  id="q_major" ></input></td>				
-		<th><label>工作时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入工作时间'" name="q_workDate"  id="q_workDate" ></input></td>				
-		<th><label>工作经历:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入工作经历'" name="q_workHis"  id="q_workHis" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_remark"  id="q_remark" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>

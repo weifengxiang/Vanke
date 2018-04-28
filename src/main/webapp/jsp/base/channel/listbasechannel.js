@@ -156,38 +156,7 @@ function searchButton(){
 			if(tel){
 				ft.put("tel@=", tel);
 			}
-			var email =$('#q_email').textbox("getValue");
-			if(email){
-				ft.put("email@=", email);
-			}
-			var idcard =$('#q_idcard').textbox("getValue");
-			if(idcard){
-				ft.put("idcard@=", idcard);
-			}
-			var education =$('#q_education').textbox("getValue");
-			if(education){
-				ft.put("education@=", education);
-			}
-			var school =$('#q_school').textbox("getValue");
-			if(school){
-				ft.put("school@=", school);
-			}
-			var major =$('#q_major').textbox("getValue");
-			if(major){
-				ft.put("major@=", major);
-			}
-			var workDate =$('#q_workDate').textbox("getValue");
-			if(workDate){
-				ft.put("workDate@=", workDate);
-			}
-			var workHis =$('#q_workHis').textbox("getValue");
-			if(workHis){
-				ft.put("workHis@=", workHis);
-			}
-			var remark =$('#q_remark').textbox("getValue");
-			if(remark){
-				ft.put("remark@=", remark);
-			}
+		
 			return ft.getJSON();
 		}
 	});
