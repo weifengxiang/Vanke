@@ -1,6 +1,5 @@
 package org.sky.base.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -389,52 +388,62 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgeEqualTo(Integer value) {
+        public Criteria andAgeEqualTo(String value) {
             addCriterion("AGE =", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotEqualTo(Integer value) {
+        public Criteria andAgeNotEqualTo(String value) {
             addCriterion("AGE <>", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeGreaterThan(Integer value) {
+        public Criteria andAgeGreaterThan(String value) {
             addCriterion("AGE >", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAgeGreaterThanOrEqualTo(String value) {
             addCriterion("AGE >=", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeLessThan(Integer value) {
+        public Criteria andAgeLessThan(String value) {
             addCriterion("AGE <", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeLessThanOrEqualTo(Integer value) {
+        public Criteria andAgeLessThanOrEqualTo(String value) {
             addCriterion("AGE <=", value, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeIn(List<Integer> values) {
+        public Criteria andAgeLike(String value) {
+            addCriterion("AGE like", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeNotLike(String value) {
+            addCriterion("AGE not like", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeIn(List<String> values) {
             addCriterion("AGE in", values, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotIn(List<Integer> values) {
+        public Criteria andAgeNotIn(List<String> values) {
             addCriterion("AGE not in", values, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeBetween(Integer value1, Integer value2) {
+        public Criteria andAgeBetween(String value1, String value2) {
             addCriterion("AGE between", value1, value2, "age");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotBetween(Integer value1, Integer value2) {
+        public Criteria andAgeNotBetween(String value1, String value2) {
             addCriterion("AGE not between", value1, value2, "age");
             return (Criteria) this;
         }
@@ -799,52 +808,62 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeEqualTo(BigDecimal value) {
+        public Criteria andMonthIncomeEqualTo(String value) {
             addCriterion("MONTH_INCOME =", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeNotEqualTo(BigDecimal value) {
+        public Criteria andMonthIncomeNotEqualTo(String value) {
             addCriterion("MONTH_INCOME <>", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeGreaterThan(BigDecimal value) {
+        public Criteria andMonthIncomeGreaterThan(String value) {
             addCriterion("MONTH_INCOME >", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andMonthIncomeGreaterThanOrEqualTo(String value) {
             addCriterion("MONTH_INCOME >=", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeLessThan(BigDecimal value) {
+        public Criteria andMonthIncomeLessThan(String value) {
             addCriterion("MONTH_INCOME <", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andMonthIncomeLessThanOrEqualTo(String value) {
             addCriterion("MONTH_INCOME <=", value, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeIn(List<BigDecimal> values) {
+        public Criteria andMonthIncomeLike(String value) {
+            addCriterion("MONTH_INCOME like", value, "monthIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andMonthIncomeNotLike(String value) {
+            addCriterion("MONTH_INCOME not like", value, "monthIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andMonthIncomeIn(List<String> values) {
             addCriterion("MONTH_INCOME in", values, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeNotIn(List<BigDecimal> values) {
+        public Criteria andMonthIncomeNotIn(List<String> values) {
             addCriterion("MONTH_INCOME not in", values, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andMonthIncomeBetween(String value1, String value2) {
             addCriterion("MONTH_INCOME between", value1, value2, "monthIncome");
             return (Criteria) this;
         }
 
-        public Criteria andMonthIncomeNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andMonthIncomeNotBetween(String value1, String value2) {
             addCriterion("MONTH_INCOME not between", value1, value2, "monthIncome");
             return (Criteria) this;
         }
@@ -1749,52 +1768,62 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetEqualTo(BigDecimal value) {
+        public Criteria andTotalBudgetEqualTo(String value) {
             addCriterion("TOTAL_BUDGET =", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetNotEqualTo(BigDecimal value) {
+        public Criteria andTotalBudgetNotEqualTo(String value) {
             addCriterion("TOTAL_BUDGET <>", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetGreaterThan(BigDecimal value) {
+        public Criteria andTotalBudgetGreaterThan(String value) {
             addCriterion("TOTAL_BUDGET >", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andTotalBudgetGreaterThanOrEqualTo(String value) {
             addCriterion("TOTAL_BUDGET >=", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetLessThan(BigDecimal value) {
+        public Criteria andTotalBudgetLessThan(String value) {
             addCriterion("TOTAL_BUDGET <", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andTotalBudgetLessThanOrEqualTo(String value) {
             addCriterion("TOTAL_BUDGET <=", value, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetIn(List<BigDecimal> values) {
+        public Criteria andTotalBudgetLike(String value) {
+            addCriterion("TOTAL_BUDGET like", value, "totalBudget");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalBudgetNotLike(String value) {
+            addCriterion("TOTAL_BUDGET not like", value, "totalBudget");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalBudgetIn(List<String> values) {
             addCriterion("TOTAL_BUDGET in", values, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetNotIn(List<BigDecimal> values) {
+        public Criteria andTotalBudgetNotIn(List<String> values) {
             addCriterion("TOTAL_BUDGET not in", values, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTotalBudgetBetween(String value1, String value2) {
             addCriterion("TOTAL_BUDGET between", value1, value2, "totalBudget");
             return (Criteria) this;
         }
 
-        public Criteria andTotalBudgetNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTotalBudgetNotBetween(String value1, String value2) {
             addCriterion("TOTAL_BUDGET not between", value1, value2, "totalBudget");
             return (Criteria) this;
         }
@@ -2019,52 +2048,62 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaEqualTo(BigDecimal value) {
+        public Criteria andTargetAreaEqualTo(String value) {
             addCriterion("TARGET_AREA =", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaNotEqualTo(BigDecimal value) {
+        public Criteria andTargetAreaNotEqualTo(String value) {
             addCriterion("TARGET_AREA <>", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaGreaterThan(BigDecimal value) {
+        public Criteria andTargetAreaGreaterThan(String value) {
             addCriterion("TARGET_AREA >", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andTargetAreaGreaterThanOrEqualTo(String value) {
             addCriterion("TARGET_AREA >=", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaLessThan(BigDecimal value) {
+        public Criteria andTargetAreaLessThan(String value) {
             addCriterion("TARGET_AREA <", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andTargetAreaLessThanOrEqualTo(String value) {
             addCriterion("TARGET_AREA <=", value, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaIn(List<BigDecimal> values) {
+        public Criteria andTargetAreaLike(String value) {
+            addCriterion("TARGET_AREA like", value, "targetArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetAreaNotLike(String value) {
+            addCriterion("TARGET_AREA not like", value, "targetArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetAreaIn(List<String> values) {
             addCriterion("TARGET_AREA in", values, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaNotIn(List<BigDecimal> values) {
+        public Criteria andTargetAreaNotIn(List<String> values) {
             addCriterion("TARGET_AREA not in", values, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTargetAreaBetween(String value1, String value2) {
             addCriterion("TARGET_AREA between", value1, value2, "targetArea");
             return (Criteria) this;
         }
 
-        public Criteria andTargetAreaNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTargetAreaNotBetween(String value1, String value2) {
             addCriterion("TARGET_AREA not between", value1, value2, "targetArea");
             return (Criteria) this;
         }

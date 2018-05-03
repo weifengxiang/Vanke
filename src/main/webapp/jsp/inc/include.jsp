@@ -1,6 +1,7 @@
 <!-- 必须要在 <head> 的第一行、放在第一行 兼容低版本IE-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 <%@ page import="org.sky.sys.utils.BspUtils"%>
+<%@ page import="org.sky.sys.utils.DictUtils"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>

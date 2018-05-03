@@ -1,6 +1,5 @@
 package org.sky.base.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class BaseCustomer {
@@ -10,7 +9,7 @@ public class BaseCustomer {
 
     private String sex;
 
-    private Integer age;
+    private String age;
 
     private String tel;
 
@@ -22,7 +21,7 @@ public class BaseCustomer {
 
     private String positionLevel;
 
-    private BigDecimal monthIncome;
+    private String monthIncome;
 
     private String marriage;
 
@@ -50,7 +49,7 @@ public class BaseCustomer {
 
     private String housePurpose;
 
-    private BigDecimal totalBudget;
+    private String totalBudget;
 
     private String creditCondition;
 
@@ -58,7 +57,7 @@ public class BaseCustomer {
 
     private String targetLayout;
 
-    private BigDecimal targetArea;
+    private String targetArea;
 
     private String acceptP1;
 
@@ -114,11 +113,11 @@ public class BaseCustomer {
         this.sex = sex;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -162,11 +161,11 @@ public class BaseCustomer {
         this.positionLevel = positionLevel;
     }
 
-    public BigDecimal getMonthIncome() {
+    public String getMonthIncome() {
         return monthIncome;
     }
 
-    public void setMonthIncome(BigDecimal monthIncome) {
+    public void setMonthIncome(String monthIncome) {
         this.monthIncome = monthIncome;
     }
 
@@ -274,11 +273,11 @@ public class BaseCustomer {
         this.housePurpose = housePurpose;
     }
 
-    public BigDecimal getTotalBudget() {
+    public String getTotalBudget() {
         return totalBudget;
     }
 
-    public void setTotalBudget(BigDecimal totalBudget) {
+    public void setTotalBudget(String totalBudget) {
         this.totalBudget = totalBudget;
     }
 
@@ -306,11 +305,11 @@ public class BaseCustomer {
         this.targetLayout = targetLayout;
     }
 
-    public BigDecimal getTargetArea() {
+    public String getTargetArea() {
         return targetArea;
     }
 
-    public void setTargetArea(BigDecimal targetArea) {
+    public void setTargetArea(String targetArea) {
         this.targetArea = targetArea;
     }
 
