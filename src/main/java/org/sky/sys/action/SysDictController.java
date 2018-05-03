@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDict;
@@ -14,6 +15,7 @@ import org.sky.sys.model.SysDictItemExample;
 import org.sky.sys.model.SysDictExample.Criteria;
 import org.sky.sys.service.SysDictItemService;
 import org.sky.sys.service.SysDictService;
+import org.sky.sys.utils.ApplicationCached;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -134,6 +136,29 @@ public class SysDictController extends BaseController{
 			e.printStackTrace();
 			rd.setCode(ResultData.code_error);
 			rd.setName("删除失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
+	}
+	/**
+	 * 刷新字典缓存
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/sys/SysDict/refrashDictCached", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String refrashDictCached(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			ApplicationCached.init();
+			rd.setCode(ResultData.code_success);
+			rd.setName("刷新成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("刷新失败<br>"+e.getMessage());
 		}
 		return JsonUtils.obj2json(rd);
 	}

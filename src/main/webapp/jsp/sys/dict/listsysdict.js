@@ -237,3 +237,21 @@ function loadDictItem(row){
 		sortfield:"seq"
 	});
 }
+/**
+ * 刷新缓存
+ * @returns
+ */
+function refrashCached(){
+	var url = SKY.urlCSRF(basepath+'sys/SysDict/refrashDictCached');
+	SKY_EASYUI.mask('正在进行刷新，请稍等...');
+	$.ajax({
+		url:url,
+		type: "POST",
+		data:{},
+		dataType:'json',
+		success:function(data){
+			SKY_EASYUI.unmask();
+			$.messager.alert("提示",data.name,"info");
+		}
+	});
+}

@@ -152,6 +152,8 @@ $(function() {
 		data-options="iconCls:'icon-edit',plain:true" onclick="editSysDict()">修改</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delSysDict()">删除</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-reload',plain:true" onclick="refrashCached()">刷新</a>
 </div>
 <div id="itemtb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
