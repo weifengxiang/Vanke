@@ -41,9 +41,22 @@ public class ApplicationCached {
 	 * 字典的所有字典项
 	 */
 	private static List<SysDictItem> dictItemlist;
-	
-	
-	static{
+	public static void init(){
+		loadSysDict();
+	}
+	public static List<SysMenu> getMenulist() {
+		return menulist;
+	}
+	public static List<SysOperation> getOperadionlist() {
+		return operadionlist;
+	}
+	public static List<SysDictItem> getDictItemlist() {
+		return dictItemlist;
+	}
+	/**
+	 * 加载字典信息到JVM内存
+	 */
+	private static void loadSysDict() {
 		try {
 			SysMenuMapper menuMapper=(SysMenuMapper)BspUtils.getBean(SysMenuMapper.class);
 			SysOperationMapper opeMapper=(SysOperationMapper)BspUtils.getBean(SysOperationMapper.class);
@@ -90,17 +103,6 @@ public class ApplicationCached {
 		}
 		return typelist;
 	}
-	public static void init(){
-		
-	}
-	public static List<SysMenu> getMenulist() {
-		return menulist;
-	}
-	public static List<SysOperation> getOperadionlist() {
-		return operadionlist;
-	}
-	public static List<SysDictItem> getDictItemlist() {
-		return dictItemlist;
-	}
+	
 	
 }
