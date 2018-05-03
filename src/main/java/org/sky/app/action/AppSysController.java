@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AppSysController {
 	private Logger logger = Logger.getLogger(AppSysController.class); 
 	@Autowired
-	private AppSysService appSysService; 
+	private AppSysService appSysService;
 	
 	@RequestMapping(value = "/app/SysController/login", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody ResultData login(
