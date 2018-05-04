@@ -4,15 +4,15 @@
   <resultMap id="BaseResultMap" type="org.sky.base.model.BaseCustomer">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="SEX" jdbcType="CHAR" property="sex" />
-    <result column="AGE" jdbcType="CHAR" property="age" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="AGE" jdbcType="VARCHAR" property="age" />
     <result column="TEL" jdbcType="VARCHAR" property="tel" />
     <result column="HOBBY" jdbcType="VARCHAR" property="hobby" />
     <result column="CAREER_TYPE" jdbcType="VARCHAR" property="careerType" />
     <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
     <result column="POSITION_LEVEL" jdbcType="VARCHAR" property="positionLevel" />
-    <result column="MONTH_INCOME" jdbcType="CHAR" property="monthIncome" />
-    <result column="MARRIAGE" jdbcType="CHAR" property="marriage" />
+    <result column="MONTH_INCOME" jdbcType="VARCHAR" property="monthIncome" />
+    <result column="MARRIAGE" jdbcType="VARCHAR" property="marriage" />
     <result column="SPOUSE_CAREER" jdbcType="VARCHAR" property="spouseCareer" />
     <result column="SPOUSE_UNIT" jdbcType="VARCHAR" property="spouseUnit" />
     <result column="FAMILY_STRUCTURE" jdbcType="VARCHAR" property="familyStructure" />
@@ -25,11 +25,11 @@
     <result column="WORK_ADDRESS" jdbcType="VARCHAR" property="workAddress" />
     <result column="KNOW_WAY" jdbcType="VARCHAR" property="knowWay" />
     <result column="HOUSE_PURPOSE" jdbcType="VARCHAR" property="housePurpose" />
-    <result column="TOTAL_BUDGET" jdbcType="CHAR" property="totalBudget" />
+    <result column="TOTAL_BUDGET" jdbcType="VARCHAR" property="totalBudget" />
     <result column="CREDIT_CONDITION" jdbcType="VARCHAR" property="creditCondition" />
     <result column="TARGET_YT" jdbcType="VARCHAR" property="targetYt" />
     <result column="TARGET_LAYOUT" jdbcType="VARCHAR" property="targetLayout" />
-    <result column="TARGET_AREA" jdbcType="CHAR" property="targetArea" />
+    <result column="TARGET_AREA" jdbcType="VARCHAR" property="targetArea" />
     <result column="ACCEPT_P1" jdbcType="VARCHAR" property="acceptP1" />
     <result column="ACCEPT_P2" jdbcType="VARCHAR" property="acceptP2" />
     <result column="ACCEPT_P3" jdbcType="VARCHAR" property="acceptP3" />
@@ -144,8 +144,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.base.model.BaseCustomer">
-    insert into base_customer (ID, NAME, SEX, AGE, 
-      TEL, HOBBY, CAREER_TYPE, 
+    insert into base_customer (ID, NAME, SEX, 
+      AGE, TEL, HOBBY, CAREER_TYPE, 
       WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
       MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, 
       FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, 
@@ -159,15 +159,15 @@
       STATE, REMARK, CREATER, 
       CREATE_TIME, UPDATER, UPDATE_TIME
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=CHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
-      #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=CHAR}, 
-      #{marriage,jdbcType=CHAR}, #{spouseCareer,jdbcType=VARCHAR}, #{spouseUnit,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
+      #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=VARCHAR}, #{spouseCareer,jdbcType=VARCHAR}, #{spouseUnit,jdbcType=VARCHAR}, 
       #{familyStructure,jdbcType=VARCHAR}, #{familyNum,jdbcType=INTEGER}, #{childAge,jdbcType=INTEGER}, 
       #{livingProvince,jdbcType=VARCHAR}, #{livingCity,jdbcType=VARCHAR}, #{livingArea,jdbcType=VARCHAR}, 
       #{familyAddress,jdbcType=VARCHAR}, #{workAddress,jdbcType=VARCHAR}, #{knowWay,jdbcType=VARCHAR}, 
-      #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=CHAR}, #{creditCondition,jdbcType=VARCHAR}, 
-      #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, #{targetArea,jdbcType=CHAR}, 
+      #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=VARCHAR}, #{creditCondition,jdbcType=VARCHAR}, 
+      #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, #{targetArea,jdbcType=VARCHAR}, 
       #{acceptP1,jdbcType=VARCHAR}, #{acceptP2,jdbcType=VARCHAR}, #{acceptP3,jdbcType=VARCHAR}, 
       #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, #{visitTime,jdbcType=DATE}, 
       #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, 
@@ -316,10 +316,10 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
-        #{sex,jdbcType=CHAR},
+        #{sex,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
-        #{age,jdbcType=CHAR},
+        #{age,jdbcType=VARCHAR},
       </if>
       <if test="tel != null">
         #{tel,jdbcType=VARCHAR},
@@ -337,10 +337,10 @@
         #{positionLevel,jdbcType=VARCHAR},
       </if>
       <if test="monthIncome != null">
-        #{monthIncome,jdbcType=CHAR},
+        #{monthIncome,jdbcType=VARCHAR},
       </if>
       <if test="marriage != null">
-        #{marriage,jdbcType=CHAR},
+        #{marriage,jdbcType=VARCHAR},
       </if>
       <if test="spouseCareer != null">
         #{spouseCareer,jdbcType=VARCHAR},
@@ -379,7 +379,7 @@
         #{housePurpose,jdbcType=VARCHAR},
       </if>
       <if test="totalBudget != null">
-        #{totalBudget,jdbcType=CHAR},
+        #{totalBudget,jdbcType=VARCHAR},
       </if>
       <if test="creditCondition != null">
         #{creditCondition,jdbcType=VARCHAR},
@@ -391,7 +391,7 @@
         #{targetLayout,jdbcType=VARCHAR},
       </if>
       <if test="targetArea != null">
-        #{targetArea,jdbcType=CHAR},
+        #{targetArea,jdbcType=VARCHAR},
       </if>
       <if test="acceptP1 != null">
         #{acceptP1,jdbcType=VARCHAR},
@@ -456,10 +456,10 @@
         NAME = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.sex != null">
-        SEX = #{record.sex,jdbcType=CHAR},
+        SEX = #{record.sex,jdbcType=VARCHAR},
       </if>
       <if test="record.age != null">
-        AGE = #{record.age,jdbcType=CHAR},
+        AGE = #{record.age,jdbcType=VARCHAR},
       </if>
       <if test="record.tel != null">
         TEL = #{record.tel,jdbcType=VARCHAR},
@@ -477,10 +477,10 @@
         POSITION_LEVEL = #{record.positionLevel,jdbcType=VARCHAR},
       </if>
       <if test="record.monthIncome != null">
-        MONTH_INCOME = #{record.monthIncome,jdbcType=CHAR},
+        MONTH_INCOME = #{record.monthIncome,jdbcType=VARCHAR},
       </if>
       <if test="record.marriage != null">
-        MARRIAGE = #{record.marriage,jdbcType=CHAR},
+        MARRIAGE = #{record.marriage,jdbcType=VARCHAR},
       </if>
       <if test="record.spouseCareer != null">
         SPOUSE_CAREER = #{record.spouseCareer,jdbcType=VARCHAR},
@@ -519,7 +519,7 @@
         HOUSE_PURPOSE = #{record.housePurpose,jdbcType=VARCHAR},
       </if>
       <if test="record.totalBudget != null">
-        TOTAL_BUDGET = #{record.totalBudget,jdbcType=CHAR},
+        TOTAL_BUDGET = #{record.totalBudget,jdbcType=VARCHAR},
       </if>
       <if test="record.creditCondition != null">
         CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
@@ -531,7 +531,7 @@
         TARGET_LAYOUT = #{record.targetLayout,jdbcType=VARCHAR},
       </if>
       <if test="record.targetArea != null">
-        TARGET_AREA = #{record.targetArea,jdbcType=CHAR},
+        TARGET_AREA = #{record.targetArea,jdbcType=VARCHAR},
       </if>
       <if test="record.acceptP1 != null">
         ACCEPT_P1 = #{record.acceptP1,jdbcType=VARCHAR},
@@ -587,15 +587,15 @@
     update base_customer
     set ID = #{record.id,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
-      SEX = #{record.sex,jdbcType=CHAR},
-      AGE = #{record.age,jdbcType=CHAR},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      AGE = #{record.age,jdbcType=VARCHAR},
       TEL = #{record.tel,jdbcType=VARCHAR},
       HOBBY = #{record.hobby,jdbcType=VARCHAR},
       CAREER_TYPE = #{record.careerType,jdbcType=VARCHAR},
       WORK_UNIT = #{record.workUnit,jdbcType=VARCHAR},
       POSITION_LEVEL = #{record.positionLevel,jdbcType=VARCHAR},
-      MONTH_INCOME = #{record.monthIncome,jdbcType=CHAR},
-      MARRIAGE = #{record.marriage,jdbcType=CHAR},
+      MONTH_INCOME = #{record.monthIncome,jdbcType=VARCHAR},
+      MARRIAGE = #{record.marriage,jdbcType=VARCHAR},
       SPOUSE_CAREER = #{record.spouseCareer,jdbcType=VARCHAR},
       SPOUSE_UNIT = #{record.spouseUnit,jdbcType=VARCHAR},
       FAMILY_STRUCTURE = #{record.familyStructure,jdbcType=VARCHAR},
@@ -608,11 +608,11 @@
       WORK_ADDRESS = #{record.workAddress,jdbcType=VARCHAR},
       KNOW_WAY = #{record.knowWay,jdbcType=VARCHAR},
       HOUSE_PURPOSE = #{record.housePurpose,jdbcType=VARCHAR},
-      TOTAL_BUDGET = #{record.totalBudget,jdbcType=CHAR},
+      TOTAL_BUDGET = #{record.totalBudget,jdbcType=VARCHAR},
       CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
       TARGET_YT = #{record.targetYt,jdbcType=VARCHAR},
       TARGET_LAYOUT = #{record.targetLayout,jdbcType=VARCHAR},
-      TARGET_AREA = #{record.targetArea,jdbcType=CHAR},
+      TARGET_AREA = #{record.targetArea,jdbcType=VARCHAR},
       ACCEPT_P1 = #{record.acceptP1,jdbcType=VARCHAR},
       ACCEPT_P2 = #{record.acceptP2,jdbcType=VARCHAR},
       ACCEPT_P3 = #{record.acceptP3,jdbcType=VARCHAR},
@@ -639,10 +639,10 @@
         NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
-        SEX = #{sex,jdbcType=CHAR},
+        SEX = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
-        AGE = #{age,jdbcType=CHAR},
+        AGE = #{age,jdbcType=VARCHAR},
       </if>
       <if test="tel != null">
         TEL = #{tel,jdbcType=VARCHAR},
@@ -660,10 +660,10 @@
         POSITION_LEVEL = #{positionLevel,jdbcType=VARCHAR},
       </if>
       <if test="monthIncome != null">
-        MONTH_INCOME = #{monthIncome,jdbcType=CHAR},
+        MONTH_INCOME = #{monthIncome,jdbcType=VARCHAR},
       </if>
       <if test="marriage != null">
-        MARRIAGE = #{marriage,jdbcType=CHAR},
+        MARRIAGE = #{marriage,jdbcType=VARCHAR},
       </if>
       <if test="spouseCareer != null">
         SPOUSE_CAREER = #{spouseCareer,jdbcType=VARCHAR},
@@ -702,7 +702,7 @@
         HOUSE_PURPOSE = #{housePurpose,jdbcType=VARCHAR},
       </if>
       <if test="totalBudget != null">
-        TOTAL_BUDGET = #{totalBudget,jdbcType=CHAR},
+        TOTAL_BUDGET = #{totalBudget,jdbcType=VARCHAR},
       </if>
       <if test="creditCondition != null">
         CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
@@ -714,7 +714,7 @@
         TARGET_LAYOUT = #{targetLayout,jdbcType=VARCHAR},
       </if>
       <if test="targetArea != null">
-        TARGET_AREA = #{targetArea,jdbcType=CHAR},
+        TARGET_AREA = #{targetArea,jdbcType=VARCHAR},
       </if>
       <if test="acceptP1 != null">
         ACCEPT_P1 = #{acceptP1,jdbcType=VARCHAR},
@@ -767,15 +767,15 @@
   <update id="updateByPrimaryKey" parameterType="org.sky.base.model.BaseCustomer">
     update base_customer
     set NAME = #{name,jdbcType=VARCHAR},
-      SEX = #{sex,jdbcType=CHAR},
-      AGE = #{age,jdbcType=CHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=VARCHAR},
       TEL = #{tel,jdbcType=VARCHAR},
       HOBBY = #{hobby,jdbcType=VARCHAR},
       CAREER_TYPE = #{careerType,jdbcType=VARCHAR},
       WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
       POSITION_LEVEL = #{positionLevel,jdbcType=VARCHAR},
-      MONTH_INCOME = #{monthIncome,jdbcType=CHAR},
-      MARRIAGE = #{marriage,jdbcType=CHAR},
+      MONTH_INCOME = #{monthIncome,jdbcType=VARCHAR},
+      MARRIAGE = #{marriage,jdbcType=VARCHAR},
       SPOUSE_CAREER = #{spouseCareer,jdbcType=VARCHAR},
       SPOUSE_UNIT = #{spouseUnit,jdbcType=VARCHAR},
       FAMILY_STRUCTURE = #{familyStructure,jdbcType=VARCHAR},
@@ -788,11 +788,11 @@
       WORK_ADDRESS = #{workAddress,jdbcType=VARCHAR},
       KNOW_WAY = #{knowWay,jdbcType=VARCHAR},
       HOUSE_PURPOSE = #{housePurpose,jdbcType=VARCHAR},
-      TOTAL_BUDGET = #{totalBudget,jdbcType=CHAR},
+      TOTAL_BUDGET = #{totalBudget,jdbcType=VARCHAR},
       CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
       TARGET_YT = #{targetYt,jdbcType=VARCHAR},
       TARGET_LAYOUT = #{targetLayout,jdbcType=VARCHAR},
-      TARGET_AREA = #{targetArea,jdbcType=CHAR},
+      TARGET_AREA = #{targetArea,jdbcType=VARCHAR},
       ACCEPT_P1 = #{acceptP1,jdbcType=VARCHAR},
       ACCEPT_P2 = #{acceptP2,jdbcType=VARCHAR},
       ACCEPT_P3 = #{acceptP3,jdbcType=VARCHAR},
