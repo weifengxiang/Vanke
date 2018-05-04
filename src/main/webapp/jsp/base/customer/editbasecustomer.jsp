@@ -56,7 +56,7 @@ $(function() {
 					  <tr>
 						<th><label>兴趣爱好:</label></th>
 						<td colspan='3'>
-							<input class="easyui-textbox" name="hobby" style='width:400px'
+							<input class="easyui-textbox" name="hobby" style='width:550px'
 							></input></td>
 					  </tr>
 				  </table>
@@ -128,25 +128,40 @@ $(function() {
 					<table style="width:100%">
 					  <tr>
 						<th><label>现居省份:</label></th>
-						<td><input class="easyui-textbox" name="livingProvince"
-							></input></td>
+						<td><input class="easyui-combobox" name="livingProvince" id="livingProvince"
+							data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/100000'),
+                                          valueField:'id',
+                                          textField:'name',
+                                          onSelect:function(area){
+                                          $('#livingCity').combobox('clear');
+                                          $('#livingArea').combobox('clear');
+                                          $('#livingCity').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/'+area.id)),
+                                          $('#livingArea').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'))}"></input></td>
 						<th><label>现居城市:</label></th>
-						<td><input class="easyui-textbox" name="livingCity"
-							></input></td>
+						<td><input class="easyui-combobox" name="livingCity" id="livingCity"
+							data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'),
+                                          valueField:'id',
+                                          textField:'name',
+                                          onSelect:function(area){
+                                          $('#livingArea').combobox('clear');
+                                          $('#livingArea').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/'+area.id))
+                                          }"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>现居区域:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="livingArea"
-							></input></td>
+						<td colspan='3'><input class="easyui-combobox" name="livingArea" id="livingArea"
+										data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'),
+						                              valueField:'id',
+                                          			  textField:'name'"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>家庭地址:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="familyAddress" style='width:400px'
+						<td colspan='3'><input class="easyui-textbox" name="familyAddress" style='width:550px'
 							></input></td>
 					  </tr>
 					  <tr>
 						<th><label>工作地址:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="workAddress" style='width:400px'
+						<td colspan='3'><input class="easyui-textbox" name="workAddress" style='width:550px'
 							></input></td>
 					  </tr>
 				  	</table>
@@ -237,8 +252,8 @@ $(function() {
 						  </tr>
 						  <tr>
 							<th><label>备注:</label></th>
-							<td colspan='3'><input class="easyui-textbox" name="remark" style='width:400px'
-								></input></td>
+							<td colspan='3'><input class="easyui-textbox" name="remark" 
+							data-options="multiline:true" style='width:550px;height:100px;'></input></td>
 						  </tr>
 					</table>
 				</div>

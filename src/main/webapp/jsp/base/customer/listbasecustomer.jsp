@@ -68,7 +68,7 @@ $(function() {
 				formatter: function(value,row,index){
 					return SKY.formatterEnum(value,row,SEX);
 				}">性别</th>
-				<th data-options="field:'age',width:90,
+				<th data-options="field:'age',width:150,
 				editor:{
 						type:'textbox',
 						options:{
