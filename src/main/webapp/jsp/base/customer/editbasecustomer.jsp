@@ -17,6 +17,7 @@ var TOTAL_BUDGET=<%=DictUtils.getDictItem("TOTAL_BUDGET")%>;//整体预算
 var AGE=<%=DictUtils.getDictItem("AGE")%>;//年龄
 var MONTH_INCOME=<%=DictUtils.getDictItem("MONTH_INCOME")%>;//月均收入
 var TARGET_AREA=<%=DictUtils.getDictItem("TARGET_AREA")%>;//目标面积
+var CUSTOMER_STATE=<%=DictUtils.getDictItem("CUSTOMER_STATE")%>;
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -244,10 +245,13 @@ $(function() {
 						  </tr>
 						  <tr>
 							<th><label>状态:</label></th>
-							<td><input class="easyui-textbox" name="state"
-								></input></td>
+							<td><input class="easyui-combobox" name="state"
+								data-options="required:true,editable:false,
+									data:CUSTOMER_STATE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 							<th><label>来访时间:</label></th>
-							<td><input class="easyui-textbox" name="visitTime"
+							<td><input class="easyui-datebox" name="visitTime"
 								></input></td>
 						  </tr>
 						  <tr>

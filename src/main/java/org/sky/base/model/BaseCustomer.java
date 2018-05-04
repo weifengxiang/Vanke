@@ -2,6 +2,10 @@ package org.sky.base.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BaseCustomer {
     private String id;
 
@@ -68,7 +72,9 @@ public class BaseCustomer {
     private String resistance;
 
     private String competitor;
-
+    
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date visitTime;
 
     private String saleTeam;
