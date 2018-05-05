@@ -6,6 +6,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/base/channel/listbasechannel.js'></script>
 <script type="text/javascript">
+var SEX=<%=DictUtils.getDictItem("SEX")%>;
 $(function() {
 	init();
 });
@@ -60,13 +61,16 @@ $(function() {
 						options:{
 							required:true
 						}}">姓名</th>
-				<th data-options="field:'sex',width:180,
+				<th data-options="field:'sex',width:90,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">性别</th>
-				<th data-options="field:'age',width:180,
+						}},
+				formatter: function(value,row,index){
+					return SKY.formatterEnum(value,row,SEX);
+				}">性别</th>
+				<th data-options="field:'age',width:90,
 				editor:{
 						type:'textbox',
 						options:{
@@ -78,49 +82,13 @@ $(function() {
 						options:{
 							required:true
 						}}">电话</th>
-				<th data-options="field:'email',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">邮箱</th>
-				<th data-options="field:'idcard',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">身份证号码</th>
-				<th data-options="field:'education',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">最高学历</th>
-				<th data-options="field:'school',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">毕业院校</th>
-				<th data-options="field:'major',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">专业</th>
-				<th data-options="field:'workDate',width:180,
+				<th data-options="field:'workDate',width:90,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">工作时间</th>
-				<th data-options="field:'workHis',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">工作经历</th>
-				<th data-options="field:'remark',width:180,
+				<th data-options="field:'remark',width:400,
 				editor:{
 						type:'textbox',
 						options:{

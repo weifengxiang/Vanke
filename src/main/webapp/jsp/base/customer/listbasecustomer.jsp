@@ -83,7 +83,7 @@ $(function() {
 						options:{
 							required:true
 						}}">联系电话</th>
-				<th data-options="field:'visitTime',width:150,
+				<th data-options="field:'visitTime',width:100,
 				editor:{
 						type:'textbox',
 						options:{
@@ -98,7 +98,7 @@ $(function() {
 				formatter: function(value,row,index){
 					return SKY.formatterEnum(value,row,CUSTOMER_STATE);
 				}">状态</th>
-				<th data-options="field:'remark',width:200,
+				<th data-options="field:'remark',width:400,
 				editor:{
 						type:'textbox',
 						options:{

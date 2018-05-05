@@ -6,6 +6,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/base/channel/detailbasechannel.js'></script>
 <script type="text/javascript">
+var EDUCATION=<%=DictUtils.getDictItem("EDUCATION")%>;
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -50,8 +51,11 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>最高学历:</label></th>
-					<td><input class="easyui-textbox" name="education"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-combobox" name="education"
+						data-options="required:true,editable:false,
+									data:EDUCATION,
+									valueField:'code',    
+									textField:'name'"></input></td>
 
 					<th><label>毕业院校:</label></th>
 					<td><input class="easyui-textbox" name="school"
