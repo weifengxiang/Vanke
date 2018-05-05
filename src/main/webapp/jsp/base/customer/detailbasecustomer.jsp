@@ -258,6 +258,18 @@ $(function() {
 						  </tr>
 					</table>
 				</div>
+				<div class="easyui-panel" title="拓展情况" collapsible="true" style="width:100%;height:auto;padding:0px;">
+					<table style="width:100%">
+						  <tr>
+							<th><label>拓展时间:</label></th>
+							<td><input class="easyui-datebox" name="expandTime"
+								></input></td>
+							<th><label>拓展顾问:</label></th>
+							<td><input class="easyui-textbox" name="expandPropertyCon"
+								></input></td>
+						  </tr>
+					</table>
+				</div>
 			</div>
 		</form>
 </div>

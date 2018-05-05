@@ -94,6 +94,12 @@ public class BaseCustomer {
     private String updater;
 
     private Date updateTime;
+    
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date expandTime;
+
+    private String expandPropertyCon;
 
     public String getId() {
         return id;
@@ -437,5 +443,21 @@ public class BaseCustomer {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Date getExpandTime() {
+        return expandTime;
+    }
+
+    public void setExpandTime(Date expandTime) {
+        this.expandTime = expandTime;
+    }
+
+    public String getExpandPropertyCon() {
+        return expandPropertyCon;
+    }
+
+    public void setExpandPropertyCon(String expandPropertyCon) {
+        this.expandPropertyCon = expandPropertyCon;
     }
 }

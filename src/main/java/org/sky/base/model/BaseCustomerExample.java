@@ -3127,6 +3127,136 @@ public class BaseCustomerExample {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andExpandTimeIsNull() {
+            addCriterion("EXPAND_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeIsNotNull() {
+            addCriterion("EXPAND_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME =", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME <>", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME >", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME >=", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeLessThan(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME <", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("EXPAND_TIME <=", value, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("EXPAND_TIME in", values, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("EXPAND_TIME not in", values, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("EXPAND_TIME between", value1, value2, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("EXPAND_TIME not between", value1, value2, "expandTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConIsNull() {
+            addCriterion("EXPAND_PROPERTY_CON is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConIsNotNull() {
+            addCriterion("EXPAND_PROPERTY_CON is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConEqualTo(String value) {
+            addCriterion("EXPAND_PROPERTY_CON =", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConNotEqualTo(String value) {
+            addCriterion("EXPAND_PROPERTY_CON <>", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConGreaterThan(String value) {
+            addCriterion("EXPAND_PROPERTY_CON >", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConGreaterThanOrEqualTo(String value) {
+            addCriterion("EXPAND_PROPERTY_CON >=", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConLessThan(String value) {
+            addCriterion("EXPAND_PROPERTY_CON <", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConLessThanOrEqualTo(String value) {
+            addCriterion("EXPAND_PROPERTY_CON <=", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConLike(String value) {
+            addCriterion("EXPAND_PROPERTY_CON like", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConNotLike(String value) {
+            addCriterion("EXPAND_PROPERTY_CON not like", value, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConIn(List<String> values) {
+            addCriterion("EXPAND_PROPERTY_CON in", values, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConNotIn(List<String> values) {
+            addCriterion("EXPAND_PROPERTY_CON not in", values, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConBetween(String value1, String value2) {
+            addCriterion("EXPAND_PROPERTY_CON between", value1, value2, "expandPropertyCon");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpandPropertyConNotBetween(String value1, String value2) {
+            addCriterion("EXPAND_PROPERTY_CON not between", value1, value2, "expandPropertyCon");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

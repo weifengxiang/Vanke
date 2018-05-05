@@ -45,6 +45,8 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="EXPAND_TIME" jdbcType="DATE" property="expandTime" />
+    <result column="EXPAND_PROPERTY_CON" jdbcType="VARCHAR" property="expandPropertyCon" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -110,7 +112,8 @@
     LIVING_CITY, LIVING_AREA, FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, HOUSE_PURPOSE, 
     TOTAL_BUDGET, CREDIT_CONDITION, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, ACCEPT_P1, 
     ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
-    REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, EXPAND_TIME, 
+    EXPAND_PROPERTY_CON
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultMap="BaseResultMap">
     select
@@ -157,8 +160,8 @@
       RESISTANCE, COMPETITOR, VISIT_TIME, 
       SALE_TEAM, PROPERTY_CONSULTANT, REGISTRANT, 
       STATE, REMARK, CREATER, 
-      CREATE_TIME, UPDATER, UPDATE_TIME
-      )
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      EXPAND_TIME, EXPAND_PROPERTY_CON)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
       #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=VARCHAR}, 
@@ -172,8 +175,8 @@
       #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, #{visitTime,jdbcType=DATE}, 
       #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
     insert into base_customer
@@ -307,6 +310,12 @@
       <if test="updateTime != null">
         UPDATE_TIME,
       </if>
+      <if test="expandTime != null">
+        EXPAND_TIME,
+      </if>
+      <if test="expandPropertyCon != null">
+        EXPAND_PROPERTY_CON,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -437,6 +446,12 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expandTime != null">
+        #{expandTime,jdbcType=DATE},
+      </if>
+      <if test="expandPropertyCon != null">
+        #{expandPropertyCon,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -578,6 +593,12 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.expandTime != null">
+        EXPAND_TIME = #{record.expandTime,jdbcType=DATE},
+      </if>
+      <if test="record.expandPropertyCon != null">
+        EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -627,7 +648,9 @@
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      EXPAND_TIME = #{record.expandTime,jdbcType=DATE},
+      EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -761,6 +784,12 @@
       <if test="updateTime != null">
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="expandTime != null">
+        EXPAND_TIME = #{expandTime,jdbcType=DATE},
+      </if>
+      <if test="expandPropertyCon != null">
+        EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -807,7 +836,9 @@
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      EXPAND_TIME = #{expandTime,jdbcType=DATE},
+      EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
