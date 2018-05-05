@@ -6,6 +6,18 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/base/customer/detailbasecustomer.js'></script>
 <script type="text/javascript">
+var CAREER_TYPE=<%=DictUtils.getDictItem("CAREER_TYPE")%>;//职业类型
+var FAMILY_STRUCTURE=<%=DictUtils.getDictItem("FAMILY_STRUCTURE")%>;//家庭结构
+var MARRIAGE=<%=DictUtils.getDictItem("MARRIAGE")%>;//婚姻状况
+var TARGET_LAYOUT=<%=DictUtils.getDictItem("TARGET_LAYOUT")%>;//目标房型
+var CREDIT_CONDITION=<%=DictUtils.getDictItem("CREDIT_CONDITION")%>;//信贷情况
+var HOUSE_PURPOSE=<%=DictUtils.getDictItem("HOUSE_PURPOSE")%>;//置业目的
+var TARGET_YT=<%=DictUtils.getDictItem("TARGET_YT")%>;//目标业态
+var TOTAL_BUDGET=<%=DictUtils.getDictItem("TOTAL_BUDGET")%>;//整体预算
+var AGE=<%=DictUtils.getDictItem("AGE")%>;//年龄
+var MONTH_INCOME=<%=DictUtils.getDictItem("MONTH_INCOME")%>;//月均收入
+var TARGET_AREA=<%=DictUtils.getDictItem("TARGET_AREA")%>;//目标面积
+var CUSTOMER_STATE=<%=DictUtils.getDictItem("CUSTOMER_STATE")%>;
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -42,7 +54,7 @@ $(function() {
 					  <tr>
 						<th><label>兴趣爱好:</label></th>
 						<td colspan='3'>
-							<input class="easyui-textbox" name="hobby" style='width:400px'
+							<input class="easyui-textbox" name="hobby" style='width:550px'
 							></input></td>
 					  </tr>
 				  </table>
@@ -51,8 +63,11 @@ $(function() {
 					<table style="width:100%">
 					  <tr>
 						<th><label>职业类型:</label></th>
-						<td><input class="easyui-textbox" name="careerType"
-							></input></td>
+						<td><input class="easyui-combobox" name="careerType"
+							data-options="required:true,editable:false,
+									data:CAREER_TYPE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 						<th><label>工作单位:</label></th>
 						<td><input class="easyui-textbox" name="workUnit"
 							></input></td>
@@ -62,16 +77,22 @@ $(function() {
 						<td><input class="easyui-textbox" name="positionLevel"
 							></input></td>
 						<th><label>月均收入:</label></th>
-						<td><input class="easyui-textbox" name="monthIncome"
-							></input></td>
+						<td><input class="easyui-combobox" name="monthIncome"
+							data-options="required:true,editable:false,
+									data:MONTH_INCOME,
+									valueField:'code',    
+									textField:'name'"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>配偶单位:</label></th>
 						<td><input class="easyui-textbox" name="spouseUnit"
 							></input></td>
 						<th><label>配偶职业:</label></th>
-						<td><input class="easyui-textbox" name="spouseCareer"
-							></input></td>
+						<td><input class="easyui-combobox" name="spouseCareer"
+							data-options="required:true,editable:false,
+									data:CAREER_TYPE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 					  </tr>
 				   </table>
 				</div>
@@ -79,19 +100,25 @@ $(function() {
 					<table style="width:100%">
 					  <tr>
 						<th><label>婚姻状况:</label></th>
-						<td><input class="easyui-textbox" name="marriage"
-							></input></td>
+						<td><input class="easyui-combobox" name="marriage"
+							data-options="required:true,editable:false,
+									data:MARRIAGE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 						<th><label>家庭结构:</label></th>
-						<td><input class="easyui-textbox" name="familyStructure"
-							></input></td>
+						<td><input class="easyui-combobox" name="familyStructure"
+							data-options="required:true,editable:false,
+									data:FAMILY_STRUCTURE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>家庭人数:</label></th>
-						<td><input class="easyui-textbox" name="familyNum"
-							></input></td>
+						<td><input class="easyui-numberbox" name="familyNum"
+							data-options="min:1,max:10,precision:0"></input></td>
 						<th><label>小孩年龄:</label></th>
-						<td><input class="easyui-textbox" name="childAge"
-							></input></td>
+						<td><input class="easyui-numberbox" name="childAge"
+							data-options="min:1,max:18,precision:0"></input></td>
 					  </tr>
 				  </table>
 				</div>
@@ -99,25 +126,40 @@ $(function() {
 					<table style="width:100%">
 					  <tr>
 						<th><label>现居省份:</label></th>
-						<td><input class="easyui-textbox" name="livingProvince"
-							></input></td>
+						<td><input class="easyui-combobox" name="livingProvince" id="livingProvince"
+							data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/100000'),
+                                          valueField:'id',
+                                          textField:'name',
+                                          onSelect:function(area){
+                                          $('#livingCity').combobox('clear');
+                                          $('#livingArea').combobox('clear');
+                                          $('#livingCity').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/'+area.id)),
+                                          $('#livingArea').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'))}"></input></td>
 						<th><label>现居城市:</label></th>
-						<td><input class="easyui-textbox" name="livingCity"
-							></input></td>
+						<td><input class="easyui-combobox" name="livingCity" id="livingCity"
+							data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'),
+                                          valueField:'id',
+                                          textField:'name',
+                                          onSelect:function(area){
+                                          $('#livingArea').combobox('clear');
+                                          $('#livingArea').combobox('reload',SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/'+area.id))
+                                          }"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>现居区域:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="livingArea"
-							></input></td>
+						<td colspan='3'><input class="easyui-combobox" name="livingArea" id="livingArea"
+										data-options="url:SKY.urlCSRF(basepath+'sys/SysArea/listSysAreaByPid/0'),
+						                              valueField:'id',
+                                          			  textField:'name'"></input></td>
 					  </tr>
 					  <tr>
 						<th><label>家庭地址:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="familyAddress" style='width:400px'
+						<td colspan='3'><input class="easyui-textbox" name="familyAddress" style='width:550px'
 							></input></td>
 					  </tr>
 					  <tr>
 						<th><label>工作地址:</label></th>
-						<td colspan='3'><input class="easyui-textbox" name="workAddress" style='width:400px'
+						<td colspan='3'><input class="easyui-textbox" name="workAddress" style='width:550px'
 							></input></td>
 					  </tr>
 				  	</table>
@@ -129,29 +171,47 @@ $(function() {
 							<td><input class="easyui-textbox" name="knowWay"
 								></input></td>
 							<th><label>置业目的:</label></th>
-							<td><input class="easyui-textbox" name="housePurpose"
-								></input></td>
+							<td><input class="easyui-combobox" name="housePurpose"
+								data-options="required:true,editable:false,
+									data:HOUSE_PURPOSE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 						  </tr>
 						  <tr>
 							<th><label>整体预算:</label></th>
-							<td><input class="easyui-textbox" name="totalBudget"
-								></input></td>
+							<td><input class="easyui-combobox" name="totalBudget"
+								data-options="required:true,editable:false,
+									data:TOTAL_BUDGET,
+									valueField:'code',
+									textField:'name'"></input></td>
 							<th><label>信贷情况:</label></th>
-							<td><input class="easyui-textbox" name="creditCondition"
-								></input></td>
+							<td><input class="easyui-combobox" name="creditCondition"
+								data-options="required:true,editable:false,
+									data:CREDIT_CONDITION,
+									valueField:'code',    
+									textField:'name'"></input></td>
 						  </tr>
 						  <tr>
 							<th><label>目标业态:</label></th>
-							<td><input class="easyui-textbox" name="targetYt"
-								></input></td>
+							<td><input class="easyui-combobox" name="targetYt"
+								data-options="required:true,editable:false,
+									data:TARGET_YT,
+									valueField:'code',    
+									textField:'name'"></input></td>
 							<th><label>目标房型:</label></th>
-							<td><input class="easyui-textbox" name="targetLayout"
-								></input></td>
+							<td><input class="easyui-combobox" name="targetLayout"
+								data-options="required:true,editable:false,
+									data:TARGET_LAYOUT,
+									valueField:'code',    
+									textField:'name'"></input></td>
 						  </tr>
 						  <tr>
 							<th><label>目标面积:</label></th>
-							<td><input class="easyui-textbox" name="targetArea"
-								></input></td>
+							<td><input class="easyui-combobox" name="targetArea"
+								data-options="required:true,editable:false,
+									data:TARGET_AREA,
+									valueField:'code',    
+									textField:'name'"></input></td>
 							<th><label>认可点1:</label></th>
 							<td><input class="easyui-textbox" name="acceptP1"
 								></input></td>
@@ -182,16 +242,19 @@ $(function() {
 						  </tr>
 						  <tr>
 							<th><label>状态:</label></th>
-							<td><input class="easyui-textbox" name="state"
-								></input></td>
+							<td><input class="easyui-combobox" name="state"
+								data-options="required:true,editable:false,
+									data:CUSTOMER_STATE,
+									valueField:'code',    
+									textField:'name'"></input></td>
 							<th><label>来访时间:</label></th>
-							<td><input class="easyui-textbox" name="visitTime"
+							<td><input class="easyui-datebox" name="visitTime"
 								></input></td>
 						  </tr>
 						  <tr>
 							<th><label>备注:</label></th>
-							<td colspan='3'><input class="easyui-textbox" name="remark" style='width:400px'
-								></input></td>
+							<td colspan='3'><input class="easyui-textbox" name="remark" 
+							data-options="multiline:true" style='width:550px;height:100px;'></input></td>
 						  </tr>
 					</table>
 				</div>

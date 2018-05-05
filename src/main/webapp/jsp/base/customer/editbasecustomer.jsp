@@ -117,11 +117,11 @@ $(function() {
 					  </tr>
 					  <tr>
 						<th><label>家庭人数:</label></th>
-						<td><input class="easyui-textbox" name="familyNum"
-							></input></td>
+						<td><input class="easyui-numberbox" name="familyNum"
+							data-options="min:1,max:10,precision:0"></input><font color="red">（1-10整数）</font></td>
 						<th><label>小孩年龄:</label></th>
-						<td><input class="easyui-textbox" name="childAge"
-							></input></td>
+						<td><input class="easyui-numberbox" name="childAge"
+							data-options="min:1,max:18,precision:0"></input><font color="red">（1-1整数）</font></td>
 					  </tr>
 				  </table>
 				</div>
