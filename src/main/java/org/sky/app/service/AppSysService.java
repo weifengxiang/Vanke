@@ -35,5 +35,24 @@ public class AppSysService {
 			return null;
 		}
 	}
+	/**
+	 * 根据主键获取用户信息
+	 * @param userid
+	 * @return
+	 */
+	public SysUser getSysUserById(String userid) {
+		// TODO Auto-generated method stub
+		return sysUserMapper.selectByPrimaryKey(userid);
+	}
+	/**
+	 * 根据查询条件获取用户列表
+	 * @param auExample
+	 * @return
+	 */
+	public List<SysUser> listSysUserByExample(SysUserExample auExample) {
+		// TODO Auto-generated method stub
+		List<SysUser> list = sysUserMapper.selectByExample(auExample);
+		return list;
+	}
 
 }
