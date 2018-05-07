@@ -47,6 +47,7 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="EXPAND_TIME" jdbcType="DATE" property="expandTime" />
     <result column="EXPAND_PROPERTY_CON" jdbcType="VARCHAR" property="expandPropertyCon" />
+    <result column="IMP_CUSTOMER" jdbcType="VARCHAR" property="impCustomer" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -113,7 +114,7 @@
     TOTAL_BUDGET, CREDIT_CONDITION, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, ACCEPT_P1, 
     ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
     REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, EXPAND_TIME, 
-    EXPAND_PROPERTY_CON
+    EXPAND_PROPERTY_CON, IMP_CUSTOMER
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultMap="BaseResultMap">
     select
@@ -161,7 +162,8 @@
       SALE_TEAM, PROPERTY_CONSULTANT, REGISTRANT, 
       STATE, REMARK, CREATER, 
       CREATE_TIME, UPDATER, UPDATE_TIME, 
-      EXPAND_TIME, EXPAND_PROPERTY_CON)
+      EXPAND_TIME, EXPAND_PROPERTY_CON, IMP_CUSTOMER
+      )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
       #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=VARCHAR}, 
@@ -176,7 +178,8 @@
       #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR})
+      #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR}, #{impCustomer,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
     insert into base_customer
@@ -316,6 +319,9 @@
       <if test="expandPropertyCon != null">
         EXPAND_PROPERTY_CON,
       </if>
+      <if test="impCustomer != null">
+        IMP_CUSTOMER,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -452,6 +458,9 @@
       </if>
       <if test="expandPropertyCon != null">
         #{expandPropertyCon,jdbcType=VARCHAR},
+      </if>
+      <if test="impCustomer != null">
+        #{impCustomer,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -599,6 +608,9 @@
       <if test="record.expandPropertyCon != null">
         EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR},
       </if>
+      <if test="record.impCustomer != null">
+        IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -650,7 +662,8 @@
       UPDATER = #{record.updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       EXPAND_TIME = #{record.expandTime,jdbcType=DATE},
-      EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR}
+      EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR},
+      IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -790,6 +803,9 @@
       <if test="expandPropertyCon != null">
         EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR},
       </if>
+      <if test="impCustomer != null">
+        IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -838,7 +854,8 @@
       UPDATER = #{updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       EXPAND_TIME = #{expandTime,jdbcType=DATE},
-      EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR}
+      EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR},
+      IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

@@ -3257,6 +3257,76 @@ public class BaseCustomerExample {
             addCriterion("EXPAND_PROPERTY_CON not between", value1, value2, "expandPropertyCon");
             return (Criteria) this;
         }
+
+        public Criteria andImpCustomerIsNull() {
+            addCriterion("IMP_CUSTOMER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerIsNotNull() {
+            addCriterion("IMP_CUSTOMER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerEqualTo(String value) {
+            addCriterion("IMP_CUSTOMER =", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerNotEqualTo(String value) {
+            addCriterion("IMP_CUSTOMER <>", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerGreaterThan(String value) {
+            addCriterion("IMP_CUSTOMER >", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerGreaterThanOrEqualTo(String value) {
+            addCriterion("IMP_CUSTOMER >=", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerLessThan(String value) {
+            addCriterion("IMP_CUSTOMER <", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerLessThanOrEqualTo(String value) {
+            addCriterion("IMP_CUSTOMER <=", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerLike(String value) {
+            addCriterion("IMP_CUSTOMER like", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerNotLike(String value) {
+            addCriterion("IMP_CUSTOMER not like", value, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerIn(List<String> values) {
+            addCriterion("IMP_CUSTOMER in", values, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerNotIn(List<String> values) {
+            addCriterion("IMP_CUSTOMER not in", values, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerBetween(String value1, String value2) {
+            addCriterion("IMP_CUSTOMER between", value1, value2, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andImpCustomerNotBetween(String value1, String value2) {
+            addCriterion("IMP_CUSTOMER not between", value1, value2, "impCustomer");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

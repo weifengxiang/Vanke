@@ -101,6 +101,8 @@ public class BaseCustomer {
 
     private String expandPropertyCon;
 
+    private String impCustomer;
+
     public String getId() {
         return id;
     }
@@ -459,5 +461,13 @@ public class BaseCustomer {
 
     public void setExpandPropertyCon(String expandPropertyCon) {
         this.expandPropertyCon = expandPropertyCon;
+    }
+
+    public String getImpCustomer() {
+        return impCustomer;
+    }
+
+    public void setImpCustomer(String impCustomer) {
+        this.impCustomer = impCustomer;
     }
 }
