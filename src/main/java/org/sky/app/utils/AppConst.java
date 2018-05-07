@@ -44,4 +44,12 @@ public class AppConst {
 	//request中的参数名
 	public static final String REQUEST_TOKEN = "token";//request中token参数名称
 	public static final String REQUEST_USER_ID = "request_user_id";//request中userid参数名称
+	//全局常量
+	public static final String APP_NOT = "0";//否
+	public static final String APP_IS = "1";//是
+	
+	/********************客户模块常量******************/
+	public static final String CUSTOMER_TYPE_0 = "0";//表示全部客户
+	public static final String CUSTOMER_TYPE_1 = "1";//表示今日客户
+	public static final String CUSTOMER_TYPE_2 = "2";//表示重点客户
 }
