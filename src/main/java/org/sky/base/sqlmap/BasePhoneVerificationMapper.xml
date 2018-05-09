@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.base.client.BasePhoneVerificationMapper">
+  <resultMap id="BaseResultMap" type="org.sky.base.model.BasePhoneVerification">
+    <id column="RECID" jdbcType="VARCHAR" property="recid" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="VERIFICATION_CODE" jdbcType="VARCHAR" property="verificationCode" />
+    <result column="VALIDITY_TIME" jdbcType="DATE" property="validityTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    RECID, PHONE_NUM, VERIFICATION_CODE, VALIDITY_TIME, CREATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.base.model.BasePhoneVerificationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_phone_verification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_phone_verification
+    where RECID = #{recid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from base_phone_verification
+    where RECID = #{recid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.base.model.BasePhoneVerificationExample">
+    delete from base_phone_verification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.base.model.BasePhoneVerification">
+    insert into base_phone_verification (RECID, PHONE_NUM, VERIFICATION_CODE, 
+      VALIDITY_TIME, CREATE_TIME)
+    values (#{recid,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{verificationCode,jdbcType=VARCHAR}, 
+      #{validityTime,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.base.model.BasePhoneVerification">
+    insert into base_phone_verification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        RECID,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="verificationCode != null">
+        VERIFICATION_CODE,
+      </if>
+      <if test="validityTime != null">
+        VALIDITY_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        #{recid,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationCode != null">
+        #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validityTime != null">
+        #{validityTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.base.model.BasePhoneVerificationExample" resultType="java.lang.Long">
+    select count(*) from base_phone_verification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update base_phone_verification
+    <set>
+      <if test="record.recid != null">
+        RECID = #{record.recid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNum != null">
+        PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verificationCode != null">
+        VERIFICATION_CODE = #{record.verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validityTime != null">
+        VALIDITY_TIME = #{record.validityTime,jdbcType=DATE},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update base_phone_verification
+    set RECID = #{record.recid,jdbcType=VARCHAR},
+      PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
+      VERIFICATION_CODE = #{record.verificationCode,jdbcType=VARCHAR},
+      VALIDITY_TIME = #{record.validityTime,jdbcType=DATE},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.base.model.BasePhoneVerification">
+    update base_phone_verification
+    <set>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationCode != null">
+        VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validityTime != null">
+        VALIDITY_TIME = #{validityTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECID = #{recid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.base.model.BasePhoneVerification">
+    update base_phone_verification
+    set PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
+      VALIDITY_TIME = #{validityTime,jdbcType=DATE},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where RECID = #{recid,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>

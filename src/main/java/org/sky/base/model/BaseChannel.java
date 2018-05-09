@@ -37,6 +37,10 @@ public class BaseChannel {
 
     private Date updateTime;
 
+    private String qq;
+
+    private String wxNum;
+
     public String getId() {
         return id;
     }
@@ -171,5 +175,21 @@ public class BaseChannel {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWxNum() {
+        return wxNum;
+    }
+
+    public void setWxNum(String wxNum) {
+        this.wxNum = wxNum;
     }
 }

@@ -1300,6 +1300,146 @@ public class BaseChannelExample {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andQqIsNull() {
+            addCriterion("QQ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqIsNotNull() {
+            addCriterion("QQ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqEqualTo(String value) {
+            addCriterion("QQ =", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqNotEqualTo(String value) {
+            addCriterion("QQ <>", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqGreaterThan(String value) {
+            addCriterion("QQ >", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqGreaterThanOrEqualTo(String value) {
+            addCriterion("QQ >=", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqLessThan(String value) {
+            addCriterion("QQ <", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqLessThanOrEqualTo(String value) {
+            addCriterion("QQ <=", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqLike(String value) {
+            addCriterion("QQ like", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqNotLike(String value) {
+            addCriterion("QQ not like", value, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqIn(List<String> values) {
+            addCriterion("QQ in", values, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqNotIn(List<String> values) {
+            addCriterion("QQ not in", values, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqBetween(String value1, String value2) {
+            addCriterion("QQ between", value1, value2, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andQqNotBetween(String value1, String value2) {
+            addCriterion("QQ not between", value1, value2, "qq");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumIsNull() {
+            addCriterion("WX_NUM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumIsNotNull() {
+            addCriterion("WX_NUM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumEqualTo(String value) {
+            addCriterion("WX_NUM =", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumNotEqualTo(String value) {
+            addCriterion("WX_NUM <>", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumGreaterThan(String value) {
+            addCriterion("WX_NUM >", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumGreaterThanOrEqualTo(String value) {
+            addCriterion("WX_NUM >=", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumLessThan(String value) {
+            addCriterion("WX_NUM <", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumLessThanOrEqualTo(String value) {
+            addCriterion("WX_NUM <=", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumLike(String value) {
+            addCriterion("WX_NUM like", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumNotLike(String value) {
+            addCriterion("WX_NUM not like", value, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumIn(List<String> values) {
+            addCriterion("WX_NUM in", values, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumNotIn(List<String> values) {
+            addCriterion("WX_NUM not in", values, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumBetween(String value1, String value2) {
+            addCriterion("WX_NUM between", value1, value2, "wxNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andWxNumNotBetween(String value1, String value2) {
+            addCriterion("WX_NUM not between", value1, value2, "wxNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

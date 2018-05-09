@@ -19,6 +19,8 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WX_NUM" jdbcType="VARCHAR" property="wxNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, NAME, SEX, AGE, TEL, EMAIL, IDCARD, EDUCATION, SCHOOL, MAJOR, WORK_DATE, WORK_HIS, 
-    REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, QQ, WX_NUM
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseChannelExample" resultMap="BaseResultMap">
     select
@@ -119,13 +121,15 @@
       EDUCATION, SCHOOL, MAJOR, 
       WORK_DATE, WORK_HIS, REMARK, 
       CREATER, CREATE_TIME, UPDATER, 
-      UPDATE_TIME)
+      UPDATE_TIME, QQ, WX_NUM
+      )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{education,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
       #{workDate,jdbcType=VARCHAR}, #{workHis,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{updateTime,jdbcType=TIMESTAMP}, #{qq,jdbcType=VARCHAR}, #{wxNum,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseChannel">
     insert into base_channel
@@ -181,6 +185,12 @@
       <if test="updateTime != null">
         UPDATE_TIME,
       </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="wxNum != null">
+        WX_NUM,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -233,6 +243,12 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNum != null">
+        #{wxNum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -296,6 +312,12 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.qq != null">
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxNum != null">
+        WX_NUM = #{record.wxNum,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -319,7 +341,9 @@
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      WX_NUM = #{record.wxNum,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -375,6 +399,12 @@
       <if test="updateTime != null">
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNum != null">
+        WX_NUM = #{wxNum,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -395,7 +425,9 @@
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WX_NUM = #{wxNum,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
