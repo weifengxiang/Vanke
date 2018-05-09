@@ -41,6 +41,8 @@ public class BaseChannel {
 
     private String wxNum;
 
+    private String password;
+
     public String getId() {
         return id;
     }
@@ -191,5 +193,13 @@ public class BaseChannel {
 
     public void setWxNum(String wxNum) {
         this.wxNum = wxNum;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
