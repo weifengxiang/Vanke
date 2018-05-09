@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MiniAppController {
 	
-	private Logger logger = Logger.getLogger(MiniAppController.class); 
+	private Logger logger = Logger.getLogger(MiniAppController.class);
 	@Autowired
 	private MiniAppService miniappService;
 	

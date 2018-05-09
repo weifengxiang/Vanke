@@ -11,7 +11,7 @@ package org.sky.app.utils;
 public class AppConst {
 	
 	/********************不需要验证token的地址*************************/
-	public static final String NO_INTERCEPTOR_PATH = ".*/((test)|(register)|(tokenLogin)|(login)|(refreshToken)).*";//不需要验证token地址
+	public static final String NO_INTERCEPTOR_PATH = ".*/((test)|(register)|(tokenLogin)|(login)|(refreshToken)|(getCode)).*";//不需要验证token地址
 	
 	/*******************返回成功代码**********************************/
 	public static final String SUCCESS = "SUCCESS";//成功
