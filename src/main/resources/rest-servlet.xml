@@ -20,6 +20,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/app/**"/>
+            <mvc:mapping path="/miniapp/**"/>
             <bean class="org.sky.app.utils.JwtInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
