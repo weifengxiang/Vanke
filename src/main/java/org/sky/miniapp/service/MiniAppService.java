@@ -1,5 +1,6 @@
 package org.sky.miniapp.service;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +17,20 @@ import org.sky.base.model.BaseCustomer;
 import org.sky.base.model.BaseCustomerExample;
 import org.sky.base.model.BasePhoneVerification;
 import org.sky.base.model.BasePhoneVerificationExample;
+import org.sky.miniapp.utils.MiniAppUtils;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDictItemExample;
+import org.sky.sys.utils.AliyunSmsUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.aliyuncs.exceptions.ClientException;
 
 @Service
 public class MiniAppService {
@@ -269,7 +274,30 @@ public class MiniAppService {
 	 * 获取短信验证码
 	 * @param tel
 	 */
-	public void obtainSms(String tel) {
-		
+	public void obtainSms(String tel) throws ServiceException{
+		//String verCode=MiniAppUtils.getVerficationCode();
+		String verCode="888888";
+		//发送信息...
+		try {
+			AliyunSmsUtils.sendSms(tel, verCode);
+		} catch (ClientException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			throw new ServiceException("消息发送失败"+e1.getMessage());
+		}
+		BasePhoneVerification pv = new BasePhoneVerification();
+		pv.setCreateTime(CommonUtils.getCurrentDbDate());
+		pv.setPhoneNum(tel);
+		pv.setRecid(CommonUtils.getUUID(32));
+		long curren = System.currentTimeMillis();
+        curren += 30 * 60 * 1000;
+        Date validityTime = new Date(curren);;
+		pv.setValidityTime(validityTime);//有效期半小时
+		pv.setVerificationCode(verCode);
+		//先删除
+		BasePhoneVerificationExample e = new BasePhoneVerificationExample();
+		e.createCriteria().andPhoneNumEqualTo(tel);
+		phoneVerMapper.deleteByExample(e);
+		phoneVerMapper.insert(pv);
 	}
 }
