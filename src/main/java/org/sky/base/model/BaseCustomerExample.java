@@ -238,6 +238,76 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
+        public Criteria andCodeIsNull() {
+            addCriterion("CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIsNotNull() {
+            addCriterion("CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("CODE =", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("CODE <>", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("CODE >", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("CODE >=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("CODE <", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("CODE <=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLike(String value) {
+            addCriterion("CODE like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("CODE not like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("CODE in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("CODE not in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("CODE between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("CODE not between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("NAME is null");
             return (Criteria) this;
@@ -3395,6 +3465,76 @@ public class BaseCustomerExample {
 
         public Criteria andImpCustomerNotBetween(String value1, String value2) {
             addCriterion("IMP_CUSTOMER not between", value1, value2, "impCustomer");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeIsNull() {
+            addCriterion("CHANNEL_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeIsNotNull() {
+            addCriterion("CHANNEL_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeEqualTo(String value) {
+            addCriterion("CHANNEL_CODE =", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotEqualTo(String value) {
+            addCriterion("CHANNEL_CODE <>", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeGreaterThan(String value) {
+            addCriterion("CHANNEL_CODE >", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_CODE >=", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLessThan(String value) {
+            addCriterion("CHANNEL_CODE <", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLessThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_CODE <=", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLike(String value) {
+            addCriterion("CHANNEL_CODE like", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotLike(String value) {
+            addCriterion("CHANNEL_CODE not like", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeIn(List<String> values) {
+            addCriterion("CHANNEL_CODE in", values, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotIn(List<String> values) {
+            addCriterion("CHANNEL_CODE not in", values, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeBetween(String value1, String value2) {
+            addCriterion("CHANNEL_CODE between", value1, value2, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotBetween(String value1, String value2) {
+            addCriterion("CHANNEL_CODE not between", value1, value2, "channelCode");
             return (Criteria) this;
         }
     }

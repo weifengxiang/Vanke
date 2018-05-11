@@ -23,8 +23,10 @@
 		<!-- 生成DAO的包名和位置--> 
 		<javaClientGenerator targetPackage="org.sky.base.client"	targetProject="src\main\java" type="XMLMAPPER" />
 		
-
-		<table tableName="BASE_CUSTOMER"></table>
 		<table tableName="BASE_CHANNEL"></table>
+		<!-- 
+		<table tableName="BASE_CUSTOMER"></table>	
+		<table tableName="BASE_CODE"></table>
+		 -->
 	</context>
 </generatorConfiguration>

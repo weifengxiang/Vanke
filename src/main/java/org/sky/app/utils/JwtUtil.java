@@ -14,6 +14,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.sky.sys.utils.JsonUtils;
+import org.sky.sys.utils.ResultData;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -42,7 +44,6 @@ public class JwtUtil {
 
 	/**
 	 * 创建jwt
-	 * 
 	 * @param subject
 	 * @param tokenType
 	 * @param extTime
@@ -85,28 +86,20 @@ public class JwtUtil {
 			String subject = claims.getSubject();
 			if(!tokenType.equals(claims.get(JwtUtil.TOKEN_TYPE, String.class))){
 				rd.setCode(AppConst.TOKEN_ERROR);
-				rd.setResult(AppConst.TOKEN_ERROR_DESCRIPTION);
+				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 			}else{
 				rd.setCode(AppConst.SUCCESS);
-				rd.setResult(subject);
+				rd.setName(AppConst.SUCCESS_DESCRIPTION);
+				rd.setData(subject);
 			}
 		} catch(SignatureException | MalformedJwtException e){//jwt解析错误
 			rd.setCode(AppConst.TOKEN_ERROR);
-			rd.setResult(AppConst.TOKEN_ERROR_DESCRIPTION);
+			rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 		} catch(ExpiredJwtException e){//jwt过期
 			rd.setCode(AppConst.TOKEN_EXP);
-			rd.setResult(AppConst.TOKEN_EXP_DESCRIPTION);
+			rd.setName(AppConst.TOKEN_EXP_DESCRIPTION);
 		}
 		return rd;
 	}
 
-	/**
-	 * 生成subject信息
-	 * 
-	 * @param user
-	 * @return
-	 */
-	public static String generalSubject(String userid) {
-		return userid;
-	}
 }

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.sky.app.service.AppBaseCustomerService;
 import org.sky.app.utils.AppConst;
-import org.sky.app.utils.ResultData;
 import org.sky.base.model.BaseCustomerExample;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
+import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,14 +45,14 @@ public class AppBaseCustomerController {
 		ResultData rd = new ResultData();
 		try{
 			//获取用户ID
-			String user_id = (String) request.getAttribute(AppConst.REQUEST_USER_ID);
+			String user_id = (String) request.getAttribute(AppConst.REQUEST_LOGIN);
 			//获取参数
 			String page = request.getParameter("page");
 			String rows = request.getParameter("rows");
 			String type = request.getParameter("type");//0:表示全部用户，1:表示今日客户2:表示重点客户
 			if(StringUtils.isNull(page)||StringUtils.isNull(rows)||StringUtils.isNull(type)||StringUtils.isNull(user_id)){
 				rd.setCode(AppConst.PARAMETER_NULL);
-				rd.setResult(AppConst.PARAMETER_NULL_DESCRIPTION);
+				rd.setName(AppConst.PARAMETER_NULL_DESCRIPTION);
 				return rd;
 			}
 			Map<String,Object> filterMap = new HashMap<String,Object>();
@@ -73,13 +73,13 @@ public class AppBaseCustomerController {
 			example.setPage(p);
 			PageListData pld = appBaseCustomerService.listBaseCustomerByPage(example);
 			rd.setCode(AppConst.SUCCESS);
-			rd.setResult(pld);
+			rd.setData(pld);
 			return rd;
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e);
 			rd.setCode(AppConst.SYS_ERROR);
-			rd.setResult(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
 			return rd;
 		}
 		

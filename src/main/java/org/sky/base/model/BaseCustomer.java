@@ -5,6 +5,8 @@ import java.util.Date;
 public class BaseCustomer {
     private String id;
 
+    private String code;
+
     private String name;
 
     private String sex;
@@ -97,12 +99,22 @@ public class BaseCustomer {
 
     private String impCustomer;
 
+    private String channelCode;
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -471,5 +483,13 @@ public class BaseCustomer {
 
     public void setImpCustomer(String impCustomer) {
         this.impCustomer = impCustomer;
+    }
+
+    public String getChannelCode() {
+        return channelCode;
+    }
+
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
     }
 }

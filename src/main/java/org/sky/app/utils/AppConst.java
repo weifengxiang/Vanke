@@ -43,7 +43,7 @@ public class AppConst {
 	/********************系统常量*********************/
 	//request中的参数名
 	public static final String REQUEST_TOKEN = "token";//request中token参数名称
-	public static final String REQUEST_USER_ID = "request_user_id";//request中userid参数名称
+	public static final String REQUEST_LOGIN = "REQUEST_LOGIN";//request中登录信息
 	//全局常量
 	public static final String APP_NOT = "0";//否
 	public static final String APP_IS = "1";//是

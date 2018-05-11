@@ -11,9 +11,9 @@ import org.apache.log4j.Logger;
 import org.sky.app.service.AppSysService;
 import org.sky.app.utils.AppConst;
 import org.sky.app.utils.JwtUtil;
-import org.sky.app.utils.ResultData;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.model.SysUserExample;
+import org.sky.sys.utils.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +46,7 @@ public class AppSysController {
 			String token = request.getParameter(AppConst.REQUEST_TOKEN);
 			if(null==token||"".equals(token)){
 				rd.setCode(AppConst.PARAMETER_NULL);
-				rd.setResult(AppConst.PARAMETER_NULL_DESCRIPTION);
+				rd.setName(AppConst.PARAMETER_NULL_DESCRIPTION);
 				return rd;
 			}
 			//解析token值
@@ -54,15 +54,15 @@ public class AppSysController {
 			if(!AppConst.SUCCESS.equals(rd.getCode())){
 				return rd;
 			}
-			String userid = (String) rd.getResult();
+			String userCode = (String) rd.getData();
 			//判断必要信息是否存在
-			if(null==userid||"".equals(userid)){
+			if(null==userCode||"".equals(userCode)){
 				rd.setCode(AppConst.TOKEN_ERROR);
-				rd.setResult(AppConst.TOKEN_ERROR_DESCRIPTION);
+				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 				return rd;
 			}
 			//从数据库获取用户信息
-			SysUser appUser = appSysService.getSysUserById(userid);
+			SysUser appUser = appSysService.getSysUserByCode(userCode);
 			loginSuccessResult(rd,appUser);
 			return rd;
 		} catch (Exception e) {
@@ -70,7 +70,7 @@ public class AppSysController {
 			e.printStackTrace();
 			logger.error(e);
 			rd.setCode(AppConst.SYS_ERROR);
-			rd.setResult(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
 			return rd;
 		}
 	}
@@ -88,7 +88,7 @@ public class AppSysController {
 			String password = request.getParameter("password");
 			if(null==loginName||"".equals(loginName)||null==password||"".equals(password)){
 				rd.setCode(AppConst.PARAMETER_NULL);
-				rd.setResult(AppConst.PARAMETER_NULL_DESCRIPTION);
+				rd.setName(AppConst.PARAMETER_NULL_DESCRIPTION);
 				return rd;
 			}
 			SysUserExample auExample = new SysUserExample();
@@ -96,7 +96,7 @@ public class AppSysController {
 			List<SysUser> list = appSysService.listSysUserByExample(auExample);
 			if(null==list||list.size()<1){
 				rd.setCode(AppConst.USER_LOGIN_ERROR);
-				rd.setResult(AppConst.USER_LOGIN_ERROR_DESCRIPTION);
+				rd.setName(AppConst.USER_LOGIN_ERROR_DESCRIPTION);
 				return rd;
 			}
 			SysUser appUser = list.get(0);
@@ -107,7 +107,7 @@ public class AppSysController {
 			e.printStackTrace();
 			logger.error(e);
 			rd.setCode(AppConst.SYS_ERROR);
-			rd.setResult(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
 			return rd;
 		}
 	}
@@ -125,39 +125,37 @@ public class AppSysController {
 			String token = request.getParameter(AppConst.REQUEST_TOKEN);
 			if(null==token||"".equals(token)){
 				rd.setCode(AppConst.TOKEN_NULL);
-				rd.setResult(AppConst.TOKEN_NULL_DESCRIPTION);
+				rd.setName(AppConst.TOKEN_NULL_DESCRIPTION);
 				return rd;
 			}
 			//解析token值
 			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_LOGIN);
-			if(!AppConst.SUCCESS.equals(rd.getCode())||null==rd.getResult()||"".equals(rd.getResult())){
+			if(!AppConst.SUCCESS.equals(rd.getCode())||null==rd.getName()||"".equals(rd.getName())){
 				rd.setCode(AppConst.TOKEN_ERROR);
-				rd.setResult(AppConst.TOKEN_ERROR_DESCRIPTION);
+				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 				return rd;
 			}
-			
 			Map<String,String> resultMap = new HashMap<String,String>();
-			resultMap.put("requestToken", JwtUtil.createJWT((String)rd.getResult(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
+			resultMap.put("requestToken", JwtUtil.createJWT((String)rd.getData(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
 			rd.setCode(AppConst.SUCCESS);
-			rd.setResult(resultMap);
+			rd.setData(resultMap);
 			return rd;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error(e);
 			rd.setCode(AppConst.SYS_ERROR);
-			rd.setResult(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
 			return rd;
 		}
 	}
-	
 	private ResultData loginSuccessResult(ResultData rd,SysUser user) throws Exception{
 		Map<String,String> resultMap = new HashMap<String,String>();
-		resultMap.put("loginToken", JwtUtil.createJWT(user.getId(),JwtUtil.TOKEN_TYPE_LOGIN,JwtUtil.JWT_REFRESH_TTL));
-		resultMap.put("requestToken", JwtUtil.createJWT(user.getId(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
+		resultMap.put("loginToken", JwtUtil.createJWT(user.getCode(),JwtUtil.TOKEN_TYPE_LOGIN,JwtUtil.JWT_REFRESH_TTL));
+		resultMap.put("requestToken", JwtUtil.createJWT(user.getCode(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
 		resultMap.put("name", user.getName());
 		rd.setCode(AppConst.SUCCESS);
-		rd.setResult(resultMap);
+		rd.setData(resultMap);
 		return rd;
 	}
 }

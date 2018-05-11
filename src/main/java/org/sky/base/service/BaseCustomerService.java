@@ -21,6 +21,8 @@ public class BaseCustomerService {
 	private BaseCustomerMapper basecustomermapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
+	@Autowired
+	private BaseCodeService bcService;
 	/**
 	*分页查询
 	**/
@@ -83,6 +85,7 @@ public class BaseCustomerService {
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));
+				edit.setCode(bcService.getNextBizCode("CUS"));
 				edit.setCreater(BspUtils.getLoginUser().getCode());
 				edit.setCreateTime(ts);
 				edit.setUpdater(BspUtils.getLoginUser().getCode());

@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sky.sys.utils.ResultData;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.alibaba.fastjson.JSONObject;
@@ -22,12 +23,12 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         	String token = request.getParameter(AppConst.REQUEST_TOKEN);
         	if(null==token||"".equals(token)){
         		rd.setCode(AppConst.TOKEN_NULL);
-        		rd.setResult(AppConst.TOKEN_NULL_DESCRIPTION);
+        		rd.setName(AppConst.TOKEN_NULL_DESCRIPTION);
         	}else{
         		rd = JwtUtil.parseJWT(token,JwtUtil.TOKEN_TYPE_REQUEST);
         	}
         	if(AppConst.SUCCESS.equals(rd.getCode())){
-        		request.setAttribute(AppConst.REQUEST_USER_ID, (String)rd.getResult());
+        		request.setAttribute(AppConst.REQUEST_LOGIN, (String)rd.getData());
         		return true;
         	}else{
 	        	response.setContentType("application/json;charset=UTF-8");

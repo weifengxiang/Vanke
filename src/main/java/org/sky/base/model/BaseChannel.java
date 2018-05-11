@@ -5,6 +5,8 @@ import java.util.Date;
 public class BaseChannel {
     private String id;
 
+    private String code;
+
     private String name;
 
     private String sex;
@@ -27,6 +29,16 @@ public class BaseChannel {
 
     private String workHis;
 
+    private String qq;
+
+    private String wxNum;
+
+    private String password;
+
+    private String entranceYear;
+
+    private String state;
+
     private String remark;
 
     private String creater;
@@ -37,20 +49,20 @@ public class BaseChannel {
 
     private Date updateTime;
 
-    private String qq;
-
-    private String wxNum;
-
-    private String password;
-
-    private String entranceYear;
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -141,6 +153,46 @@ public class BaseChannel {
         this.workHis = workHis;
     }
 
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWxNum() {
+        return wxNum;
+    }
+
+    public void setWxNum(String wxNum) {
+        this.wxNum = wxNum;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEntranceYear() {
+        return entranceYear;
+    }
+
+    public void setEntranceYear(String entranceYear) {
+        this.entranceYear = entranceYear;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -179,37 +231,5 @@ public class BaseChannel {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public String getWxNum() {
-        return wxNum;
-    }
-
-    public void setWxNum(String wxNum) {
-        this.wxNum = wxNum;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEntranceYear() {
-        return entranceYear;
-    }
-
-    public void setEntranceYear(String entranceYear) {
-        this.entranceYear = entranceYear;
     }
 }

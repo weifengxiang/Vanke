@@ -11,8 +11,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mybatis-spring:scan base-package="org.sky.sys.client,org.sky.base.client,
-									   org.sky.reception.client" 
+	<mybatis-spring:scan base-package="org.sky.sys.client,org.sky.base.client" 
 						 template-ref="sqlSession"/>			
 	<!-- 扫描service层 -->
     <context:component-scan base-package="org.sky.*.service" />

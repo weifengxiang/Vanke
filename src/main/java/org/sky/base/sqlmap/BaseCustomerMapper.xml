@@ -3,6 +3,7 @@
 <mapper namespace="org.sky.base.client.BaseCustomerMapper">
   <resultMap id="BaseResultMap" type="org.sky.base.model.BaseCustomer">
     <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="SEX" jdbcType="VARCHAR" property="sex" />
     <result column="AGE" jdbcType="VARCHAR" property="age" />
@@ -49,6 +50,7 @@
     <result column="EXPAND_TIME" jdbcType="DATE" property="expandTime" />
     <result column="EXPAND_PROPERTY_CON" jdbcType="VARCHAR" property="expandPropertyCon" />
     <result column="IMP_CUSTOMER" jdbcType="VARCHAR" property="impCustomer" />
+    <result column="CHANNEL_CODE" jdbcType="VARCHAR" property="channelCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -109,13 +111,13 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, NAME, SEX, AGE, TEL, HOBBY, CAREER_TYPE, WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
+    ID, CODE, NAME, SEX, AGE, TEL, HOBBY, CAREER_TYPE, WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
     MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, LIVING_PROVINCE, 
     LIVING_CITY, LIVING_AREA, FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, HOUSE_PURPOSE, 
     TOTAL_BUDGET, CREDIT_CONDITION, TARGET_PREMISES, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, 
     ACCEPT_P1, ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
     REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, EXPAND_TIME, 
-    EXPAND_PROPERTY_CON, IMP_CUSTOMER
+    EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultMap="BaseResultMap">
     select
@@ -149,44 +151,49 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.base.model.BaseCustomer">
-    insert into base_customer (ID, NAME, SEX, 
-      AGE, TEL, HOBBY, CAREER_TYPE, 
-      WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
-      MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, 
-      FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, 
-      LIVING_PROVINCE, LIVING_CITY, LIVING_AREA, 
-      FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, 
-      HOUSE_PURPOSE, TOTAL_BUDGET, CREDIT_CONDITION, 
-      TARGET_PREMISES, TARGET_YT, TARGET_LAYOUT, 
-      TARGET_AREA, ACCEPT_P1, ACCEPT_P2, 
-      ACCEPT_P3, RESISTANCE, COMPETITOR, 
-      VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
-      REGISTRANT, STATE, REMARK, 
-      CREATER, CREATE_TIME, UPDATER, 
-      UPDATE_TIME, EXPAND_TIME, EXPAND_PROPERTY_CON, 
-      IMP_CUSTOMER)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
-      #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=VARCHAR}, 
-      #{marriage,jdbcType=VARCHAR}, #{spouseCareer,jdbcType=VARCHAR}, #{spouseUnit,jdbcType=VARCHAR}, 
-      #{familyStructure,jdbcType=VARCHAR}, #{familyNum,jdbcType=INTEGER}, #{childAge,jdbcType=INTEGER}, 
-      #{livingProvince,jdbcType=VARCHAR}, #{livingCity,jdbcType=VARCHAR}, #{livingArea,jdbcType=VARCHAR}, 
-      #{familyAddress,jdbcType=VARCHAR}, #{workAddress,jdbcType=VARCHAR}, #{knowWay,jdbcType=VARCHAR}, 
-      #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=VARCHAR}, #{creditCondition,jdbcType=VARCHAR}, 
-      #{targetPremises,jdbcType=VARCHAR}, #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, 
-      #{targetArea,jdbcType=VARCHAR}, #{acceptP1,jdbcType=VARCHAR}, #{acceptP2,jdbcType=VARCHAR}, 
-      #{acceptP3,jdbcType=VARCHAR}, #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, 
-      #{visitTime,jdbcType=DATE}, #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, 
-      #{registrant,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR}, 
-      #{impCustomer,jdbcType=VARCHAR})
+    insert into base_customer (ID, CODE, NAME, 
+      SEX, AGE, TEL, HOBBY, 
+      CAREER_TYPE, WORK_UNIT, POSITION_LEVEL, 
+      MONTH_INCOME, MARRIAGE, SPOUSE_CAREER, 
+      SPOUSE_UNIT, FAMILY_STRUCTURE, FAMILY_NUM, 
+      CHILD_AGE, LIVING_PROVINCE, LIVING_CITY, 
+      LIVING_AREA, FAMILY_ADDRESS, WORK_ADDRESS, 
+      KNOW_WAY, HOUSE_PURPOSE, TOTAL_BUDGET, 
+      CREDIT_CONDITION, TARGET_PREMISES, TARGET_YT, 
+      TARGET_LAYOUT, TARGET_AREA, ACCEPT_P1, 
+      ACCEPT_P2, ACCEPT_P3, RESISTANCE, 
+      COMPETITOR, VISIT_TIME, SALE_TEAM, 
+      PROPERTY_CONSULTANT, REGISTRANT, STATE, 
+      REMARK, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME, EXPAND_TIME, 
+      EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
+      #{careerType,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, 
+      #{monthIncome,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, #{spouseCareer,jdbcType=VARCHAR}, 
+      #{spouseUnit,jdbcType=VARCHAR}, #{familyStructure,jdbcType=VARCHAR}, #{familyNum,jdbcType=INTEGER}, 
+      #{childAge,jdbcType=INTEGER}, #{livingProvince,jdbcType=VARCHAR}, #{livingCity,jdbcType=VARCHAR}, 
+      #{livingArea,jdbcType=VARCHAR}, #{familyAddress,jdbcType=VARCHAR}, #{workAddress,jdbcType=VARCHAR}, 
+      #{knowWay,jdbcType=VARCHAR}, #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=VARCHAR}, 
+      #{creditCondition,jdbcType=VARCHAR}, #{targetPremises,jdbcType=VARCHAR}, #{targetYt,jdbcType=VARCHAR}, 
+      #{targetLayout,jdbcType=VARCHAR}, #{targetArea,jdbcType=VARCHAR}, #{acceptP1,jdbcType=VARCHAR}, 
+      #{acceptP2,jdbcType=VARCHAR}, #{acceptP3,jdbcType=VARCHAR}, #{resistance,jdbcType=VARCHAR}, 
+      #{competitor,jdbcType=VARCHAR}, #{visitTime,jdbcType=DATE}, #{saleTeam,jdbcType=VARCHAR}, 
+      #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{expandTime,jdbcType=DATE}, 
+      #{expandPropertyCon,jdbcType=VARCHAR}, #{impCustomer,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
     insert into base_customer
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
+      </if>
+      <if test="code != null">
+        CODE,
       </if>
       <if test="name != null">
         NAME,
@@ -326,10 +333,16 @@
       <if test="impCustomer != null">
         IMP_CUSTOMER,
       </if>
+      <if test="channelCode != null">
+        CHANNEL_CODE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -469,6 +482,9 @@
       <if test="impCustomer != null">
         #{impCustomer,jdbcType=VARCHAR},
       </if>
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultType="java.lang.Long">
@@ -482,6 +498,9 @@
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         NAME = #{record.name,jdbcType=VARCHAR},
@@ -621,6 +640,9 @@
       <if test="record.impCustomer != null">
         IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR},
       </if>
+      <if test="record.channelCode != null">
+        CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -629,6 +651,7 @@
   <update id="updateByExample" parameterType="map">
     update base_customer
     set ID = #{record.id,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       SEX = #{record.sex,jdbcType=VARCHAR},
       AGE = #{record.age,jdbcType=VARCHAR},
@@ -674,7 +697,8 @@
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       EXPAND_TIME = #{record.expandTime,jdbcType=DATE},
       EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR},
-      IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR}
+      IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR},
+      CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -682,6 +706,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.sky.base.model.BaseCustomer">
     update base_customer
     <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
       </if>
@@ -820,12 +847,16 @@
       <if test="impCustomer != null">
         IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR},
       </if>
+      <if test="channelCode != null">
+        CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sky.base.model.BaseCustomer">
     update base_customer
-    set NAME = #{name,jdbcType=VARCHAR},
+    set CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
       SEX = #{sex,jdbcType=VARCHAR},
       AGE = #{age,jdbcType=VARCHAR},
       TEL = #{tel,jdbcType=VARCHAR},
@@ -870,7 +901,8 @@
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       EXPAND_TIME = #{expandTime,jdbcType=DATE},
       EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR},
-      IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR}
+      IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR},
+      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

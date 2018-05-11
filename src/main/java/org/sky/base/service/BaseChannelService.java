@@ -21,6 +21,8 @@ public class BaseChannelService {
 	private BaseChannelMapper basechannelmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
+	@Autowired
+	private BaseCodeService bcService;
 	/**
 	*分页查询
 	**/
@@ -83,6 +85,7 @@ public class BaseChannelService {
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));
+				edit.setCode(bcService.getNextBizCode("CHA"));
 				edit.setCreater(BspUtils.getLoginUser().getCode());
 				edit.setCreateTime(ts);
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
