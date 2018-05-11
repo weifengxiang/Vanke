@@ -22,6 +22,7 @@
     <result column="QQ" jdbcType="VARCHAR" property="qq" />
     <result column="WX_NUM" jdbcType="VARCHAR" property="wxNum" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="ENTRANCE_YEAR" jdbcType="CHAR" property="entranceYear" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -83,7 +84,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, NAME, SEX, AGE, TEL, EMAIL, IDCARD, EDUCATION, SCHOOL, MAJOR, WORK_DATE, WORK_HIS, 
-    REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, QQ, WX_NUM, PASSWORD
+    REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, QQ, WX_NUM, PASSWORD, ENTRANCE_YEAR
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseChannelExample" resultMap="BaseResultMap">
     select
@@ -123,14 +124,14 @@
       WORK_DATE, WORK_HIS, REMARK, 
       CREATER, CREATE_TIME, UPDATER, 
       UPDATE_TIME, QQ, WX_NUM, 
-      PASSWORD)
+      PASSWORD, ENTRANCE_YEAR)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{education,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
       #{workDate,jdbcType=VARCHAR}, #{workHis,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{qq,jdbcType=VARCHAR}, #{wxNum,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+      #{password,jdbcType=VARCHAR}, #{entranceYear,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseChannel">
     insert into base_channel
@@ -195,6 +196,9 @@
       <if test="password != null">
         PASSWORD,
       </if>
+      <if test="entranceYear != null">
+        ENTRANCE_YEAR,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -256,6 +260,9 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="entranceYear != null">
+        #{entranceYear,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -328,6 +335,9 @@
       <if test="record.password != null">
         PASSWORD = #{record.password,jdbcType=VARCHAR},
       </if>
+      <if test="record.entranceYear != null">
+        ENTRANCE_YEAR = #{record.entranceYear,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -354,7 +364,8 @@
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       QQ = #{record.qq,jdbcType=VARCHAR},
       WX_NUM = #{record.wxNum,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR}
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      ENTRANCE_YEAR = #{record.entranceYear,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -419,6 +430,9 @@
       <if test="password != null">
         PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="entranceYear != null">
+        ENTRANCE_YEAR = #{entranceYear,jdbcType=CHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -442,7 +456,8 @@
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       QQ = #{qq,jdbcType=VARCHAR},
       WX_NUM = #{wxNum,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR}
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      ENTRANCE_YEAR = #{entranceYear,jdbcType=CHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

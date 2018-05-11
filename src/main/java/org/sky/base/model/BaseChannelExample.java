@@ -1510,6 +1510,76 @@ public class BaseChannelExample {
             addCriterion("PASSWORD not between", value1, value2, "password");
             return (Criteria) this;
         }
+
+        public Criteria andEntranceYearIsNull() {
+            addCriterion("ENTRANCE_YEAR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearIsNotNull() {
+            addCriterion("ENTRANCE_YEAR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearEqualTo(String value) {
+            addCriterion("ENTRANCE_YEAR =", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearNotEqualTo(String value) {
+            addCriterion("ENTRANCE_YEAR <>", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearGreaterThan(String value) {
+            addCriterion("ENTRANCE_YEAR >", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearGreaterThanOrEqualTo(String value) {
+            addCriterion("ENTRANCE_YEAR >=", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearLessThan(String value) {
+            addCriterion("ENTRANCE_YEAR <", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearLessThanOrEqualTo(String value) {
+            addCriterion("ENTRANCE_YEAR <=", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearLike(String value) {
+            addCriterion("ENTRANCE_YEAR like", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearNotLike(String value) {
+            addCriterion("ENTRANCE_YEAR not like", value, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearIn(List<String> values) {
+            addCriterion("ENTRANCE_YEAR in", values, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearNotIn(List<String> values) {
+            addCriterion("ENTRANCE_YEAR not in", values, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearBetween(String value1, String value2) {
+            addCriterion("ENTRANCE_YEAR between", value1, value2, "entranceYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntranceYearNotBetween(String value1, String value2) {
+            addCriterion("ENTRANCE_YEAR not between", value1, value2, "entranceYear");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

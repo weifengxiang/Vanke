@@ -43,6 +43,8 @@ public class BaseChannel {
 
     private String password;
 
+    private String entranceYear;
+
     public String getId() {
         return id;
     }
@@ -201,5 +203,13 @@ public class BaseChannel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEntranceYear() {
+        return entranceYear;
+    }
+
+    public void setEntranceYear(String entranceYear) {
+        this.entranceYear = entranceYear;
     }
 }

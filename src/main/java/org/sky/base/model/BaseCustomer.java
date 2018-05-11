@@ -2,10 +2,6 @@ package org.sky.base.model;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class BaseCustomer {
     private String id;
 
@@ -57,6 +53,8 @@ public class BaseCustomer {
 
     private String creditCondition;
 
+    private String targetPremises;
+
     private String targetYt;
 
     private String targetLayout;
@@ -72,9 +70,7 @@ public class BaseCustomer {
     private String resistance;
 
     private String competitor;
-    
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+
     private Date visitTime;
 
     private String saleTeam;
@@ -94,9 +90,7 @@ public class BaseCustomer {
     private String updater;
 
     private Date updateTime;
-    
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+
     private Date expandTime;
 
     private String expandPropertyCon;
@@ -301,6 +295,14 @@ public class BaseCustomer {
 
     public void setCreditCondition(String creditCondition) {
         this.creditCondition = creditCondition;
+    }
+
+    public String getTargetPremises() {
+        return targetPremises;
+    }
+
+    public void setTargetPremises(String targetPremises) {
+        this.targetPremises = targetPremises;
     }
 
     public String getTargetYt() {

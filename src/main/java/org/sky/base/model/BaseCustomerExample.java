@@ -1898,6 +1898,76 @@ public class BaseCustomerExample {
             return (Criteria) this;
         }
 
+        public Criteria andTargetPremisesIsNull() {
+            addCriterion("TARGET_PREMISES is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesIsNotNull() {
+            addCriterion("TARGET_PREMISES is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesEqualTo(String value) {
+            addCriterion("TARGET_PREMISES =", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesNotEqualTo(String value) {
+            addCriterion("TARGET_PREMISES <>", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesGreaterThan(String value) {
+            addCriterion("TARGET_PREMISES >", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesGreaterThanOrEqualTo(String value) {
+            addCriterion("TARGET_PREMISES >=", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesLessThan(String value) {
+            addCriterion("TARGET_PREMISES <", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesLessThanOrEqualTo(String value) {
+            addCriterion("TARGET_PREMISES <=", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesLike(String value) {
+            addCriterion("TARGET_PREMISES like", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesNotLike(String value) {
+            addCriterion("TARGET_PREMISES not like", value, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesIn(List<String> values) {
+            addCriterion("TARGET_PREMISES in", values, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesNotIn(List<String> values) {
+            addCriterion("TARGET_PREMISES not in", values, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesBetween(String value1, String value2) {
+            addCriterion("TARGET_PREMISES between", value1, value2, "targetPremises");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetPremisesNotBetween(String value1, String value2) {
+            addCriterion("TARGET_PREMISES not between", value1, value2, "targetPremises");
+            return (Criteria) this;
+        }
+
         public Criteria andTargetYtIsNull() {
             addCriterion("TARGET_YT is null");
             return (Criteria) this;

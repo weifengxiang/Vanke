@@ -27,6 +27,7 @@
     <result column="HOUSE_PURPOSE" jdbcType="VARCHAR" property="housePurpose" />
     <result column="TOTAL_BUDGET" jdbcType="VARCHAR" property="totalBudget" />
     <result column="CREDIT_CONDITION" jdbcType="VARCHAR" property="creditCondition" />
+    <result column="TARGET_PREMISES" jdbcType="VARCHAR" property="targetPremises" />
     <result column="TARGET_YT" jdbcType="VARCHAR" property="targetYt" />
     <result column="TARGET_LAYOUT" jdbcType="VARCHAR" property="targetLayout" />
     <result column="TARGET_AREA" jdbcType="VARCHAR" property="targetArea" />
@@ -111,8 +112,8 @@
     ID, NAME, SEX, AGE, TEL, HOBBY, CAREER_TYPE, WORK_UNIT, POSITION_LEVEL, MONTH_INCOME, 
     MARRIAGE, SPOUSE_CAREER, SPOUSE_UNIT, FAMILY_STRUCTURE, FAMILY_NUM, CHILD_AGE, LIVING_PROVINCE, 
     LIVING_CITY, LIVING_AREA, FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, HOUSE_PURPOSE, 
-    TOTAL_BUDGET, CREDIT_CONDITION, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, ACCEPT_P1, 
-    ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
+    TOTAL_BUDGET, CREDIT_CONDITION, TARGET_PREMISES, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, 
+    ACCEPT_P1, ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
     REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, EXPAND_TIME, 
     EXPAND_PROPERTY_CON, IMP_CUSTOMER
   </sql>
@@ -156,14 +157,14 @@
       LIVING_PROVINCE, LIVING_CITY, LIVING_AREA, 
       FAMILY_ADDRESS, WORK_ADDRESS, KNOW_WAY, 
       HOUSE_PURPOSE, TOTAL_BUDGET, CREDIT_CONDITION, 
-      TARGET_YT, TARGET_LAYOUT, TARGET_AREA, 
-      ACCEPT_P1, ACCEPT_P2, ACCEPT_P3, 
-      RESISTANCE, COMPETITOR, VISIT_TIME, 
-      SALE_TEAM, PROPERTY_CONSULTANT, REGISTRANT, 
-      STATE, REMARK, CREATER, 
-      CREATE_TIME, UPDATER, UPDATE_TIME, 
-      EXPAND_TIME, EXPAND_PROPERTY_CON, IMP_CUSTOMER
-      )
+      TARGET_PREMISES, TARGET_YT, TARGET_LAYOUT, 
+      TARGET_AREA, ACCEPT_P1, ACCEPT_P2, 
+      ACCEPT_P3, RESISTANCE, COMPETITOR, 
+      VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
+      REGISTRANT, STATE, REMARK, 
+      CREATER, CREATE_TIME, UPDATER, 
+      UPDATE_TIME, EXPAND_TIME, EXPAND_PROPERTY_CON, 
+      IMP_CUSTOMER)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{careerType,jdbcType=VARCHAR}, 
       #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, #{monthIncome,jdbcType=VARCHAR}, 
@@ -172,14 +173,14 @@
       #{livingProvince,jdbcType=VARCHAR}, #{livingCity,jdbcType=VARCHAR}, #{livingArea,jdbcType=VARCHAR}, 
       #{familyAddress,jdbcType=VARCHAR}, #{workAddress,jdbcType=VARCHAR}, #{knowWay,jdbcType=VARCHAR}, 
       #{housePurpose,jdbcType=VARCHAR}, #{totalBudget,jdbcType=VARCHAR}, #{creditCondition,jdbcType=VARCHAR}, 
-      #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, #{targetArea,jdbcType=VARCHAR}, 
-      #{acceptP1,jdbcType=VARCHAR}, #{acceptP2,jdbcType=VARCHAR}, #{acceptP3,jdbcType=VARCHAR}, 
-      #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, #{visitTime,jdbcType=DATE}, 
-      #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR}, #{impCustomer,jdbcType=VARCHAR}
-      )
+      #{targetPremises,jdbcType=VARCHAR}, #{targetYt,jdbcType=VARCHAR}, #{targetLayout,jdbcType=VARCHAR}, 
+      #{targetArea,jdbcType=VARCHAR}, #{acceptP1,jdbcType=VARCHAR}, #{acceptP2,jdbcType=VARCHAR}, 
+      #{acceptP3,jdbcType=VARCHAR}, #{resistance,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, 
+      #{visitTime,jdbcType=DATE}, #{saleTeam,jdbcType=VARCHAR}, #{propertyConsultant,jdbcType=VARCHAR}, 
+      #{registrant,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{expandTime,jdbcType=DATE}, #{expandPropertyCon,jdbcType=VARCHAR}, 
+      #{impCustomer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
     insert into base_customer
@@ -258,6 +259,9 @@
       </if>
       <if test="creditCondition != null">
         CREDIT_CONDITION,
+      </if>
+      <if test="targetPremises != null">
+        TARGET_PREMISES,
       </if>
       <if test="targetYt != null">
         TARGET_YT,
@@ -398,6 +402,9 @@
       </if>
       <if test="creditCondition != null">
         #{creditCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPremises != null">
+        #{targetPremises,jdbcType=VARCHAR},
       </if>
       <if test="targetYt != null">
         #{targetYt,jdbcType=VARCHAR},
@@ -548,6 +555,9 @@
       <if test="record.creditCondition != null">
         CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
       </if>
+      <if test="record.targetPremises != null">
+        TARGET_PREMISES = #{record.targetPremises,jdbcType=VARCHAR},
+      </if>
       <if test="record.targetYt != null">
         TARGET_YT = #{record.targetYt,jdbcType=VARCHAR},
       </if>
@@ -643,6 +653,7 @@
       HOUSE_PURPOSE = #{record.housePurpose,jdbcType=VARCHAR},
       TOTAL_BUDGET = #{record.totalBudget,jdbcType=VARCHAR},
       CREDIT_CONDITION = #{record.creditCondition,jdbcType=VARCHAR},
+      TARGET_PREMISES = #{record.targetPremises,jdbcType=VARCHAR},
       TARGET_YT = #{record.targetYt,jdbcType=VARCHAR},
       TARGET_LAYOUT = #{record.targetLayout,jdbcType=VARCHAR},
       TARGET_AREA = #{record.targetArea,jdbcType=VARCHAR},
@@ -743,6 +754,9 @@
       <if test="creditCondition != null">
         CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
       </if>
+      <if test="targetPremises != null">
+        TARGET_PREMISES = #{targetPremises,jdbcType=VARCHAR},
+      </if>
       <if test="targetYt != null">
         TARGET_YT = #{targetYt,jdbcType=VARCHAR},
       </if>
@@ -835,6 +849,7 @@
       HOUSE_PURPOSE = #{housePurpose,jdbcType=VARCHAR},
       TOTAL_BUDGET = #{totalBudget,jdbcType=VARCHAR},
       CREDIT_CONDITION = #{creditCondition,jdbcType=VARCHAR},
+      TARGET_PREMISES = #{targetPremises,jdbcType=VARCHAR},
       TARGET_YT = #{targetYt,jdbcType=VARCHAR},
       TARGET_LAYOUT = #{targetLayout,jdbcType=VARCHAR},
       TARGET_AREA = #{targetArea,jdbcType=VARCHAR},
