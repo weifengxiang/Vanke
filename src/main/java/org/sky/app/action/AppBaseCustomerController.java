@@ -45,7 +45,7 @@ public class AppBaseCustomerController {
 		ResultData rd = new ResultData();
 		try{
 			//获取用户ID
-			String user_id = (String) request.getAttribute(AppConst.REQUEST_LOGIN);
+			String user_id = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
 			//获取参数
 			String page = request.getParameter("page");
 			String rows = request.getParameter("rows");

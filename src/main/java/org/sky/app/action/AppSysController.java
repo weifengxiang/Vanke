@@ -43,14 +43,14 @@ public class AppSysController {
 	public ResultData tokenLogin(HttpServletRequest request, HttpServletResponse response){
 		ResultData rd = new ResultData();
 		try {
-			String token = request.getParameter(AppConst.REQUEST_TOKEN);
+			String token = request.getParameter(AppConst.REFRESH_TOKEN_NAME);
 			if(null==token||"".equals(token)){
 				rd.setCode(AppConst.PARAMETER_NULL);
 				rd.setName(AppConst.PARAMETER_NULL_DESCRIPTION);
 				return rd;
 			}
 			//解析token值
-			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_LOGIN);
+			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_REFRESH);
 			if(!AppConst.SUCCESS.equals(rd.getCode())){
 				return rd;
 			}
@@ -111,7 +111,6 @@ public class AppSysController {
 			return rd;
 		}
 	}
-	
 	/**
 	 * 刷新token
 	 * @param request
@@ -122,21 +121,21 @@ public class AppSysController {
 	public ResultData refreshToken(HttpServletRequest request, HttpServletResponse response){
 		ResultData rd = new ResultData();
 		try {
-			String token = request.getParameter(AppConst.REQUEST_TOKEN);
+			String token = request.getParameter(AppConst.REFRESH_TOKEN_NAME);
 			if(null==token||"".equals(token)){
 				rd.setCode(AppConst.TOKEN_NULL);
 				rd.setName(AppConst.TOKEN_NULL_DESCRIPTION);
 				return rd;
 			}
 			//解析token值
-			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_LOGIN);
+			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_REFRESH);
 			if(!AppConst.SUCCESS.equals(rd.getCode())||null==rd.getName()||"".equals(rd.getName())){
 				rd.setCode(AppConst.TOKEN_ERROR);
 				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 				return rd;
 			}
 			Map<String,String> resultMap = new HashMap<String,String>();
-			resultMap.put("requestToken", JwtUtil.createJWT((String)rd.getData(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
+			resultMap.put("requestToken", JwtUtil.createJWT((String)rd.getData(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_REQUEST_EXP));
 			rd.setCode(AppConst.SUCCESS);
 			rd.setData(resultMap);
 			return rd;
@@ -151,8 +150,8 @@ public class AppSysController {
 	}
 	private ResultData loginSuccessResult(ResultData rd,SysUser user) throws Exception{
 		Map<String,String> resultMap = new HashMap<String,String>();
-		resultMap.put("loginToken", JwtUtil.createJWT(user.getCode(),JwtUtil.TOKEN_TYPE_LOGIN,JwtUtil.JWT_REFRESH_TTL));
-		resultMap.put("requestToken", JwtUtil.createJWT(user.getCode(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_EXP));
+		resultMap.put("refreshToken", JwtUtil.createJWT(user.getCode(),JwtUtil.TOKEN_TYPE_REFRESH,JwtUtil.JWT_REFRESH_EXP));
+		resultMap.put("requestToken", JwtUtil.createJWT(user.getCode(), JwtUtil.TOKEN_TYPE_REQUEST, JwtUtil.JWT_REQUEST_EXP));
 		resultMap.put("name", user.getName());
 		rd.setCode(AppConst.SUCCESS);
 		rd.setData(resultMap);

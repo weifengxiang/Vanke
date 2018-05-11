@@ -20,7 +20,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         } else {
         	//验证token
         	ResultData rd = new ResultData();
-        	String token = request.getParameter(AppConst.REQUEST_TOKEN);
+        	String token = request.getParameter(AppConst.REQUEST_TOKEN_NAME);
         	if(null==token||"".equals(token)){
         		rd.setCode(AppConst.TOKEN_NULL);
         		rd.setName(AppConst.TOKEN_NULL_DESCRIPTION);
@@ -28,7 +28,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         		rd = JwtUtil.parseJWT(token,JwtUtil.TOKEN_TYPE_REQUEST);
         	}
         	if(AppConst.SUCCESS.equals(rd.getCode())){
-        		request.setAttribute(AppConst.REQUEST_LOGIN, (String)rd.getData());
+        		request.setAttribute(AppConst.REQUEST_LOGIN_MSG, (String)rd.getData());
         		return true;
         	}else{
 	        	response.setContentType("application/json;charset=UTF-8");

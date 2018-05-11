@@ -41,6 +41,8 @@ public class BaseChannel {
 
     private String remark;
 
+    private String channelCode;
+
     private String creater;
 
     private Date createTime;
@@ -199,6 +201,14 @@ public class BaseChannel {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getChannelCode() {
+        return channelCode;
+    }
+
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
     }
 
     public String getCreater() {

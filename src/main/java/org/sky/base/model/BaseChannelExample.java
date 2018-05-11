@@ -1461,6 +1461,76 @@ public class BaseChannelExample {
             return (Criteria) this;
         }
 
+        public Criteria andChannelCodeIsNull() {
+            addCriterion("CHANNEL_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeIsNotNull() {
+            addCriterion("CHANNEL_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeEqualTo(String value) {
+            addCriterion("CHANNEL_CODE =", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotEqualTo(String value) {
+            addCriterion("CHANNEL_CODE <>", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeGreaterThan(String value) {
+            addCriterion("CHANNEL_CODE >", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_CODE >=", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLessThan(String value) {
+            addCriterion("CHANNEL_CODE <", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLessThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_CODE <=", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeLike(String value) {
+            addCriterion("CHANNEL_CODE like", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotLike(String value) {
+            addCriterion("CHANNEL_CODE not like", value, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeIn(List<String> values) {
+            addCriterion("CHANNEL_CODE in", values, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotIn(List<String> values) {
+            addCriterion("CHANNEL_CODE not in", values, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeBetween(String value1, String value2) {
+            addCriterion("CHANNEL_CODE between", value1, value2, "channelCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelCodeNotBetween(String value1, String value2) {
+            addCriterion("CHANNEL_CODE not between", value1, value2, "channelCode");
+            return (Criteria) this;
+        }
+
         public Criteria andCreaterIsNull() {
             addCriterion("CREATER is null");
             return (Criteria) this;

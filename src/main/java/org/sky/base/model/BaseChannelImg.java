@@ -5,7 +5,7 @@ import java.util.Date;
 public class BaseChannelImg {
     private String id;
 
-    private String idcard;
+    private String channelCode;
 
     private String remark;
 
@@ -17,8 +17,6 @@ public class BaseChannelImg {
 
     private Date updateTime;
 
-    private String qq;
-
     public String getId() {
         return id;
     }
@@ -27,12 +25,12 @@ public class BaseChannelImg {
         this.id = id;
     }
 
-    public String getIdcard() {
-        return idcard;
+    public String getChannelCode() {
+        return channelCode;
     }
 
-    public void setIdcard(String idcard) {
-        this.idcard = idcard;
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
     }
 
     public String getRemark() {
@@ -73,13 +71,5 @@ public class BaseChannelImg {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
     }
 }

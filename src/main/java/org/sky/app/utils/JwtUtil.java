@@ -25,10 +25,22 @@ public class JwtUtil {
 	 * token生成配置
 	 */
 	private static final String stringKey = "com.sky.vanke";
-    public static final int JWT_EXP = 60*60*1000;
-    public static final int JWT_REFRESH_TTL = 30*24*60*60*1000;
+	/**
+	 * 请求token时效
+	 */
+    public static final int JWT_REQUEST_EXP = 60*60*1000;
+    /**
+     * 刷新token时效
+     */
+    public static final int JWT_REFRESH_EXP = 30*24*60*60*1000;
     public static final String TOKEN_TYPE = "tokenType";//token类型名
-	public static final String TOKEN_TYPE_LOGIN = "1";//长效token类型值
+    /**
+     * 刷新token类型
+     */
+	public static final String TOKEN_TYPE_REFRESH = "1";//长效token类型值
+	/**
+	 * 请求token类型
+	 */
 	public static final String TOKEN_TYPE_REQUEST = "2";//请求token类型值
 
 	/**

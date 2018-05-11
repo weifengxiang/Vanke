@@ -12,4 +12,7 @@ public class MiniAppUtils {
 		return code+"";
 	}
 
+	public static void main(String args[]) {
+		System.out.println(getVerficationCode());
+	}
 }
