@@ -259,7 +259,7 @@ public class MiniAppService {
 	 * @param newPassword
 	 * @param verCode
 	 */
-	public void updatePassword(String channelCode,String tel,String newPassword,String verCode) throws ServiceException{
+	public void updatePassword(String tel,String newPassword,String verCode) throws ServiceException{
 		BasePhoneVerificationExample e = new BasePhoneVerificationExample();
 		e.createCriteria().andPhoneNumEqualTo(tel);
 		List<BasePhoneVerification> list = phoneVerMapper.selectByExample(e);
@@ -268,17 +268,18 @@ public class MiniAppService {
 		}else {
 			BasePhoneVerification vf = list.get(0);
 			if(vf.getValidityTime().before(CommonUtils.getCurrentDbDate())){
+				//删除验证码
+				phoneVerMapper.deleteByExample(e);
 				throw new ServiceException("验证码超期,请重新获取");
 			}else if(!vf.getVerificationCode().equals(verCode)) {
 				throw new ServiceException("验证码输入不正确,请重新输入");
 			}else {
 				try {
 					BaseChannel bc = new BaseChannel();
-					bc.setCode(channelCode);
 					bc.setPassword(MD5Utils.MD5LOWER(newPassword));		
 					bc.setUpdateTime(CommonUtils.getCurrentDbDate());
 					BaseChannelExample bce = new BaseChannelExample();
-					bce.createCriteria().andCodeEqualTo(channelCode).andTelEqualTo(tel);
+					bce.createCriteria().andTelEqualTo(tel);
 					baseChannelMapper.updateByExampleSelective(bc,bce);
 					//使用完验证码后删掉
 					phoneVerMapper.deleteByExample(e);

@@ -260,12 +260,12 @@ public class MiniAppController {
 	public ResultData updatePassword(
 			HttpServletRequest request, HttpServletResponse response){
 		ResultData rd = new ResultData();
-		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		//String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
 		String tel = request.getParameter("tel");
 		String newPassword = request.getParameter("newPassword");
 		String verCode = request.getParameter("verCode");
 		try {
-			miniappService.updatePassword(channelCode,tel,newPassword,verCode);
+			miniappService.updatePassword(tel,newPassword,verCode);
 			rd.setCode("1");
 			rd.setName("密码修改成功");
 		}catch(Exception e) {
