@@ -156,6 +156,7 @@ public class MiniAppService {
 		}
 		Timestamp ts = comMapper.queryTimestamp();
 		bc.setId(CommonUtils.getUUID(32));
+		bc.setCode(bcService.getNextBizCode("CUS"));
 		bc.setCreater(channelCode);
 		bc.setCreateTime(ts);
 		bc.setUpdater(channelCode);
