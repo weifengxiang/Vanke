@@ -17,6 +17,7 @@ import org.sky.base.model.BaseCustomer;
 import org.sky.base.model.BaseCustomerExample;
 import org.sky.base.model.BasePhoneVerification;
 import org.sky.base.model.BasePhoneVerificationExample;
+import org.sky.base.service.BaseCodeService;
 import org.sky.miniapp.utils.MiniAppUtils;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
@@ -47,6 +48,8 @@ public class MiniAppService {
 	private SysCommonMapper comMapper;
 	@Autowired
 	private SysDictItemMapper itemMapper;
+	@Autowired
+	private BaseCodeService bcService;
 	/**
 	 * 根据电话号码获取渠道信息
 	 * @param tel
@@ -110,6 +113,7 @@ public class MiniAppService {
 			}else {
 				bc = new BaseChannel();
 				bc.setId(CommonUtils.getUUID(32));
+				bc.setCode(bcService.getNextBizCode("CHA"));
 				bc.setTel(tel);
 				bc.setPassword(MD5Utils.MD5LOWER(password));
 				bc.setState("01");//已注册状态
@@ -278,6 +282,7 @@ public class MiniAppService {
 		//String verCode=MiniAppUtils.getVerficationCode();
 		String verCode="888888";
 		//发送信息...
+		/**
 		try {
 			AliyunSmsUtils.sendSms(tel, verCode);
 		} catch (ClientException e1) {
@@ -285,13 +290,14 @@ public class MiniAppService {
 			e1.printStackTrace();
 			throw new ServiceException("消息发送失败"+e1.getMessage());
 		}
+		**/
 		BasePhoneVerification pv = new BasePhoneVerification();
 		pv.setCreateTime(CommonUtils.getCurrentDbDate());
 		pv.setPhoneNum(tel);
 		pv.setRecid(CommonUtils.getUUID(32));
 		long curren = System.currentTimeMillis();
         curren += 30 * 60 * 1000;
-        Date validityTime = new Date(curren);;
+        Timestamp validityTime = new Timestamp(curren);;
 		pv.setValidityTime(validityTime);//有效期半小时
 		pv.setVerificationCode(verCode);
 		//先删除
