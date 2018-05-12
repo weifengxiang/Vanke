@@ -212,6 +212,10 @@ public class MiniAppService {
 			bci.setIdcardPic2((String)params.get("idcardPic2"));
 			bci.setStudPic1((String)params.get("studPic1"));
 			bci.setStudPic2((String)params.get("studPic2"));
+			//先删除之前上传的图像
+			BaseChannelImgExample bcimge = new BaseChannelImgExample();
+			bcimge.createCriteria().andChannelCodeEqualTo(channelCode);
+			imgMapper.deleteByExample(bcimge);
 			imgMapper.insertSelective(bci);
 		}catch(Exception e) {
 			logger.error(e.getMessage());
