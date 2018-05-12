@@ -96,7 +96,7 @@ public class MiniAppService {
 		BaseChannelExample example = new BaseChannelExample();
 		example.createCriteria().andTelEqualTo(tel);
 		List<BaseChannel> channelList = baseChannelMapper.selectByExample(example);
-		if(channelList.size()==0 || channelList.isEmpty()) {
+		if(channelList.size()>0) {
 			throw new ServiceException("该电话号码已经注册过,请登录");
 		}
 		BasePhoneVerificationExample e = new BasePhoneVerificationExample();
