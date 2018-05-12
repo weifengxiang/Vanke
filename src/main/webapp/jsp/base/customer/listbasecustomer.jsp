@@ -53,6 +53,12 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
+				<th data-options="field:'code',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">编号</th>
 				<th data-options="field:'name',width:100,
 				editor:{
 						type:'textbox',
