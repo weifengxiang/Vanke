@@ -8,6 +8,7 @@ import org.sky.base.client.BaseCodeMapper;
 import org.sky.base.model.BaseCode;
 import org.sky.base.model.BaseCodeExample;
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.sys.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseCodeService {
 	@Autowired
 	private BaseCodeMapper baseCodeMapper;
-	
+	@Autowired
 	private SysCommonMapper comMapper;
 	/**
 	 * 获取业务编号
@@ -42,6 +43,7 @@ public class BaseCodeService {
 		Timestamp ts = comMapper.queryTimestamp();
 		if(list.size()==0||list.isEmpty()) {
 			BaseCode bc = new BaseCode();
+			bc.setId(CommonUtils.getUUID(32));
 			bc.setBiz(biz);
 			bc.setCode(new Long(code));
 			bc.setCreateTime(ts);
