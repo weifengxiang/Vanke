@@ -57,15 +57,15 @@ public class MiniAppController {
 			if(!AppConst.SUCCESS.equals(rd.getCode())){
 				return rd;
 			}
-			String tel = (String) rd.getData();
+			String chaCode = (String) rd.getData();
 			//判断必要信息是否存在
-			if(null==tel||"".equals(tel)){
+			if(null==chaCode||"".equals(chaCode)){
 				rd.setCode(AppConst.TOKEN_ERROR);
 				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
 				return rd;
 			}
 			//从数据库获取渠道用户信息
-			BaseChannel channelUser = miniappService.getBaseChannelByTel(tel);
+			BaseChannel channelUser = miniappService.getBaseChannelByCode(chaCode);
 			loginSuccessResult(rd,channelUser);
 			return rd;
 		} catch (Exception e) {

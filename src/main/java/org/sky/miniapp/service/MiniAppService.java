@@ -66,6 +66,21 @@ public class MiniAppService {
 		}
 	}
 	/**
+	 * 根据渠道编号获取渠道信息
+	 * @param code
+	 * @return
+	 */
+	public BaseChannel getBaseChannelByCode(String code) {
+		BaseChannelExample example = new BaseChannelExample();
+		example.createCriteria().andCodeEqualTo(code);
+		List<BaseChannel> list = baseChannelMapper.selectByExample(example);
+		if(null!=list&&list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+	/**
 	 * 渠道登录
 	 * @param tel
 	 * @param password
