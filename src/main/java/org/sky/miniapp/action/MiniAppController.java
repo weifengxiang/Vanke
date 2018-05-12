@@ -12,6 +12,7 @@ import org.sky.app.utils.AppConst;
 import org.sky.app.utils.JwtUtil;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
+import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.miniapp.service.MiniAppService;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.ResultData;
@@ -352,6 +353,22 @@ public class MiniAppController {
 			rd.setName(e.getMessage());
 			return rd;
 		}
+	}
+	@RequestMapping(value="/miniapp/getBaseChannelImg",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData getBaseChannelImg(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			BaseChannelImgWithBLOBs bc = miniappService.getBaseChannelImgByCode(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(bc);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
 	}
 	/**
 	 * 生成登录返回值

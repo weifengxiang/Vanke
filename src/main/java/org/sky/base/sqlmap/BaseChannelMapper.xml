@@ -20,6 +20,7 @@
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="ENTRANCE_YEAR" jdbcType="CHAR" property="entranceYear" />
     <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="STATE_NAME" jdbcType="VARCHAR" property="stateName" />
     <result column="REMARK" jdbcType="VARCHAR" property="remark" />
     <result column="CHANNEL_CODE" jdbcType="VARCHAR" property="channelCode" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -88,7 +89,8 @@
   <sql id="Base_Column_List">
     ID, CODE, NAME, SEX, AGE, TEL, EMAIL, IDCARD, EDUCATION, SCHOOL, MAJOR, WORK_DATE, 
     WORK_HIS, QQ, WX_NUM, PASSWORD, ENTRANCE_YEAR, STATE, REMARK, CHANNEL_CODE, CREATER, 
-    CREATE_TIME, UPDATER, UPDATE_TIME
+    CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_DICT_ITEM DI WHERE DI.CODE=STATE AND DICT_CODE='CHANNEL_STATE') AS STATE_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseChannelExample" resultMap="BaseResultMap">
     select

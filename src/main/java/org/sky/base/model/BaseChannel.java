@@ -38,6 +38,8 @@ public class BaseChannel {
     private String entranceYear;
 
     private String state;
+    
+    private String stateName;
 
     private String remark;
 
@@ -242,4 +244,12 @@ public class BaseChannel {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getStateName() {
+		return stateName;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
 }

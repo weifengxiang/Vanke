@@ -82,6 +82,8 @@ public class BaseCustomer {
     private String registrant;
 
     private String state;
+    
+    private String stateName;
 
     private String remark;
 
@@ -492,4 +494,12 @@ public class BaseCustomer {
     public void setChannelCode(String channelCode) {
         this.channelCode = channelCode;
     }
+
+	public String getStateName() {
+		return stateName;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
 }

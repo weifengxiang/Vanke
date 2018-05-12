@@ -11,6 +11,7 @@ import org.sky.base.client.BaseCustomerMapper;
 import org.sky.base.client.BasePhoneVerificationMapper;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
+import org.sky.base.model.BaseChannelImgExample;
 import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.base.model.BaseCustomer;
 import org.sky.base.model.BaseCustomerExample;
@@ -331,5 +332,20 @@ public class MiniAppService {
 		e.createCriteria().andPhoneNumEqualTo(tel);
 		phoneVerMapper.deleteByExample(e);
 		phoneVerMapper.insert(pv);
+	}
+	/**
+	 * 渠道图像查询
+	 * @param channelCode
+	 * @return
+	 */
+	public BaseChannelImgWithBLOBs getBaseChannelImgByCode(String channelCode) {
+		BaseChannelImgExample e = new BaseChannelImgExample();
+		e.createCriteria().andChannelCodeEqualTo(channelCode);
+		List<BaseChannelImgWithBLOBs> list = imgMapper.selectByExampleWithBLOBs(e);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
 	}
 }

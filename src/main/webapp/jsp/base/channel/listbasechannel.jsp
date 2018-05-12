@@ -94,6 +94,12 @@ $(function() {
 						options:{
 							required:true
 						}}">工作时间</th>
+				<th data-options="field:'stateName',width:90,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">状态</th>
 				<th data-options="field:'remark',width:400,
 				editor:{
 						type:'textbox',

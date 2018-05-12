@@ -95,15 +95,7 @@ $(function() {
 						options:{
 							required:true
 						}}">来访时间</th>
-				<th data-options="field:'state',width:90,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}},
-				formatter: function(value,row,index){
-					return SKY.formatterEnum(value,row,CUSTOMER_STATE);
-				}">状态</th>
+				<th data-options="field:'stateName',width:90">状态</th>
 				<th data-options="field:'remark',width:400,
 				editor:{
 						type:'textbox',
