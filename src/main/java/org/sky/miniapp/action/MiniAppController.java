@@ -32,8 +32,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class MiniAppController {
-	
-	private Logger logger = Logger.getLogger(MiniAppController.class);
 	@Autowired
 	private MiniAppService miniappService;
 	
@@ -69,9 +67,6 @@ public class MiniAppController {
 			loginSuccessResult(rd,channelUser);
 			return rd;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			logger.error(e);
 			rd.setCode("0");
 			rd.setName("登录失败，请从新登录");
 			return rd;
@@ -105,8 +100,6 @@ public class MiniAppController {
 			// TODO Auto-generated catch block
 			rd.setCode("0");
 			rd.setName(e.getMessage());
-			logger.error(e.getMessage());
-			e.printStackTrace();
 		}
 		return rd;
 	}
@@ -143,8 +136,6 @@ public class MiniAppController {
 		}catch(Exception e) {
 			rd.setCode("0");
 			rd.setName(e.getMessage());
-			logger.error(e.getMessage());
-			e.printStackTrace();
 			return rd;
 		}
 	}
@@ -164,8 +155,6 @@ public class MiniAppController {
 			rd.setCode("1");
 			rd.setName("保存成功");
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("保存失败");
 		}
@@ -189,8 +178,6 @@ public class MiniAppController {
 			rd.setName("查询成功");
 			rd.setData(list);
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("查询失败");
 		}
@@ -214,8 +201,6 @@ public class MiniAppController {
 			rd.setCode("1");
 			rd.setName("资料已经上传，等待后台认证");
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("资料上传失败");
 		}
@@ -238,8 +223,6 @@ public class MiniAppController {
 			rd.setCode("1");
 			rd.setName("基础资料保存成功");
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("基础资料保存失败");
 		}
@@ -262,8 +245,6 @@ public class MiniAppController {
 			rd.setName("查询成功");
 			rd.setData(bc);
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("查询失败");
 		}
@@ -288,8 +269,6 @@ public class MiniAppController {
 			rd.setCode("1");
 			rd.setName("密码修改成功");
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("密码修改失败");
 		}
@@ -312,8 +291,6 @@ public class MiniAppController {
 			rd.setName("查询成功");
 			rd.setData(list);
 		}catch(Exception e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
 			rd.setCode("0");
 			rd.setName("查询失败");
 		}
@@ -345,9 +322,6 @@ public class MiniAppController {
 			rd.setData(resultMap);
 			return rd;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			logger.error(e);
 			rd.setCode("0");
 			rd.setName("刷新失败"+e.getMessage());
 			return rd;
@@ -376,8 +350,6 @@ public class MiniAppController {
 		}catch(Exception e) {
 			rd.setCode("0");
 			rd.setName(e.getMessage());
-			logger.error(e.getMessage());
-			e.printStackTrace();
 			return rd;
 		}
 	}

@@ -1,24 +1,22 @@
 package org.sky.miniapp.service;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.sky.base.client.BaseChannelImgMapper;
 import org.sky.base.client.BaseChannelMapper;
 import org.sky.base.client.BaseCustomerMapper;
 import org.sky.base.client.BasePhoneVerificationMapper;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
-import org.sky.base.model.BaseChannelImg;
 import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.base.model.BaseCustomer;
 import org.sky.base.model.BaseCustomerExample;
 import org.sky.base.model.BasePhoneVerification;
 import org.sky.base.model.BasePhoneVerificationExample;
 import org.sky.base.service.BaseCodeService;
-import org.sky.miniapp.utils.MiniAppUtils;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.exception.ServiceException;
@@ -30,12 +28,11 @@ import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.aliyuncs.exceptions.ClientException;
 
 @Service
 public class MiniAppService {
-	
+	private Logger logger = Logger.getLogger(MiniAppService.class);
 	@Autowired
 	private BaseChannelMapper baseChannelMapper;
 	@Autowired
@@ -90,6 +87,7 @@ public class MiniAppService {
 		example.createCriteria().andTelEqualTo(tel);
 		List<BaseChannel> list = baseChannelMapper.selectByExample(example);
 		if(null==list||list.size()<1){
+			logger.error("电话号码不存在"+tel);
 			throw new ServiceException("电话号码不存在");
 		}else {
 			BaseChannel bc =list.get(0);
@@ -148,10 +146,12 @@ public class MiniAppService {
 	 */
 	public void recommendCustomer(String customer,String channelCode) throws ServiceException{
 		if(StringUtils.isNull(customer)) {
+			logger.error("客户信息不能为空"+customer);
 			throw new ServiceException("客户信息不能为空");
 		}
 		BaseCustomer bc = JsonUtils.json2pojo(customer, BaseCustomer.class);
 		if(null==bc) {
+			logger.error("客户信息参数错误"+customer);
 			throw new ServiceException("客户信息参数错误"+customer);
 		}
 		Timestamp ts = comMapper.queryTimestamp();
@@ -188,6 +188,7 @@ public class MiniAppService {
 	 */
 	public void realNameAuthentication(String channel,String channelCode) throws ServiceException{
 		if(StringUtils.isNull(channel)) {
+			logger.error("认证信息不能为空"+channel);
 			throw new ServiceException("认证信息不能为空");
 		}
 		try {
@@ -210,6 +211,7 @@ public class MiniAppService {
 			bci.setStudPic2((String)params.get("studPic2"));
 			imgMapper.insertSelective(bci);
 		}catch(Exception e) {
+			logger.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 	}
@@ -225,6 +227,7 @@ public class MiniAppService {
 			e.createCriteria().andChannelCodeEqualTo(channelCode);
 			baseChannelMapper.updateByExampleSelective(bc, e);
 		}catch(Exception e) {
+			logger.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 	}
@@ -244,6 +247,7 @@ public class MiniAppService {
 				return null;
 			}
 		}catch(Exception e) {
+			logger.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 	}
@@ -277,6 +281,7 @@ public class MiniAppService {
 					//使用完验证码后删掉
 					phoneVerMapper.deleteByExample(e);
 				}catch(Exception ex) {
+					logger.error(ex.getMessage());
 					throw new ServiceException(ex.getMessage());
 				}
 			}
