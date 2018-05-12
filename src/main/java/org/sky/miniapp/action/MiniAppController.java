@@ -68,7 +68,7 @@ public class MiniAppController {
 			return rd;
 		} catch (Exception e) {
 			rd.setCode("0");
-			rd.setName("登录失败，请从新登录");
+			rd.setName("登录失败,请从新登录,"+e.getMessage());
 			return rd;
 		}
 	}
@@ -156,7 +156,7 @@ public class MiniAppController {
 			rd.setName("保存成功");
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("保存失败");
+			rd.setName("保存失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -179,7 +179,7 @@ public class MiniAppController {
 			rd.setData(list);
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("查询失败");
+			rd.setName("查询失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -202,7 +202,7 @@ public class MiniAppController {
 			rd.setName("资料已经上传，等待后台认证");
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("资料上传失败");
+			rd.setName("资料上传失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -224,7 +224,7 @@ public class MiniAppController {
 			rd.setName("基础资料保存成功");
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("基础资料保存失败");
+			rd.setName("基础资料保存失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -246,7 +246,7 @@ public class MiniAppController {
 			rd.setData(bc);
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("查询失败");
+			rd.setName("查询失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -270,7 +270,7 @@ public class MiniAppController {
 			rd.setName("密码修改成功");
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("密码修改失败");
+			rd.setName("密码修改失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -292,7 +292,7 @@ public class MiniAppController {
 			rd.setData(list);
 		}catch(Exception e) {
 			rd.setCode("0");
-			rd.setName("查询失败");
+			rd.setName("查询失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -323,7 +323,7 @@ public class MiniAppController {
 			return rd;
 		} catch (Exception e) {
 			rd.setCode("0");
-			rd.setName("刷新失败"+e.getMessage());
+			rd.setName("刷新失败,"+e.getMessage());
 			return rd;
 		}
 	}
