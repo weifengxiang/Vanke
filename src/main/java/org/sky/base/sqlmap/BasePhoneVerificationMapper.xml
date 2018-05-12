@@ -5,7 +5,7 @@
     <id column="RECID" jdbcType="VARCHAR" property="recid" />
     <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
     <result column="VERIFICATION_CODE" jdbcType="VARCHAR" property="verificationCode" />
-    <result column="VALIDITY_TIME" jdbcType="DATE" property="validityTime" />
+    <result column="VALIDITY_TIME" jdbcType="TIMESTAMP" property="validityTime" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -104,7 +104,7 @@
     insert into base_phone_verification (RECID, PHONE_NUM, VERIFICATION_CODE, 
       VALIDITY_TIME, CREATE_TIME)
     values (#{recid,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{verificationCode,jdbcType=VARCHAR}, 
-      #{validityTime,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP})
+      #{validityTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BasePhoneVerification">
     insert into base_phone_verification
@@ -136,7 +136,7 @@
         #{verificationCode,jdbcType=VARCHAR},
       </if>
       <if test="validityTime != null">
-        #{validityTime,jdbcType=DATE},
+        #{validityTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -162,7 +162,7 @@
         VERIFICATION_CODE = #{record.verificationCode,jdbcType=VARCHAR},
       </if>
       <if test="record.validityTime != null">
-        VALIDITY_TIME = #{record.validityTime,jdbcType=DATE},
+        VALIDITY_TIME = #{record.validityTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -177,7 +177,7 @@
     set RECID = #{record.recid,jdbcType=VARCHAR},
       PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
       VERIFICATION_CODE = #{record.verificationCode,jdbcType=VARCHAR},
-      VALIDITY_TIME = #{record.validityTime,jdbcType=DATE},
+      VALIDITY_TIME = #{record.validityTime,jdbcType=TIMESTAMP},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -193,7 +193,7 @@
         VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
       </if>
       <if test="validityTime != null">
-        VALIDITY_TIME = #{validityTime,jdbcType=DATE},
+        VALIDITY_TIME = #{validityTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
@@ -205,7 +205,7 @@
     update base_phone_verification
     set PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
       VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
-      VALIDITY_TIME = #{validityTime,jdbcType=DATE},
+      VALIDITY_TIME = #{validityTime,jdbcType=TIMESTAMP},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where RECID = #{recid,jdbcType=VARCHAR}
   </update>
