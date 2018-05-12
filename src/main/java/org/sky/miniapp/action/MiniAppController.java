@@ -72,8 +72,8 @@ public class MiniAppController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error(e);
-			rd.setCode(AppConst.SYS_ERROR);
-			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setCode("0");
+			rd.setName("登录失败，请从新登录");
 			return rd;
 		}
 	}
@@ -331,29 +331,25 @@ public class MiniAppController {
 		try {
 			String token = request.getParameter(AppConst.REFRESH_TOKEN_NAME);
 			if(null==token||"".equals(token)){
-				rd.setCode(AppConst.TOKEN_NULL);
-				rd.setName(AppConst.TOKEN_NULL_DESCRIPTION);
+				rd.setCode(AppConst.PARAMETER_NULL);
+				rd.setName(AppConst.PARAMETER_NULL_DESCRIPTION);
 				return rd;
 			}
 			//解析token值
 			rd = JwtUtil.parseJWT(token, JwtUtil.TOKEN_TYPE_REFRESH);
-			if(!AppConst.SUCCESS.equals(rd.getCode())||null==rd.getData()||"".equals(rd.getData())){
-				rd.setCode(AppConst.TOKEN_ERROR);
-				rd.setName(AppConst.TOKEN_ERROR_DESCRIPTION);
-				return rd;
-			}
 			Map<String,String> resultMap = new HashMap<String,String>();
 			resultMap.put("refreshToken", JwtUtil.createJWT((String)rd.getData(),JwtUtil.TOKEN_TYPE_REFRESH,JwtUtil.JWT_REFRESH_EXP));
 			resultMap.put("requestToken", JwtUtil.createJWT((String)rd.getData(),JwtUtil.TOKEN_TYPE_REQUEST,JwtUtil.JWT_REQUEST_EXP));
-			rd.setCode(AppConst.SUCCESS);
+			rd.setCode("1");
+			rd.setName("刷新成功");
 			rd.setData(resultMap);
 			return rd;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error(e);
-			rd.setCode(AppConst.SYS_ERROR);
-			rd.setName(AppConst.SYS_ERROR_DESCRIPTION);
+			rd.setCode("0");
+			rd.setName("刷新失败"+e.getMessage());
 			return rd;
 		}
 	}

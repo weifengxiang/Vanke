@@ -151,6 +151,9 @@ public class MiniAppService {
 			throw new ServiceException("客户信息不能为空");
 		}
 		BaseCustomer bc = JsonUtils.json2pojo(customer, BaseCustomer.class);
+		if(null==bc) {
+			throw new ServiceException("客户信息参数错误"+customer);
+		}
 		Timestamp ts = comMapper.queryTimestamp();
 		bc.setId(CommonUtils.getUUID(32));
 		bc.setCreater(channelCode);
