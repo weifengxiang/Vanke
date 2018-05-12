@@ -10,6 +10,7 @@ import org.sky.sys.exception.ServiceException;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
 import org.sky.base.model.BaseChannelExample.Criteria;
+import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.base.service.BaseChannelService;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 /**
  * 
  * @ClassName:  BaseChannelController   
@@ -149,6 +151,20 @@ public class BaseChannelController extends BaseController{
 			HttpServletResponse response){
 		String id = request.getParameter("id");
 		BaseChannel bean = basechannelService.getBaseChannelById(id);
+		return JsonUtils.obj2json(bean);
+	}
+	/**
+	 * 获取渠道照片
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/base/BaseChannel/getBaseChannelImgByCode/{code}", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getBaseChannelImgByCode(
+			@PathVariable String code,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		BaseChannelImgWithBLOBs bean = basechannelService.getBaseChannelImgByCode(code);
 		return JsonUtils.obj2json(bean);
 	}
 }

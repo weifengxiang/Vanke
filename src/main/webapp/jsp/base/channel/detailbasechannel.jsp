@@ -15,7 +15,7 @@ $(function() {
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#detailPageButtonsFt'">
+	 data-options="footer:'#detailPageButtonsFt',fit:true">
 		<form id="detailbasechannelform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
@@ -79,6 +79,20 @@ $(function() {
 					<th><label>备注:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="remark" style="width:80%;height:60px"
 						data-options="multiline:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>学生证照片:</label></th>
+					<td colspan='3'>
+						<img id='studPic1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						<img id='studPic2' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+					</td>
+				  </tr>
+				  <tr>
+					<th><label>身份证照片:</label></th>
+					<td colspan='3'>
+						<img id='idcardPic1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						<img id='idcardPic1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+					</td>
 				  </tr>
 			</table>
 		</form>

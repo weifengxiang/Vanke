@@ -114,8 +114,8 @@ function detailBaseChannel(){
 	var opts={
 				id:'detailBaseChannel',
 				title:'渠道人才信息明细',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'base/BaseChannel/initDetailBaseChannelPage'),
 				onLoad: function(dialog){ 

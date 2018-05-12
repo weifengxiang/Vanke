@@ -3,10 +3,14 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.base.client.BaseChannelImgMapper;
 import org.sky.base.client.BaseChannelMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
+import org.sky.base.model.BaseChannelImg;
+import org.sky.base.model.BaseChannelImgExample;
+import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +27,8 @@ public class BaseChannelService {
 	private SysCommonMapper syscommonmapper;
 	@Autowired
 	private BaseCodeService bcService;
+	@Autowired
+	private BaseChannelImgMapper imgMapper;
 	/**
 	*分页查询
 	**/
@@ -117,5 +123,20 @@ public class BaseChannelService {
 	public BaseChannel getBaseChannelById(String id){
 		BaseChannel bean = basechannelmapper.selectByPrimaryKey(id);
 		return bean;
+	}
+	/**
+	 * 获取渠道照片
+	 * @param channelCode
+	 * @return
+	 */
+	public BaseChannelImgWithBLOBs getBaseChannelImgByCode(String channelCode) {
+		BaseChannelImgExample e = new BaseChannelImgExample();
+		e.createCriteria().andChannelCodeEqualTo(channelCode);
+		List<BaseChannelImgWithBLOBs> list = imgMapper.selectByExampleWithBLOBs(e);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
 	}
 }
