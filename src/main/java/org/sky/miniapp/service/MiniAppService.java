@@ -161,6 +161,7 @@ public class MiniAppService {
 		bc.setUpdater(channelCode);
 		bc.setUpdateTime(ts);
 		bc.setChannelCode(channelCode);
+		baseCustomerMapper.insert(bc);
 	}
 	/**
 	 * 查询我的推荐（客户/渠道）信息
