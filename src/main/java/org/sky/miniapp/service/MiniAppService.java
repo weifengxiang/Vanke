@@ -246,7 +246,7 @@ public class MiniAppService {
 	public BaseChannel getBaseChannel(String channelCode) {
 		try {
 			BaseChannelExample e = new BaseChannelExample();
-			e.createCriteria().andChannelCodeEqualTo(channelCode);
+			e.createCriteria().andCodeEqualTo(channelCode);
 			List<BaseChannel> list = baseChannelMapper.selectByExample(e);
 			if(list.size()>0) {
 				return list.get(0);
