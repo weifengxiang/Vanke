@@ -91,7 +91,7 @@ $(function() {
 					<th><label>身份证照片:</label></th>
 					<td colspan='3'>
 						<img id='idcardPic1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
-						<img id='idcardPic1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						<img id='idcardPic2' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
 					</td>
 				  </tr>
 			</table>

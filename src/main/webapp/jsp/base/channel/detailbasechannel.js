@@ -28,16 +28,16 @@ function onLoadSuccess(data){
 				return;
 			}
 			if(data.studPic1){
-				$('#studPic1').attr('src',data.studPic1);
+				$('#studPic1').attr('src',"data:image/jpeg;base64,"+data.studPic1);
 			}
 			if(data.studPic2){
-				$('#studPic2').attr('src',data.studPic1);
+				$('#studPic2').attr('src',"data:image/jpeg;base64,"+data.studPic2);
 			}
 			if(data.idcardPic1){
-				$('#idcardPic1').attr('src',data.studPic1);
+				$('#idcardPic1').attr('src',"data:image/jpeg;base64,"+data.idcardPic1);
 			}
 			if(data.idcardPic2){
-				$('#idcardPic2').attr('src',data.studPic1);
+				$('#idcardPic2').attr('src',"data:image/jpeg;base64,"+data.idcardPic2);
 			}
 		}
 	});
