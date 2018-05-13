@@ -195,9 +195,20 @@ public class MiniAppService {
 			throw new ServiceException("认证信息不能为空");
 		}
 		try {
-			BaseChannel bc = JsonUtils.json2pojo(channel, BaseChannel.class);
 			BaseChannelExample e = new BaseChannelExample();
-			e.createCriteria().andChannelCodeEqualTo(channelCode);
+			e.createCriteria().andCodeEqualTo(channelCode);
+			//校验用户状态
+			List<BaseChannel> list = baseChannelMapper.selectByExample(e);
+			if(null==list||list.size()!=1){
+				logger.error("认证用户不存在"+channel);
+				throw new ServiceException("认证用户不存在");
+			}
+			if(!"01".equals(list.get(0).getState())&&!"04".equals(list.get(0).getState())){
+				logger.error("用户已认证或在审核中"+channel);
+				throw new ServiceException("用户已认证或在审核中");
+			}
+			BaseChannel bc = JsonUtils.json2pojo(channel, BaseChannel.class);
+			bc.setState("05");//设置状态为等待认证
 			baseChannelMapper.updateByExampleSelective(bc, e);
 			Map params = JsonUtils.json2map(channel);
 			BaseChannelImgWithBLOBs bci = new BaseChannelImgWithBLOBs();
