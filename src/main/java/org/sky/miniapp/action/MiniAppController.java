@@ -14,6 +14,7 @@ import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
 import org.sky.base.model.BaseChannelImgWithBLOBs;
 import org.sky.miniapp.service.MiniAppService;
+import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
@@ -127,6 +128,11 @@ public class MiniAppController {
 		}else if(StringUtils.isNull(verCode)) {
 			rd.setCode("0");
 			rd.setName("注册失败,验证码不能为空");
+			return rd;
+		}
+		if(!CommonUtils.isPhoneNumber(tel)){
+			rd.setCode("0");
+			rd.setName("注册失败,电话号码不正确");
 			return rd;
 		}
 		try {

@@ -326,4 +326,25 @@ public class CommonUtils {
 		value = timespan % divisor + postfix;
 		return timespan / divisor == 0 ? value : getFormattedTimestamp(timespan / divisor, nextpf) + value;
 	}
+	
+	/**
+	 * 手机号校验
+	 * @param str
+	 * @return
+	 */
+    public static boolean isPhoneNumber(String phonenumber){  
+    	 String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[0,5-9]))\\d{8}$";
+         if(phonenumber.length() != 11){
+             return false;
+         }else{
+             Pattern p = Pattern.compile(regex);
+             Matcher m = p.matcher(phonenumber);
+             boolean isMatch = m.matches();
+             if(isMatch){
+                return true;
+             } else {
+                return false;
+             }
+         } 
+    }  
 }
