@@ -242,7 +242,7 @@ public class MiniAppService {
 		try {
 			BaseChannel bc = JsonUtils.json2pojo(channel, BaseChannel.class);
 			BaseChannelExample e = new BaseChannelExample();
-			e.createCriteria().andChannelCodeEqualTo(channelCode);
+			e.createCriteria().andCodeEqualTo(channelCode);
 			baseChannelMapper.updateByExampleSelective(bc, e);
 		}catch(Exception e) {
 			logger.error(e.getMessage());
