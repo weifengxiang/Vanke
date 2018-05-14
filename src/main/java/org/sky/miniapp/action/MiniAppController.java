@@ -135,8 +135,9 @@ public class MiniAppController {
 			rd.setName("注册失败,电话号码不正确");
 			return rd;
 		}
+		String recCode=request.getParameter("recCode");
 		try {
-			miniappService.register(tel, password, verCode);
+			miniappService.register(tel, password, verCode,recCode);
 			rd.setCode("1");
 			rd.setName("注册成功");
 			return rd;
@@ -388,6 +389,7 @@ public class MiniAppController {
 		resultMap.put("refreshToken", JwtUtil.createJWT(user.getCode(),JwtUtil.TOKEN_TYPE_REFRESH,JwtUtil.JWT_REFRESH_EXP));
 		resultMap.put("requestToken", JwtUtil.createJWT(user.getCode(),JwtUtil.TOKEN_TYPE_REQUEST,JwtUtil.JWT_REQUEST_EXP));
 		resultMap.put("username", user.getName());
+		resultMap.put("usercode", user.getCode());
 		rd.setCode("1");
 		rd.setName("登录成功");
 		rd.setData(resultMap);

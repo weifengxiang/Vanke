@@ -105,7 +105,7 @@ public class MiniAppService {
 	 * @param password
 	 * @param verCode
 	 */
-	public BaseChannel register(String tel,String password,String verCode) throws ServiceException {
+	public BaseChannel register(String tel,String password,String verCode,String recCode) throws ServiceException {
 		BaseChannel bc = null;
 		BaseChannelExample example = new BaseChannelExample();
 		example.createCriteria().andTelEqualTo(tel);
@@ -130,6 +130,7 @@ public class MiniAppService {
 				bc.setCode(bcService.getNextBizCode("CHA"));
 				bc.setTel(tel);
 				bc.setPassword(MD5Utils.MD5LOWER(password));
+				bc.setChannelCode(recCode);
 				bc.setState("01");//已注册状态
 				bc.setCreateTime(CommonUtils.getCurrentDbDate());
 				bc.setUpdateTime(CommonUtils.getCurrentDbDate());
