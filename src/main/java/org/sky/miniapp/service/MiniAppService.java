@@ -18,12 +18,14 @@ import org.sky.base.model.BaseCustomerExample;
 import org.sky.base.model.BasePhoneVerification;
 import org.sky.base.model.BasePhoneVerificationExample;
 import org.sky.base.service.BaseCodeService;
+import org.sky.miniapp.utils.MiniAppUtils;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDictItemExample;
 import org.sky.sys.utils.AliyunSmsUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.StringUtils;
@@ -322,18 +324,19 @@ public class MiniAppService {
 	 * @param tel
 	 */
 	public void obtainSms(String tel) throws ServiceException{
-		//String verCode=MiniAppUtils.getVerficationCode();
+		//
 		String verCode="888888";
 		//发送信息...
-		/**
 		try {
-			AliyunSmsUtils.sendSms(tel, verCode);
+			if("true".equals(ConfUtils.getValue("SendSms"))) {
+				verCode=MiniAppUtils.getVerficationCode();
+				AliyunSmsUtils.sendSms(tel, verCode);
+			}
 		} catch (ClientException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			throw new ServiceException("消息发送失败"+e1.getMessage());
-		}
-		**/
+		}	
 		BasePhoneVerification pv = new BasePhoneVerification();
 		pv.setCreateTime(CommonUtils.getCurrentDbDate());
 		pv.setPhoneNum(tel);
