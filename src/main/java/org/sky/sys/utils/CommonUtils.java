@@ -54,9 +54,6 @@ public class CommonUtils {
 		}
 	}
 
-	public static void main(String args[]) {
-		System.out.println(getUUID());
-	}
 
 	public static List<Map<String, Object>> formListMapDate(
 			List<Map<String, Object>> list, String formdat) {
@@ -333,7 +330,7 @@ public class CommonUtils {
 	 * @return
 	 */
     public static boolean isPhoneNumber(String phonenumber){  
-    	 String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[0,5-9]))\\d{8}$";
+    	 String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[01,5-9]))\\d{8}$";
          if(phonenumber.length() != 11){
              return false;
          }else{
@@ -347,4 +344,7 @@ public class CommonUtils {
              }
          } 
     }  
+    public static void main(String[] args) {
+    	System.out.println(isPhoneNumber("18166454061"));
+    }
 }
