@@ -179,10 +179,12 @@ public class MiniAppService {
 		if("customer".equals(type)) {
 			BaseCustomerExample e = new BaseCustomerExample();
 			e.createCriteria().andChannelCodeEqualTo(channelCode);
+			e.setOrderByClause("CREATE_TIME DESC");
 			list=baseCustomerMapper.selectByExample(e);
 		}else if("channel".equals(type)) {
 			BaseChannelExample e = new BaseChannelExample();
 			e.createCriteria().andChannelCodeEqualTo(channelCode);
+			e.setOrderByClause("CREATE_TIME DESC");
 			list=baseChannelMapper.selectByExample(e);
 		}
 		return list;
