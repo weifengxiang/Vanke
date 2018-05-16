@@ -16,17 +16,29 @@ public class AliyunIdCardResult {
 	 * "{"side":"face"}"
 	 */
 	private String config_str;
-	
+	/**
+	 * 地址
+	 */
 	private String address;
-	
+	/**
+	 * 民族
+	 */
 	private String nationality;
-	
+	/**
+	 * 是否成功
+	 */
 	private boolean success;
-	
+	/**
+	 * 身份证号
+	 */
 	private String num;
-	
+	/**
+	 * 性别
+	 */
 	private String sex;
-	
+	/**
+	 * 姓名
+	 */
 	private String name;
 	
 	private String birth;
