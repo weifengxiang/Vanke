@@ -2,6 +2,7 @@ package org.sky.sys.utils.schedule;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -20,7 +21,7 @@ import org.sky.sys.utils.BspUtils;
  *
  */
 public class QuartzRealNameAuthenticationJob implements Job {
-
+	private final Logger logger=Logger.getLogger(QuartzRealNameAuthenticationJob.class);
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
@@ -36,19 +37,16 @@ public class QuartzRealNameAuthenticationJob implements Job {
 			example.createCriteria().andChannelCodeEqualTo(channel.getCode());
 			example.setOrderByClause("create_time desc");
 			List<BaseChannelImgWithBLOBs> tempList = channelImgMapper.selectByExampleWithBLOBs(example);
-			BaseChannelImgWithBLOBs temp = tempList.get(0);
-			//调用阿里云校验接口
-			AliyunIdCardResult result = AliyunIdCardUtils.readIdCard(temp.getIdcardPic1());
-			//判断校验结果
-			if(null!=result&&result.getNum().equals(channel.getIdcard())&&result.getName().equals(channel.getName())){//通过
-				//设置为认证成功（更新时间不调整了）
-				channel.setState("02");
-				channelMapp.updateByPrimaryKeySelective(channel);
-			}else{//认证失败
+			if(null==tempList || tempList.isEmpty()) {
+				logger.error(channel.getCode()+"为查到图像信息");
 				//设置为认证失败（更新时间不调整了）
 				channel.setState("04");
 				channelMapp.updateByPrimaryKeySelective(channel);
+				continue;
 			}
+			BaseChannelImgWithBLOBs temp = tempList.get(0);
+			//调用阿里云校验接口
+			AliyunIdCardUtils.readIdCard(channel,temp.getIdcardPic1());
 		}
 	}
 
