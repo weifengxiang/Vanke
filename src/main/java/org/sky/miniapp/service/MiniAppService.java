@@ -24,6 +24,7 @@ import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDictItemExample;
 import org.sky.sys.utils.AliyunSmsUtils;
+import org.sky.sys.utils.ApplicationCached;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
@@ -317,9 +318,7 @@ public class MiniAppService {
 	 * @return
 	 */
 	public List getItem(String itemType) {
-		SysDictItemExample sdie = new SysDictItemExample();
-		sdie.createCriteria().andDictCodeEqualTo(itemType);
-		return itemMapper.selectByExample(sdie);
+		return ApplicationCached.getDictItemByDicType(itemType);
 	}
 	/**
 	 * 获取短信验证码

@@ -70,7 +70,7 @@ public class ApplicationCached {
 			operadionlist=opeMapper.selectByExample(ope);
 			
 			SysDictItemExample die = new SysDictItemExample();
-			die.setOrderByClause(" CODE asc,SEQ asc ");
+			die.setOrderByClause(" SEQ asc,CODE asc ");
 			dictItemlist=dictItemMapper.selectByExample(die);
 			
 			if(RedisUtil.afterPropertiesSet()){
