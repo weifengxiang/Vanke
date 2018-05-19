@@ -334,16 +334,17 @@ public class CommonUtils {
          if(phonenumber.length() != 11){
              return false;
          }else{
-             Pattern p = Pattern.compile(regex);
-             Matcher m = p.matcher(phonenumber);
-             boolean isMatch = m.matches();
-             if(isMatch){
-                return true;
-             } else {
-                return false;
-             }
-         } 
-    }  
+//             Pattern p = Pattern.compile(regex);
+//             Matcher m = p.matcher(phonenumber);
+//             boolean isMatch = m.matches();
+//             if(isMatch){
+//                return true;
+//             } else {
+//                return false;
+//             }
+        	 return true;
+         }
+    }
     public static void main(String[] args) {
     	System.out.println(isPhoneNumber("18166454061"));
     }
