@@ -17,14 +17,20 @@
 						connectionURL="jdbc:mysql://localhost:3306/vanke"			
 						userId="root" password="root" />
 		<!-- 生成模型的包名和位置-->  
-		<javaModelGenerator targetPackage="org.sky.base.model" targetProject="src\main\java" />
+		<javaModelGenerator targetPackage="org.sky.land.model" targetProject="src\main\java" />
 		<!-- 生成映射文件的包名和位置--> 
-		<sqlMapGenerator targetPackage="org.sky.base.sqlmap" targetProject="src\main\java" />
+		<sqlMapGenerator targetPackage="org.sky.land.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
-		<javaClientGenerator targetPackage="org.sky.base.client"	targetProject="src\main\java" type="XMLMAPPER" />
-		
-		<table tableName="BASE_CHANNEL_IMG"></table>
+		<javaClientGenerator targetPackage="org.sky.land.client"	targetProject="src\main\java" type="XMLMAPPER" />
+		<table tableName="LAND_PARTTIME_JOB"></table>
 		<!-- 
+		<table tableName="BASE_PARTTIME_JOB_ENROLL"></table>
+		<table tableName="BASE_MSG"></table>
+		<table tableName="BASE_ACCOUNT"></table>
+		<table tableName="BASE_ACCOUNT_DETAIL"></table>
+		<table tableName="BASE_BANK_CARD"></table>
+		<table tableName="BASE_WITHDRAW_CASH"></table>
+		
 		<table tableName="BASE_CUSTOMER"></table>	
 		<table tableName="BASE_CODE"></table>
 		 -->

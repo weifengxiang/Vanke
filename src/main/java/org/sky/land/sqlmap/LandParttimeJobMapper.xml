@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.land.client.LandParttimeJobMapper">
+  <resultMap id="BaseResultMap" type="org.sky.land.model.LandParttimeJob">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PREMISES" jdbcType="VARCHAR" property="premises" />
+    <result column="SALARY" jdbcType="VARCHAR" property="salary" />
+    <result column="WORK_TIMES" jdbcType="VARCHAR" property="workTimes" />
+    <result column="WORK_PLACE" jdbcType="VARCHAR" property="workPlace" />
+    <result column="REQ_NUM" jdbcType="VARCHAR" property="reqNum" />
+    <result column="SETTLEMENT_TYPE" jdbcType="VARCHAR" property="settlementType" />
+    <result column="POST_MSG" jdbcType="VARCHAR" property="postMsg" />
+    <result column="POST_REQ" jdbcType="VARCHAR" property="postReq" />
+    <result column="OTHER_MGS" jdbcType="VARCHAR" property="otherMgs" />
+    <result column="RESUME_TYPE" jdbcType="VARCHAR" property="resumeType" />
+    <result column="JOB_BEGIN" jdbcType="TIMESTAMP" property="jobBegin" />
+    <result column="JOB_END" jdbcType="TIMESTAMP" property="jobEnd" />
+    <result column="ENROLL_END" jdbcType="TIMESTAMP" property="enrollEnd" />
+    <result column="PUB_USER" jdbcType="VARCHAR" property="pubUser" />
+    <result column="PUB_ORG" jdbcType="VARCHAR" property="pubOrg" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, CODE, NAME, PREMISES, SALARY, WORK_TIMES, WORK_PLACE, REQ_NUM, SETTLEMENT_TYPE, 
+    POST_MSG, POST_REQ, OTHER_MGS, RESUME_TYPE, JOB_BEGIN, JOB_END, ENROLL_END, PUB_USER, 
+    PUB_ORG, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.land.model.LandParttimeJobExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from land_parttime_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from land_parttime_job
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from land_parttime_job
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.land.model.LandParttimeJobExample">
+    delete from land_parttime_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.land.model.LandParttimeJob">
+    insert into land_parttime_job (ID, CODE, NAME, 
+      PREMISES, SALARY, WORK_TIMES, 
+      WORK_PLACE, REQ_NUM, SETTLEMENT_TYPE, 
+      POST_MSG, POST_REQ, OTHER_MGS, 
+      RESUME_TYPE, JOB_BEGIN, JOB_END, 
+      ENROLL_END, PUB_USER, PUB_ORG, 
+      CREATER, CREATE_TIME, UPDATER, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{premises,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{workTimes,jdbcType=VARCHAR}, 
+      #{workPlace,jdbcType=VARCHAR}, #{reqNum,jdbcType=VARCHAR}, #{settlementType,jdbcType=VARCHAR}, 
+      #{postMsg,jdbcType=VARCHAR}, #{postReq,jdbcType=VARCHAR}, #{otherMgs,jdbcType=VARCHAR}, 
+      #{resumeType,jdbcType=VARCHAR}, #{jobBegin,jdbcType=TIMESTAMP}, #{jobEnd,jdbcType=TIMESTAMP}, 
+      #{enrollEnd,jdbcType=TIMESTAMP}, #{pubUser,jdbcType=VARCHAR}, #{pubOrg,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.land.model.LandParttimeJob">
+    insert into land_parttime_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="premises != null">
+        PREMISES,
+      </if>
+      <if test="salary != null">
+        SALARY,
+      </if>
+      <if test="workTimes != null">
+        WORK_TIMES,
+      </if>
+      <if test="workPlace != null">
+        WORK_PLACE,
+      </if>
+      <if test="reqNum != null">
+        REQ_NUM,
+      </if>
+      <if test="settlementType != null">
+        SETTLEMENT_TYPE,
+      </if>
+      <if test="postMsg != null">
+        POST_MSG,
+      </if>
+      <if test="postReq != null">
+        POST_REQ,
+      </if>
+      <if test="otherMgs != null">
+        OTHER_MGS,
+      </if>
+      <if test="resumeType != null">
+        RESUME_TYPE,
+      </if>
+      <if test="jobBegin != null">
+        JOB_BEGIN,
+      </if>
+      <if test="jobEnd != null">
+        JOB_END,
+      </if>
+      <if test="enrollEnd != null">
+        ENROLL_END,
+      </if>
+      <if test="pubUser != null">
+        PUB_USER,
+      </if>
+      <if test="pubOrg != null">
+        PUB_ORG,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="premises != null">
+        #{premises,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimes != null">
+        #{workTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null">
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="reqNum != null">
+        #{reqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementType != null">
+        #{settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="postMsg != null">
+        #{postMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="postReq != null">
+        #{postReq,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMgs != null">
+        #{otherMgs,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeType != null">
+        #{resumeType,jdbcType=VARCHAR},
+      </if>
+      <if test="jobBegin != null">
+        #{jobBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobEnd != null">
+        #{jobEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrollEnd != null">
+        #{enrollEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubUser != null">
+        #{pubUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pubOrg != null">
+        #{pubOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.land.model.LandParttimeJobExample" resultType="java.lang.Long">
+    select count(*) from land_parttime_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update land_parttime_job
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.premises != null">
+        PREMISES = #{record.premises,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary != null">
+        SALARY = #{record.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTimes != null">
+        WORK_TIMES = #{record.workTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workPlace != null">
+        WORK_PLACE = #{record.workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reqNum != null">
+        REQ_NUM = #{record.reqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementType != null">
+        SETTLEMENT_TYPE = #{record.settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postMsg != null">
+        POST_MSG = #{record.postMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postReq != null">
+        POST_REQ = #{record.postReq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherMgs != null">
+        OTHER_MGS = #{record.otherMgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resumeType != null">
+        RESUME_TYPE = #{record.resumeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobBegin != null">
+        JOB_BEGIN = #{record.jobBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jobEnd != null">
+        JOB_END = #{record.jobEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enrollEnd != null">
+        ENROLL_END = #{record.enrollEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pubUser != null">
+        PUB_USER = #{record.pubUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubOrg != null">
+        PUB_ORG = #{record.pubOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update land_parttime_job
+    set ID = #{record.id,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PREMISES = #{record.premises,jdbcType=VARCHAR},
+      SALARY = #{record.salary,jdbcType=VARCHAR},
+      WORK_TIMES = #{record.workTimes,jdbcType=VARCHAR},
+      WORK_PLACE = #{record.workPlace,jdbcType=VARCHAR},
+      REQ_NUM = #{record.reqNum,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE = #{record.settlementType,jdbcType=VARCHAR},
+      POST_MSG = #{record.postMsg,jdbcType=VARCHAR},
+      POST_REQ = #{record.postReq,jdbcType=VARCHAR},
+      OTHER_MGS = #{record.otherMgs,jdbcType=VARCHAR},
+      RESUME_TYPE = #{record.resumeType,jdbcType=VARCHAR},
+      JOB_BEGIN = #{record.jobBegin,jdbcType=TIMESTAMP},
+      JOB_END = #{record.jobEnd,jdbcType=TIMESTAMP},
+      ENROLL_END = #{record.enrollEnd,jdbcType=TIMESTAMP},
+      PUB_USER = #{record.pubUser,jdbcType=VARCHAR},
+      PUB_ORG = #{record.pubOrg,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.land.model.LandParttimeJob">
+    update land_parttime_job
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="premises != null">
+        PREMISES = #{premises,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        SALARY = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimes != null">
+        WORK_TIMES = #{workTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null">
+        WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="reqNum != null">
+        REQ_NUM = #{reqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementType != null">
+        SETTLEMENT_TYPE = #{settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="postMsg != null">
+        POST_MSG = #{postMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="postReq != null">
+        POST_REQ = #{postReq,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMgs != null">
+        OTHER_MGS = #{otherMgs,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeType != null">
+        RESUME_TYPE = #{resumeType,jdbcType=VARCHAR},
+      </if>
+      <if test="jobBegin != null">
+        JOB_BEGIN = #{jobBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobEnd != null">
+        JOB_END = #{jobEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrollEnd != null">
+        ENROLL_END = #{enrollEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubUser != null">
+        PUB_USER = #{pubUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pubOrg != null">
+        PUB_ORG = #{pubOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.land.model.LandParttimeJob">
+    update land_parttime_job
+    set CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PREMISES = #{premises,jdbcType=VARCHAR},
+      SALARY = #{salary,jdbcType=VARCHAR},
+      WORK_TIMES = #{workTimes,jdbcType=VARCHAR},
+      WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      REQ_NUM = #{reqNum,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE = #{settlementType,jdbcType=VARCHAR},
+      POST_MSG = #{postMsg,jdbcType=VARCHAR},
+      POST_REQ = #{postReq,jdbcType=VARCHAR},
+      OTHER_MGS = #{otherMgs,jdbcType=VARCHAR},
+      RESUME_TYPE = #{resumeType,jdbcType=VARCHAR},
+      JOB_BEGIN = #{jobBegin,jdbcType=TIMESTAMP},
+      JOB_END = #{jobEnd,jdbcType=TIMESTAMP},
+      ENROLL_END = #{enrollEnd,jdbcType=TIMESTAMP},
+      PUB_USER = #{pubUser,jdbcType=VARCHAR},
+      PUB_ORG = #{pubOrg,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
