@@ -10,11 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.sky.app.utils.AppConst;
 import org.sky.app.utils.JwtUtil;
+import org.sky.base.model.BaseAccount;
+import org.sky.base.model.BaseAccountDetail;
+import org.sky.base.model.BaseBankCard;
 import org.sky.base.model.BaseChannel;
 import org.sky.base.model.BaseChannelExample;
 import org.sky.base.model.BaseChannelImgWithBLOBs;
+import org.sky.base.model.BaseMsg;
+import org.sky.base.model.BaseParttimeJobEnroll;
+import org.sky.base.model.BaseWithdrawCash;
+import org.sky.land.model.LandParttimeJob;
 import org.sky.miniapp.service.MiniAppService;
+import org.sky.sys.exception.ServiceException;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
@@ -395,5 +404,265 @@ public class MiniAppController {
 		rd.setData(resultMap);
 		return rd;
 	}
-
+	/**
+	 * 银行卡绑定提交
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/saveAddBaseBankCard",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData saveAddBaseBankCard(HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String baseBankCard = request.getParameter("baseBankCard");
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		if(StringUtils.isNull(baseBankCard)) {
+			rd.setCode("0");
+			rd.setName("银行卡信息为空");
+		}else {
+			try {
+				BaseBankCard bbc = JsonUtils.json2pojo(baseBankCard, BaseBankCard.class);
+				miniappService.saveAddBaseBankCard(channelCode,bbc);
+				rd.setCode("1");
+				rd.setName("绑定成功");
+			}catch(ServiceException e) {
+				rd.setCode("0");
+				rd.setName(e.getMessage());
+			}
+		}
+		return rd;
+	}
+	/**
+	 * 查询绑定的银行卡
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectBaseBankCard",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectBaseBankCard(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<BaseBankCard> list = miniappService.selectBaseBankCard(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 账户余额查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/getBaseAccount",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData getBaseAccount(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			BaseAccount ba = miniappService.getBaseAccount(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(ba);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 提现申请
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/saveAddBaseWithDrawCash",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData saveAddBaseWithDrawCash(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		String baseWithdrawCash = request.getParameter("baseWithdrawCash");
+		try {
+			if(StringUtils.isNull(baseWithdrawCash)) {
+				rd.setCode("0");
+				rd.setName("提现信息为空");
+			}else {
+				BaseWithdrawCash bwc = JsonUtils.json2pojo(baseWithdrawCash, BaseWithdrawCash.class);
+				miniappService.saveAddBaseWithDrawCash(channelCode,bwc);
+				rd.setCode("1");
+				rd.setName("申请成功");
+			}
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("申请失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 提现进度查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectBaseWithDrawCashProcess",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectBaseWithDrawCashProcess(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<BaseWithdrawCash> list = miniappService.selectBaseWithDrawCashProcess(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 账户收支明细查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectBaseAccountDetail",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectBaseAccountDetail(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<BaseAccountDetail> list = miniappService.selectBaseAccountDetail(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 兼职任务查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectLandParttimeJob",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectLandParttimeJob(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<LandParttimeJob> list = miniappService.selectLandParttimeJob();
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 兼职明细查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/getLandParttimeJobDetail",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData getLandParttimeJobDetail(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		String code = request.getParameter("code");
+		try {
+			LandParttimeJob job = miniappService.getLandParttimeJobDetail(code);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(job);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 兼职报名
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/saveAddBaseParttimeJobEnroll",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData saveAddBaseParttimeJobEnroll(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		String baseParttimeJobEnroll = request.getParameter("baseParttimeJobEnroll");
+		try {
+			if(StringUtils.isNull(baseParttimeJobEnroll)) {
+				rd.setCode("0");
+				rd.setName("报名信息为空");
+			}else {
+				BaseParttimeJobEnroll bpe = JsonUtils.json2pojo(baseParttimeJobEnroll, BaseParttimeJobEnroll.class);
+				miniappService.saveAddBaseParttimeJobEnroll(channelCode,bpe);
+				rd.setCode("1");
+				rd.setName("报名成功");
+			}
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("报名失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 查询我的兼职
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectMyLandParttimeJob",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectMyLandParttimeJob(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<BaseParttimeJobEnroll> list = miniappService.selectMyLandParttimeJob(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
+	 * 我的消息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/miniapp/selectMyBaseMsg",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public ResultData selectMyBaseMsg(
+			HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String channelCode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			List<BaseMsg> list = miniappService.selectMyBaseMsg(channelCode);
+			rd.setCode("1");
+			rd.setName("查询成功");
+			rd.setData(list);
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName("查询失败,"+e.getMessage());
+		}
+		return rd;
+	}
 }
