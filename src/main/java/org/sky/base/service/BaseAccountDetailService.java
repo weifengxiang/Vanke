@@ -46,7 +46,7 @@ public class BaseAccountDetailService {
 			}
 			if(null!=updatelist&&updatelist.size()>0){
 				for(BaseAccountDetail update:updatelist){
-//					baseaccountdetailmapper.updateByPrimaryKeySelective(update);
+					baseaccountdetailmapper.updateByPrimaryKeySelective(update);
 				}
 			}
 		}catch(Exception e){
@@ -92,7 +92,7 @@ public class BaseAccountDetailService {
 				//修改
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
-//				baseaccountdetailmapper.updateByPrimaryKeySelective(edit);
+				baseaccountdetailmapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){
 			logger.error("保存新增/编辑单个对象执行失败",e);
@@ -105,15 +105,14 @@ public class BaseAccountDetailService {
 	@Transactional
 	public void delBaseAccountDetailById(List<BaseAccountDetail> delList){
 		for(BaseAccountDetail del:delList){
-//			baseaccountdetailmapper.deleteByPrimaryKey(del.getId());
+			baseaccountdetailmapper.deleteByPrimaryKey(del.getId());
 		}
 	}
 	/**
 	*根据主键查询对象
 	**/
 	public BaseAccountDetail getBaseAccountDetailById(String id){
-//		BaseAccountDetail bean = baseaccountdetailmapper.selectByPrimaryKey(id);
-//		return bean;
-		return null;
+		BaseAccountDetail bean = baseaccountdetailmapper.selectByPrimaryKey(id);
+		return bean;
 	}
 }
