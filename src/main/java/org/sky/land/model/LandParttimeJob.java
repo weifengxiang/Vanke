@@ -2,6 +2,8 @@ package org.sky.land.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class LandParttimeJob {
     private String id;
 
@@ -28,11 +30,14 @@ public class LandParttimeJob {
     private String otherMgs;
 
     private String resume;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd") 
     private Date jobBegin;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd") 
     private Date jobEnd;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd") 
     private Date enrollEnd;
 
     private String pubUser;

@@ -76,7 +76,7 @@ $(function() {
 				  </tr>
 				  <tr>
 				  	<th><label>简历投递:</label></th>
-					<td><input class="easyui-textbox" name="resumeType"
+					<td><input class="easyui-textbox" name="resume"
 						data-options="required:true"></input></td>
 					<th><label>报名截止时间:</label></th>
 					<td><input class="easyui-datebox" name="enrollEnd"

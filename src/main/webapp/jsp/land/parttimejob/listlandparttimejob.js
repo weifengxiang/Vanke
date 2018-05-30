@@ -83,8 +83,8 @@ function editLandParttimeJob(){
 	var opts={
 				id:'editLandParttimeJob',
 				title:'修改兼职任务信息',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initEditLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -114,8 +114,8 @@ function detailLandParttimeJob(){
 	var opts={
 				id:'detailLandParttimeJob',
 				title:'兼职任务信息明细',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initDetailLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -158,15 +158,15 @@ function searchButton(){
 			}
 			var jobBegin =$('#q_jobBegin').datebox("getValue");
 			if(jobBegin){
-				ft.put("date_format(jobBegin,'%Y-%m-%d')@>=", jobBegin);
+				ft.put("jobBegin@>=", jobBegin);
 			}
 			var jobEnd =$('#q_jobEnd').datebox("getValue");
 			if(jobEnd){
-				ft.put("date_format(jobEnd,'%Y-%m-%d')@<=", jobEnd);
+				ft.put("jobEnd@<=", jobEnd);
 			}
 			var enrollEnd =$('#q_enrollEnd').datebox("getValue");
 			if(enrollEnd){
-				ft.put("date_format(enrollEnd,'%Y-%m-%d')@=", enrollEnd);
+				ft.put("enrollEnd@=", enrollEnd);
 			}
 			return ft.getJSON();
 		}
