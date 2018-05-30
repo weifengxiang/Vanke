@@ -103,6 +103,8 @@ public class BaseCustomer {
 
     private String channelCode;
 
+    private String parttimeJobCode;
+
     public String getId() {
         return id;
     }
@@ -502,4 +504,12 @@ public class BaseCustomer {
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
 	}
+	
+    public String getParttimeJobCode() {
+        return parttimeJobCode;
+    }
+
+    public void setParttimeJobCode(String parttimeJobCode) {
+        this.parttimeJobCode = parttimeJobCode;
+    }
 }

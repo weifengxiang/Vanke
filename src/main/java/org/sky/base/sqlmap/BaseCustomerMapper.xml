@@ -51,6 +51,7 @@
     <result column="EXPAND_PROPERTY_CON" jdbcType="VARCHAR" property="expandPropertyCon" />
     <result column="IMP_CUSTOMER" jdbcType="VARCHAR" property="impCustomer" />
     <result column="CHANNEL_CODE" jdbcType="VARCHAR" property="channelCode" />
+    <result column="PARTTIME_JOB_CODE" jdbcType="VARCHAR" property="parttimeJobCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -117,7 +118,7 @@
     TOTAL_BUDGET, CREDIT_CONDITION, TARGET_PREMISES, TARGET_YT, TARGET_LAYOUT, TARGET_AREA, 
     ACCEPT_P1, ACCEPT_P2, ACCEPT_P3, RESISTANCE, COMPETITOR, VISIT_TIME, SALE_TEAM, PROPERTY_CONSULTANT, 
     REGISTRANT, STATE, REMARK, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, EXPAND_TIME, 
-    EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE,
+    EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE, PARTTIME_JOB_CODE,
     (SELECT NAME FROM SYS_DICT_ITEM DI WHERE DI.CODE=STATE AND DICT_CODE='CUSTOMER_STATE') AS STATE_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCustomerExample" resultMap="BaseResultMap">
@@ -167,8 +168,8 @@
       PROPERTY_CONSULTANT, REGISTRANT, STATE, 
       REMARK, CREATER, CREATE_TIME, 
       UPDATER, UPDATE_TIME, EXPAND_TIME, 
-      EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE
-      )
+      EXPAND_PROPERTY_CON, IMP_CUSTOMER, CHANNEL_CODE, 
+      PARTTIME_JOB_CODE)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
       #{careerType,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{positionLevel,jdbcType=VARCHAR}, 
@@ -184,8 +185,8 @@
       #{propertyConsultant,jdbcType=VARCHAR}, #{registrant,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{expandTime,jdbcType=DATE}, 
-      #{expandPropertyCon,jdbcType=VARCHAR}, #{impCustomer,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}
-      )
+      #{expandPropertyCon,jdbcType=VARCHAR}, #{impCustomer,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, 
+      #{parttimeJobCode,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCustomer">
     insert into base_customer
@@ -337,6 +338,9 @@
       <if test="channelCode != null">
         CHANNEL_CODE,
       </if>
+      <if test="parttimeJobCode != null">
+        PARTTIME_JOB_CODE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -485,6 +489,9 @@
       </if>
       <if test="channelCode != null">
         #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parttimeJobCode != null">
+        #{parttimeJobCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -644,6 +651,9 @@
       <if test="record.channelCode != null">
         CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.parttimeJobCode != null">
+        PARTTIME_JOB_CODE = #{record.parttimeJobCode,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -699,7 +709,8 @@
       EXPAND_TIME = #{record.expandTime,jdbcType=DATE},
       EXPAND_PROPERTY_CON = #{record.expandPropertyCon,jdbcType=VARCHAR},
       IMP_CUSTOMER = #{record.impCustomer,jdbcType=VARCHAR},
-      CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR}
+      CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      PARTTIME_JOB_CODE = #{record.parttimeJobCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -851,6 +862,9 @@
       <if test="channelCode != null">
         CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
       </if>
+      <if test="parttimeJobCode != null">
+        PARTTIME_JOB_CODE = #{parttimeJobCode,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -903,7 +917,8 @@
       EXPAND_TIME = #{expandTime,jdbcType=DATE},
       EXPAND_PROPERTY_CON = #{expandPropertyCon,jdbcType=VARCHAR},
       IMP_CUSTOMER = #{impCustomer,jdbcType=VARCHAR},
-      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      PARTTIME_JOB_CODE = #{parttimeJobCode,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
