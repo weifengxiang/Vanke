@@ -981,73 +981,73 @@ public class LandParttimeJobExample {
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeIsNull() {
-            addCriterion("RESUME_TYPE is null");
+        public Criteria andResumeIsNull() {
+            addCriterion("RESUME is null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeIsNotNull() {
-            addCriterion("RESUME_TYPE is not null");
+        public Criteria andResumeIsNotNull() {
+            addCriterion("RESUME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeEqualTo(String value) {
-            addCriterion("RESUME_TYPE =", value, "resumeType");
+        public Criteria andResumeEqualTo(String value) {
+            addCriterion("RESUME =", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeNotEqualTo(String value) {
-            addCriterion("RESUME_TYPE <>", value, "resumeType");
+        public Criteria andResumeNotEqualTo(String value) {
+            addCriterion("RESUME <>", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeGreaterThan(String value) {
-            addCriterion("RESUME_TYPE >", value, "resumeType");
+        public Criteria andResumeGreaterThan(String value) {
+            addCriterion("RESUME >", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("RESUME_TYPE >=", value, "resumeType");
+        public Criteria andResumeGreaterThanOrEqualTo(String value) {
+            addCriterion("RESUME >=", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeLessThan(String value) {
-            addCriterion("RESUME_TYPE <", value, "resumeType");
+        public Criteria andResumeLessThan(String value) {
+            addCriterion("RESUME <", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeLessThanOrEqualTo(String value) {
-            addCriterion("RESUME_TYPE <=", value, "resumeType");
+        public Criteria andResumeLessThanOrEqualTo(String value) {
+            addCriterion("RESUME <=", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeLike(String value) {
-            addCriterion("RESUME_TYPE like", value, "resumeType");
+        public Criteria andResumeLike(String value) {
+            addCriterion("RESUME like", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeNotLike(String value) {
-            addCriterion("RESUME_TYPE not like", value, "resumeType");
+        public Criteria andResumeNotLike(String value) {
+            addCriterion("RESUME not like", value, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeIn(List<String> values) {
-            addCriterion("RESUME_TYPE in", values, "resumeType");
+        public Criteria andResumeIn(List<String> values) {
+            addCriterion("RESUME in", values, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeNotIn(List<String> values) {
-            addCriterion("RESUME_TYPE not in", values, "resumeType");
+        public Criteria andResumeNotIn(List<String> values) {
+            addCriterion("RESUME not in", values, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeBetween(String value1, String value2) {
-            addCriterion("RESUME_TYPE between", value1, value2, "resumeType");
+        public Criteria andResumeBetween(String value1, String value2) {
+            addCriterion("RESUME between", value1, value2, "resume");
             return (Criteria) this;
         }
 
-        public Criteria andResumeTypeNotBetween(String value1, String value2) {
-            addCriterion("RESUME_TYPE not between", value1, value2, "resumeType");
+        public Criteria andResumeNotBetween(String value1, String value2) {
+            addCriterion("RESUME not between", value1, value2, "resume");
             return (Criteria) this;
         }
 

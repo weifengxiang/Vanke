@@ -27,7 +27,7 @@ public class LandParttimeJob {
 
     private String otherMgs;
 
-    private String resumeType;
+    private String resume;
 
     private Date jobBegin;
 
@@ -143,12 +143,12 @@ public class LandParttimeJob {
         this.otherMgs = otherMgs;
     }
 
-    public String getResumeType() {
-        return resumeType;
+    public String getResume() {
+        return resume;
     }
 
-    public void setResumeType(String resumeType) {
-        this.resumeType = resumeType;
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
     public Date getJobBegin() {

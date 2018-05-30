@@ -14,7 +14,7 @@
     <result column="POST_MSG" jdbcType="VARCHAR" property="postMsg" />
     <result column="POST_REQ" jdbcType="VARCHAR" property="postReq" />
     <result column="OTHER_MGS" jdbcType="VARCHAR" property="otherMgs" />
-    <result column="RESUME_TYPE" jdbcType="VARCHAR" property="resumeType" />
+    <result column="RESUME" jdbcType="VARCHAR" property="resume" />
     <result column="JOB_BEGIN" jdbcType="TIMESTAMP" property="jobBegin" />
     <result column="JOB_END" jdbcType="TIMESTAMP" property="jobEnd" />
     <result column="ENROLL_END" jdbcType="TIMESTAMP" property="enrollEnd" />
@@ -85,7 +85,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, CODE, NAME, PREMISES, SALARY, WORK_TIMES, WORK_PLACE, REQ_NUM, SETTLEMENT_TYPE, 
-    POST_MSG, POST_REQ, OTHER_MGS, RESUME_TYPE, JOB_BEGIN, JOB_END, ENROLL_END, PUB_USER, 
+    POST_MSG, POST_REQ, OTHER_MGS, RESUME, JOB_BEGIN, JOB_END, ENROLL_END, PUB_USER, 
     PUB_ORG, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="org.sky.land.model.LandParttimeJobExample" resultMap="BaseResultMap">
@@ -124,7 +124,7 @@
       PREMISES, SALARY, WORK_TIMES, 
       WORK_PLACE, REQ_NUM, SETTLEMENT_TYPE, 
       POST_MSG, POST_REQ, OTHER_MGS, 
-      RESUME_TYPE, JOB_BEGIN, JOB_END, 
+      RESUME, JOB_BEGIN, JOB_END, 
       ENROLL_END, PUB_USER, PUB_ORG, 
       CREATER, CREATE_TIME, UPDATER, 
       UPDATE_TIME)
@@ -132,7 +132,7 @@
       #{premises,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{workTimes,jdbcType=VARCHAR}, 
       #{workPlace,jdbcType=VARCHAR}, #{reqNum,jdbcType=VARCHAR}, #{settlementType,jdbcType=VARCHAR}, 
       #{postMsg,jdbcType=VARCHAR}, #{postReq,jdbcType=VARCHAR}, #{otherMgs,jdbcType=VARCHAR}, 
-      #{resumeType,jdbcType=VARCHAR}, #{jobBegin,jdbcType=TIMESTAMP}, #{jobEnd,jdbcType=TIMESTAMP}, 
+      #{resume,jdbcType=VARCHAR}, #{jobBegin,jdbcType=TIMESTAMP}, #{jobEnd,jdbcType=TIMESTAMP}, 
       #{enrollEnd,jdbcType=TIMESTAMP}, #{pubUser,jdbcType=VARCHAR}, #{pubOrg,jdbcType=VARCHAR}, 
       #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
@@ -176,8 +176,8 @@
       <if test="otherMgs != null">
         OTHER_MGS,
       </if>
-      <if test="resumeType != null">
-        RESUME_TYPE,
+      <if test="resume != null">
+        RESUME,
       </if>
       <if test="jobBegin != null">
         JOB_BEGIN,
@@ -244,8 +244,8 @@
       <if test="otherMgs != null">
         #{otherMgs,jdbcType=VARCHAR},
       </if>
-      <if test="resumeType != null">
-        #{resumeType,jdbcType=VARCHAR},
+      <if test="resume != null">
+        #{resume,jdbcType=VARCHAR},
       </if>
       <if test="jobBegin != null">
         #{jobBegin,jdbcType=TIMESTAMP},
@@ -321,8 +321,8 @@
       <if test="record.otherMgs != null">
         OTHER_MGS = #{record.otherMgs,jdbcType=VARCHAR},
       </if>
-      <if test="record.resumeType != null">
-        RESUME_TYPE = #{record.resumeType,jdbcType=VARCHAR},
+      <if test="record.resume != null">
+        RESUME = #{record.resume,jdbcType=VARCHAR},
       </if>
       <if test="record.jobBegin != null">
         JOB_BEGIN = #{record.jobBegin,jdbcType=TIMESTAMP},
@@ -370,7 +370,7 @@
       POST_MSG = #{record.postMsg,jdbcType=VARCHAR},
       POST_REQ = #{record.postReq,jdbcType=VARCHAR},
       OTHER_MGS = #{record.otherMgs,jdbcType=VARCHAR},
-      RESUME_TYPE = #{record.resumeType,jdbcType=VARCHAR},
+      RESUME = #{record.resume,jdbcType=VARCHAR},
       JOB_BEGIN = #{record.jobBegin,jdbcType=TIMESTAMP},
       JOB_END = #{record.jobEnd,jdbcType=TIMESTAMP},
       ENROLL_END = #{record.enrollEnd,jdbcType=TIMESTAMP},
@@ -420,8 +420,8 @@
       <if test="otherMgs != null">
         OTHER_MGS = #{otherMgs,jdbcType=VARCHAR},
       </if>
-      <if test="resumeType != null">
-        RESUME_TYPE = #{resumeType,jdbcType=VARCHAR},
+      <if test="resume != null">
+        RESUME = #{resume,jdbcType=VARCHAR},
       </if>
       <if test="jobBegin != null">
         JOB_BEGIN = #{jobBegin,jdbcType=TIMESTAMP},
@@ -466,7 +466,7 @@
       POST_MSG = #{postMsg,jdbcType=VARCHAR},
       POST_REQ = #{postReq,jdbcType=VARCHAR},
       OTHER_MGS = #{otherMgs,jdbcType=VARCHAR},
-      RESUME_TYPE = #{resumeType,jdbcType=VARCHAR},
+      RESUME = #{resume,jdbcType=VARCHAR},
       JOB_BEGIN = #{jobBegin,jdbcType=TIMESTAMP},
       JOB_END = #{jobEnd,jdbcType=TIMESTAMP},
       ENROLL_END = #{enrollEnd,jdbcType=TIMESTAMP},
