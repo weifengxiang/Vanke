@@ -15,8 +15,8 @@ function addLandParttimeJob(){
 	var opts={
 				id:'addLandParttimeJob',
 				title:'添加兼职任务信息',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initAddLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -142,71 +142,31 @@ function searchButton(){
 			var ft = new HashMap();
 			var code =$('#q_code').textbox("getValue");
 			if(code){
-				ft.put("code@=", code);
+				ft.put("code@like", "%"+code+"%");
 			}
 			var name =$('#q_name').textbox("getValue");
 			if(name){
-				ft.put("name@=", name);
+				ft.put("name@like", "%"+name+"%");
 			}
 			var premises =$('#q_premises').textbox("getValue");
 			if(premises){
-				ft.put("premises@=", premises);
-			}
-			var salary =$('#q_salary').textbox("getValue");
-			if(salary){
-				ft.put("salary@=", salary);
-			}
-			var workTimes =$('#q_workTimes').textbox("getValue");
-			if(workTimes){
-				ft.put("workTimes@=", workTimes);
+				ft.put("premises@like", "%"+premises+"%");
 			}
 			var workPlace =$('#q_workPlace').textbox("getValue");
 			if(workPlace){
-				ft.put("workPlace@=", workPlace);
+				ft.put("workPlace@like", "%"+workPlace+"%");
 			}
-			var reqNum =$('#q_reqNum').textbox("getValue");
-			if(reqNum){
-				ft.put("reqNum@=", reqNum);
-			}
-			var settlementType =$('#q_settlementType').textbox("getValue");
-			if(settlementType){
-				ft.put("settlementType@=", settlementType);
-			}
-			var postMsg =$('#q_postMsg').textbox("getValue");
-			if(postMsg){
-				ft.put("postMsg@=", postMsg);
-			}
-			var postReq =$('#q_postReq').textbox("getValue");
-			if(postReq){
-				ft.put("postReq@=", postReq);
-			}
-			var otherMgs =$('#q_otherMgs').textbox("getValue");
-			if(otherMgs){
-				ft.put("otherMgs@=", otherMgs);
-			}
-			var resumeType =$('#q_resumeType').textbox("getValue");
-			if(resumeType){
-				ft.put("resumeType@=", resumeType);
-			}
-			var jobBegin =$('#q_jobBegin').textbox("getValue");
+			var jobBegin =$('#q_jobBegin').datebox("getValue");
 			if(jobBegin){
-				ft.put("jobBegin@=", jobBegin);
+				ft.put("date_format(jobBegin,'%Y-%m-%d')@>=", jobBegin);
 			}
-			var jobEnd =$('#q_jobEnd').textbox("getValue");
+			var jobEnd =$('#q_jobEnd').datebox("getValue");
 			if(jobEnd){
-				ft.put("jobEnd@=", jobEnd);
+				ft.put("date_format(jobEnd,'%Y-%m-%d')@<=", jobEnd);
 			}
-			var enrollEnd =$('#q_enrollEnd').textbox("getValue");
+			var enrollEnd =$('#q_enrollEnd').datebox("getValue");
 			if(enrollEnd){
-				ft.put("enrollEnd@=", enrollEnd);
-			}
-			var pubUser =$('#q_pubUser').textbox("getValue");
-			if(pubUser){
-				ft.put("pubUser@=", pubUser);
-			}
-			var pubOrg =$('#q_pubOrg').textbox("getValue");
-			if(pubOrg){
-				ft.put("pubOrg@=", pubOrg);
+				ft.put("date_format(enrollEnd,'%Y-%m-%d')@=", enrollEnd);
 			}
 			return ft.getJSON();
 		}
