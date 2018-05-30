@@ -10,7 +10,7 @@ public class BaseParttimeJobEnroll {
     private String code;
 
     private String chaCode;
-
+    
     private Date enrollDate;
 
     private String state;
@@ -22,6 +22,10 @@ public class BaseParttimeJobEnroll {
     private String updater;
 
     private Date updateTime;
+    
+    private String chaCodeName;
+    
+    private String chaId;
 
     public String getId() {
         return id;
@@ -102,4 +106,20 @@ public class BaseParttimeJobEnroll {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getChaCodeName() {
+		return chaCodeName;
+	}
+
+	public void setChaCodeName(String chaCodeName) {
+		this.chaCodeName = chaCodeName;
+	}
+
+	public String getChaId() {
+		return chaId;
+	}
+
+	public void setChaId(String chaId) {
+		this.chaId = chaId;
+	}
 }

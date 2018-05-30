@@ -12,6 +12,8 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CHA_CODE_NAME" jdbcType="VARCHAR" property="chaCodeName" />
+    <result column="CHA_ID" jdbcType="VARCHAR" property="chaId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +75,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, JOB_CODE, CODE, CHA_CODE, ENROLL_DATE, STATE, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    UPDATE_TIME,(SELECT CHANNEL.NAME FROM BASE_CHANNEL CHANNEL WHERE CHANNEL.CODE = CHA_CODE) AS CHA_CODE_NAME,
+    (SELECT CHANNEL.ID FROM BASE_CHANNEL CHANNEL WHERE CHANNEL.CODE = CHA_CODE) AS CHA_ID
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseParttimeJobEnrollExample" resultMap="BaseResultMap">
     select

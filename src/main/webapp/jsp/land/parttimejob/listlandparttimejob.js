@@ -172,3 +172,33 @@ function searchButton(){
 		}
 	});
 }
+/**
+*报名人员管理
+**/
+function manageChannel(){
+	var checkeds=$('#listlandparttimejobdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	var opts={
+				id:'manageChannel',
+				title:'报名人员管理',
+				width:900,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initManageChannel'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initDetailLandParttimeJobPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data=checkeds[0];
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                };
+		            	this.content.initDetailLandParttimeJobPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
+}

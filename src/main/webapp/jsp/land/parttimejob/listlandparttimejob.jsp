@@ -80,12 +80,6 @@ $(function() {
 						options:{
 							required:true
 						}}">意向楼盘</th>
-				<th data-options="field:'workTimes',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">工作时间</th>
 				<th data-options="field:'workPlace',width:180,
 				editor:{
 						type:'textbox',
@@ -129,6 +123,8 @@ $(function() {
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delLandParttimeJob()">删除</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailLandParttimeJob()">查看明细</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-edit',plain:true" onclick="manageChannel()">报名人员管理</a>
 </div>
 </body>
 </html>
