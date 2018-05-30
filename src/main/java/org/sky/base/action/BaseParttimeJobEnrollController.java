@@ -142,4 +142,30 @@ public class BaseParttimeJobEnrollController extends BaseController{
 		BaseParttimeJobEnroll bean = baseparttimejobenrollService.getBaseParttimeJobEnrollById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	/**
+	*修改录用状态
+	**/
+	@RequestMapping(value = "/base/BaseParttimeJobEnroll/changeState", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String changeState(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String delRows=request.getParameter("delRows");
+			String state = request.getParameter("state");
+			if(null==state||"".equals(state)){
+				throw new ServiceException("参数的值不符合要求");
+			}
+			List de=JsonUtils.json2list(delRows, BaseParttimeJobEnroll.class);
+			baseparttimejobenrollService.changeState(de,state);
+			rd.setCode(ResultData.code_success);
+			rd.setName("录用成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("录用失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
+	}
 }

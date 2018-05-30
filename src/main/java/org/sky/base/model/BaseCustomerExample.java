@@ -3537,6 +3537,76 @@ public class BaseCustomerExample {
             addCriterion("CHANNEL_CODE not between", value1, value2, "channelCode");
             return (Criteria) this;
         }
+
+        public Criteria andParttimeJobCodeIsNull() {
+            addCriterion("PARTTIME_JOB_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeIsNotNull() {
+            addCriterion("PARTTIME_JOB_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeEqualTo(String value) {
+            addCriterion("PARTTIME_JOB_CODE =", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeNotEqualTo(String value) {
+            addCriterion("PARTTIME_JOB_CODE <>", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeGreaterThan(String value) {
+            addCriterion("PARTTIME_JOB_CODE >", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("PARTTIME_JOB_CODE >=", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeLessThan(String value) {
+            addCriterion("PARTTIME_JOB_CODE <", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeLessThanOrEqualTo(String value) {
+            addCriterion("PARTTIME_JOB_CODE <=", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeLike(String value) {
+            addCriterion("PARTTIME_JOB_CODE like", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeNotLike(String value) {
+            addCriterion("PARTTIME_JOB_CODE not like", value, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeIn(List<String> values) {
+            addCriterion("PARTTIME_JOB_CODE in", values, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeNotIn(List<String> values) {
+            addCriterion("PARTTIME_JOB_CODE not in", values, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeBetween(String value1, String value2) {
+            addCriterion("PARTTIME_JOB_CODE between", value1, value2, "parttimeJobCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParttimeJobCodeNotBetween(String value1, String value2) {
+            addCriterion("PARTTIME_JOB_CODE not between", value1, value2, "parttimeJobCode");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -142,4 +142,12 @@ public class LandParttimeJobController extends BaseController{
 		LandParttimeJob bean = landparttimejobService.getLandParttimeJobById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	/**
+	*报名人员管理
+	**/
+	@RequestMapping(value = "/land/LandParttimeJob/initManageChannel", method = { RequestMethod.GET })
+	public String initManageChannel(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/land/parttimejob/manageChannel";
+	}
 }

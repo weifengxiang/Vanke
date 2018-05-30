@@ -23,8 +23,6 @@ $(function() {
 					<th><label>任务编号:</label></th>
 					<td><input class="easyui-textbox" name="code"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>任务名称:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
@@ -33,8 +31,6 @@ $(function() {
 					<th><label>意向楼盘:</label></th>
 					<td><input class="easyui-textbox" name="premises"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>薪资:</label></th>
 					<td><input class="easyui-textbox" name="salary"
 						data-options="required:true"></input></td>
@@ -43,8 +39,6 @@ $(function() {
 					<th><label>工作时间:</label></th>
 					<td><input class="easyui-textbox" name="workTimes"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>工作地点:</label></th>
 					<td><input class="easyui-textbox" name="workPlace"
 						data-options="required:true"></input></td>
@@ -53,53 +47,45 @@ $(function() {
 					<th><label>需求人数:</label></th>
 					<td><input class="easyui-textbox" name="reqNum"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>结算方式:</label></th>
 					<td><input class="easyui-textbox" name="settlementType"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>岗位综述:</label></th>
-					<td><input class="easyui-textbox" name="postMsg"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="postMsg"
+						data-options="multiline:true,required:true" style='width:500px;height:100px;'></input></td>
 				  </tr>
 				  <tr>
-					<th><label>岗位要求:</label></th>
-					<td><input class="easyui-textbox" name="postReq"
-						data-options="required:true"></input></td>
+				  	<th><label>岗位要求:</label></th>
+				  	<td colspan='3'><input class="easyui-textbox" name="postReq" 
+							data-options="multiline:true,required:true" style='width:500px;height:100px;'></input></td>
 				  </tr>
 				  <tr>
 					<th><label>其他信息:</label></th>
-					<td><input class="easyui-textbox" name="otherMgs"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>简历投递:</label></th>
-					<td><input class="easyui-textbox" name="resumeType"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="otherMgs"
+						data-options="required:true" style='width:500px'></input></td>
 				  </tr>
 				  <tr>
 					<th><label>任务开始时间:</label></th>
-					<td><input class="easyui-textbox" name="jobBegin"
+					<td><input class="easyui-datebox" name="jobBegin"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>任务结束时间:</label></th>
-					<td><input class="easyui-textbox" name="jobEnd"
+					<td><input class="easyui-datebox" name="jobEnd"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
+				  	<th><label>简历投递:</label></th>
+					<td><input class="easyui-textbox" name="resume"
+						data-options="required:true"></input></td>
 					<th><label>报名截止时间:</label></th>
-					<td><input class="easyui-textbox" name="enrollEnd"
+					<td><input class="easyui-datebox" name="enrollEnd"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>发布人:</label></th>
+				  	<th><label>发布人:</label></th>
 					<td><input class="easyui-textbox" name="pubUser"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>发布单位:</label></th>
 					<td><input class="easyui-textbox" name="pubOrg"
 						data-options="required:true"></input></td>

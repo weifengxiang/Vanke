@@ -15,8 +15,8 @@ function addLandParttimeJob(){
 	var opts={
 				id:'addLandParttimeJob',
 				title:'添加兼职任务信息',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initAddLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -83,8 +83,8 @@ function editLandParttimeJob(){
 	var opts={
 				id:'editLandParttimeJob',
 				title:'修改兼职任务信息',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initEditLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -114,8 +114,8 @@ function detailLandParttimeJob(){
 	var opts={
 				id:'detailLandParttimeJob',
 				title:'兼职任务信息明细',
-				width:600,
-				height:450,
+				width:700,
+				height:550,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initDetailLandParttimeJobPage'),
 				onLoad: function(dialog){ 
@@ -142,73 +142,63 @@ function searchButton(){
 			var ft = new HashMap();
 			var code =$('#q_code').textbox("getValue");
 			if(code){
-				ft.put("code@=", code);
+				ft.put("code@like", "%"+code+"%");
 			}
 			var name =$('#q_name').textbox("getValue");
 			if(name){
-				ft.put("name@=", name);
+				ft.put("name@like", "%"+name+"%");
 			}
 			var premises =$('#q_premises').textbox("getValue");
 			if(premises){
-				ft.put("premises@=", premises);
-			}
-			var salary =$('#q_salary').textbox("getValue");
-			if(salary){
-				ft.put("salary@=", salary);
-			}
-			var workTimes =$('#q_workTimes').textbox("getValue");
-			if(workTimes){
-				ft.put("workTimes@=", workTimes);
+				ft.put("premises@like", "%"+premises+"%");
 			}
 			var workPlace =$('#q_workPlace').textbox("getValue");
 			if(workPlace){
-				ft.put("workPlace@=", workPlace);
+				ft.put("workPlace@like", "%"+workPlace+"%");
 			}
-			var reqNum =$('#q_reqNum').textbox("getValue");
-			if(reqNum){
-				ft.put("reqNum@=", reqNum);
-			}
-			var settlementType =$('#q_settlementType').textbox("getValue");
-			if(settlementType){
-				ft.put("settlementType@=", settlementType);
-			}
-			var postMsg =$('#q_postMsg').textbox("getValue");
-			if(postMsg){
-				ft.put("postMsg@=", postMsg);
-			}
-			var postReq =$('#q_postReq').textbox("getValue");
-			if(postReq){
-				ft.put("postReq@=", postReq);
-			}
-			var otherMgs =$('#q_otherMgs').textbox("getValue");
-			if(otherMgs){
-				ft.put("otherMgs@=", otherMgs);
-			}
-			var resumeType =$('#q_resumeType').textbox("getValue");
-			if(resumeType){
-				ft.put("resumeType@=", resumeType);
-			}
-			var jobBegin =$('#q_jobBegin').textbox("getValue");
+			var jobBegin =$('#q_jobBegin').datebox("getValue");
 			if(jobBegin){
-				ft.put("jobBegin@=", jobBegin);
+				ft.put("jobBegin@>=", jobBegin);
 			}
-			var jobEnd =$('#q_jobEnd').textbox("getValue");
+			var jobEnd =$('#q_jobEnd').datebox("getValue");
 			if(jobEnd){
-				ft.put("jobEnd@=", jobEnd);
+				ft.put("jobEnd@<=", jobEnd);
 			}
-			var enrollEnd =$('#q_enrollEnd').textbox("getValue");
+			var enrollEnd =$('#q_enrollEnd').datebox("getValue");
 			if(enrollEnd){
 				ft.put("enrollEnd@=", enrollEnd);
-			}
-			var pubUser =$('#q_pubUser').textbox("getValue");
-			if(pubUser){
-				ft.put("pubUser@=", pubUser);
-			}
-			var pubOrg =$('#q_pubOrg').textbox("getValue");
-			if(pubOrg){
-				ft.put("pubOrg@=", pubOrg);
 			}
 			return ft.getJSON();
 		}
 	});
+}
+/**
+*报名人员管理
+**/
+function manageChannel(){
+	var checkeds=$('#listlandparttimejobdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	var opts={
+				id:'manageChannel',
+				title:'报名人员管理',
+				width:900,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'land/LandParttimeJob/initManageChannel'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initDetailLandParttimeJobPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data=checkeds[0];
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                };
+		            	this.content.initDetailLandParttimeJobPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
 }

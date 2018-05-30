@@ -115,4 +115,17 @@ public class BaseParttimeJobEnrollService {
 		BaseParttimeJobEnroll bean = baseparttimejobenrollmapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	/**
+	 * 批量修改录用状态
+	 * @param de
+	 * @param state
+	 */
+	@Transactional
+	public void changeState(List<BaseParttimeJobEnroll> delList, String state) {
+		// TODO Auto-generated method stub
+		for(BaseParttimeJobEnroll del:delList){
+			del.setState(state);
+			baseparttimejobenrollmapper.updateByPrimaryKeySelective(del);
+		}
+	}
 }
